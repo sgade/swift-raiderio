@@ -22,6 +22,14 @@ public class RaiderIO {
 
 extension RaiderIO {
 
+    private struct ErrorResponse: Decodable {
+
+        public let statusCode: Int
+        public let error: String
+        public let message: String
+
+    }
+
     func request<T>(url: URL) async throws -> T where T: Decodable {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -30,11 +38,22 @@ extension RaiderIO {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw Errors.failedRequest
         }
+
+        let decoder = JSONDecoder()
+
         guard httpResponse.statusCode == 200 else {
-            throw Errors.http(statusCode: httpResponse.statusCode)
+            switch httpResponse.statusCode {
+            case 400:
+                let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
+                throw Errors.server(statusCode: errorResponse.statusCode,
+                                    error: errorResponse.error,
+                                    message: errorResponse.message)
+            default:
+                throw Errors.http(statusCode: httpResponse.statusCode)
+            }
         }
 
-        return try JSONDecoder().decode(T.self, from: data)
+        return try decoder.decode(T.self, from: data)
     }
 
 }

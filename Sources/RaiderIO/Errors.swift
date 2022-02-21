@@ -14,5 +14,6 @@ public enum Errors: Error {
     case invalidUrlParameters
     case failedRequest
     case http(statusCode: Int)
+    case server(statusCode: Int, error: String, message: String)
 
 }
