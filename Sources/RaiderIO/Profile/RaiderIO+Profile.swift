@@ -62,19 +62,7 @@ extension RaiderIO {
             throw Errors.invalidUrlParameters
         }
 
-        var urlRequest = URLRequest(url: url)
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-
-        let (data, response) = try await urlSession.data(for: urlRequest)
-
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw Errors.failedRequest
-        }
-        guard httpResponse.statusCode == 200 else {
-            throw Errors.http(statusCode: httpResponse.statusCode)
-        }
-
-        return try JSONDecoder().decode(Profile.self, from: data)
+        return try await request(url: url)
     }
 
 }
