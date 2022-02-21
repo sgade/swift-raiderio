@@ -9,4 +9,12 @@
 import Foundation
 
 
-public class RaiderIO {}
+public class RaiderIO {
+
+    let urlSession: URLSession
+
+    public init(urlSession: URLSession) {
+        self.urlSession = urlSession
+    }
+
+}
