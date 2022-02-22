@@ -11,13 +11,6 @@ import Foundation
 
 public struct Profile {
 
-    public enum Gender: String, Decodable {
-
-        case male
-        case female
-
-    }
-
     public struct Gear: Decodable {
 
         private enum CodingKeys: String, CodingKey {

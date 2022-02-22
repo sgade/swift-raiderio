@@ -29,4 +29,28 @@ final class GuildTests: XCTestCase {
         }
     }
 
+    func testFetchGuildBossKill() async throws {
+        do {
+            let bossKill = try await client!.getGuildBossKill(region: .us, realm: "Skullcrusher", guildName: "Ludicrous Speed", raidSlug: "sanctum-of-domination", bossSlug: "the-nine", difficulty: .heroic)
+
+            XCTAssertNotNil(bossKill)
+
+            print(bossKill!)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
+    func testFetchEmptyGuildBossKill() async throws {
+        do {
+            let bossKill = try await client!.getGuildBossKill(region: .eu, realm: "Frostwolf", guildName: "Via Draconis", raidSlug: "sanctum-of-domination", bossSlug: "the-nine", difficulty: .heroic)
+
+            XCTAssertNil(bossKill)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }
