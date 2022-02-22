@@ -16,3 +16,7 @@ public enum Expansion: Int {
     case shadowlands        = 8
 
 }
+
+// MARK: - Decodable
+
+extension Expansion: Decodable {}

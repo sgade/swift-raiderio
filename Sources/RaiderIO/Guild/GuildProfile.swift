@@ -13,7 +13,7 @@ public struct GuildProfile {
 
     public let name: String
     public let faction: Faction
-    public let region: Region
+    public let region: RegionSlug
     public let realm: String
     public let profileUrl: URL
 

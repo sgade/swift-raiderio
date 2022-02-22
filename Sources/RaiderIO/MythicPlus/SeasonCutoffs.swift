@@ -22,7 +22,7 @@ public struct SeasonCutoffs {
     public struct UIInfo {
 
         public let season: String
-        public let region: Region
+        public let region: RegionSlug
 
     }
 

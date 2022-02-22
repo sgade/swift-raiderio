@@ -9,7 +9,15 @@
 import Foundation
 
 
-public enum Region: String {
+public struct Region {
+
+    public let name: String
+    public let slug: RegionSlug
+    public let shortName: String
+
+}
+
+public enum RegionSlug: String {
 
     case cn
     case eu
@@ -21,4 +29,17 @@ public enum Region: String {
 
 // MARK: - Codable
 
-extension Region: Codable {}
+extension Region: Decodable {
+
+    private enum CodingKeys: String, CodingKey {
+
+        case name
+        case slug
+        case shortName  = "short_name"
+
+    }
+
+}
+
+
+extension RegionSlug: Codable {}

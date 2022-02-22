@@ -42,7 +42,7 @@ public struct BossKill {
             public let itemLevelEquipped: Float
             public let artifactTraits: Float
 //            public let realm: Any // TODO: define object
-//            public let region: Any // TODO: define object
+            public let region: Region
 //            public let items: [Any] // TODO: define object
 //            public let recruitmentProfiles: [Any] // TODO: define object
 

@@ -75,7 +75,7 @@ extension RaiderIO {
 
     private static let profileUrl = URL(string: "https://raider.io/api/v1/characters/profile")!
 
-    public func getProfile(region: Region,
+    public func getProfile(region: RegionSlug,
                            realm: String,
                            name: String,
                            fields: [ProfileField] = []) async throws -> Profile {

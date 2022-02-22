@@ -13,7 +13,7 @@ extension RaiderIO {
 
     private static let guildBossKillUrl = URL(string: "https://raider.io/api/v1/guilds/boss-kill")!
 
-    public func getGuildBossKill(region: Region,
+    public func getGuildBossKill(region: RegionSlug,
                                  realm: String,
                                  guildName: String,
                                  raidSlug: String,

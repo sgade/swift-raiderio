@@ -34,7 +34,7 @@ public struct Profile {
     public let activeSpecRole: String
     public let gender: Gender
     public let faction: Faction
-    public let region: Region
+    public let region: RegionSlug
     public let realm: String
     public let profileUrl: URL
     public let profileBanner: String

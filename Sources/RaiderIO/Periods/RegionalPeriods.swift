@@ -11,7 +11,7 @@ import Foundation
 
 public struct RegionalPeriods {
 
-    public let region: Region
+    public let region: RegionSlug
     public let previous: Period
     public let current: Period
     public let next: Period

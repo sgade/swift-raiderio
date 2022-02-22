@@ -22,7 +22,7 @@ extension RaiderIO {
 
     private static let guildProfileUrl = URL(string: "https://raider.io/api/v1/guilds/profile")!
 
-    public func getGuildProfile(region: Region,
+    public func getGuildProfile(region: RegionSlug,
                                 realm: String,
                                 name: String,
                                 fields: [GuildProfileField] = []) async throws -> GuildProfile {

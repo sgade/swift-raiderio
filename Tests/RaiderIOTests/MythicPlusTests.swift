@@ -39,4 +39,14 @@ final class MythicPlusTests: XCTestCase {
         }
     }
 
+    func testFetchLeaderboardCapacity() async throws {
+        do {
+            let leaderboardCapacity = try await client!.getMythicPlusLeaderboardCapacity(for: .current, region: .eu, realm: "Frostwolf")
+            print(leaderboardCapacity)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }
