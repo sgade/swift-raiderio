@@ -29,4 +29,14 @@ final class MythicPlusTests: XCTestCase {
         }
     }
 
+    func testFetchScoreTiers() async throws {
+        do {
+            let scoreTiers = try await client!.getMythicPlusScoreTiers(for: "season-sl-2")
+            print(scoreTiers)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }
