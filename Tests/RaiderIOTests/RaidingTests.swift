@@ -1,5 +1,5 @@
 //
-//  MythicPlusTests.swift
+//  RaidingTests.swift
 //  RaiderIOTests
 //
 //  Created by Sören Gade on 21.02.22.
@@ -11,7 +11,7 @@ import XCTest
 @testable import RaiderIO
 
 
-final class MythicPlusTests: XCTestCase {
+final class RaidingTests: XCTestCase {
 
     var client: RaiderIO?
 
@@ -19,9 +19,9 @@ final class MythicPlusTests: XCTestCase {
         client = RaiderIO(urlSession: .shared)
     }
 
-    func testFetchStaticMythicPlusData() async throws {
+    func testFetchStaticRaidingData() async throws {
         do {
-            let staticData = try await client!.getStaticMythicPlusData(for: .shadowlands)
+            let staticData = try await client!.getStaticRaidingData(for: .shadowlands)
             print(staticData)
         } catch {
             print(error)
