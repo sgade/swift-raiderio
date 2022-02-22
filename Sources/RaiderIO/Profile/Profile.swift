@@ -41,6 +41,7 @@ public struct Profile {
     public let activeSpecRole: String
     public let gender: Gender
     public let faction: Faction
+    public let region: Region
     public let realm: String
     public let profileUrl: URL
     public let profileBanner: String
@@ -83,6 +84,7 @@ extension Profile: Decodable {
         case activeSpecRole                             = "active_spec_role"
         case gender
         case faction
+        case region
         case realm
         case profileUrl                                 = "profile_url"
         case profileBanner                              = "profile_banner"
