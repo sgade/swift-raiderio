@@ -9,33 +9,53 @@
 import Foundation
 
 
-public enum ProfileField: String, CaseIterable, Encodable {
+public final class ProfileField {
+
+    public let value: String
+
+    private init(value: String) {
+        self.value = value
+    }
+
+}
+
+extension ProfileField: ExpressibleByStringLiteral {
+
+    public convenience init(stringLiteral value: StringLiteralType) {
+        self.init(value: value)
+    }
+
+}
+
+extension ProfileField {
 
     // MARK: General fields
 
-    case gear
-    case guild
-    case covenant
+    public static let gear: ProfileField = "gear"
+    public static let guild: ProfileField = "guild"
+    public static let covenant: ProfileField = "covenant"
 
     // MARK: Raiding fields
 
-    case raidProgression                            = "raid_progression"
+    public static let raidProgression: ProfileField = "raidProgression"
 
     // MARK: Mythic Plus fields
 
-//    case mythicPlusScoresBySeason                   = "mythic_plus_scores_by_season"
-    case mythicPlusRanks                            = "mythic_plus_ranks"
-    case mythicPlusRecentRuns                       = "mythic_plus_recent_runs"
-//    case mythicPlusBestRuns                         = "mythic_plus_best_runs"
-//    case mythicPlusAlternateRuns                    = "mythic_plus_alternate_runs"
-    case mythicPlusHighestLevelRuns                 = "mythic_plus_highest_level_runs"
-    case mythicPlusPreviousWeeklyHighestLevelRuns   = "mythic_plus_previous_weekly_highest_level_runs"
-    case previousMythicPlusRanks                    = "previous_mythic_plus_ranks"
+    public static func mythicPlusScores(by seasons: [String]) -> ProfileField {
+        ProfileField(value: "mythic_plus_scores_by_season\(seasons.map({ ":\($0)" }).joined() )")
+    }
+    public static let mythicPlusRanks: ProfileField                            = "mythic_plus_ranks"
+    public static let mythicPlusRecentRuns: ProfileField                       = "mythic_plus_recent_runs"
+    //    case mythicPlusBestRuns                         = "mythic_plus_best_runs"
+    //    case mythicPlusAlternateRuns                    = "mythic_plus_alternate_runs"
+    public static let mythicPlusHighestLevelRuns: ProfileField                 = "mythic_plus_highest_level_runs"
+    public static let mythicPlusPreviousWeeklyHighestLevelRuns: ProfileField   = "mythic_plus_previous_weekly_highest_level_runs"
+    public static let previousMythicPlusRanks: ProfileField                    = "previous_mythic_plus_ranks"
 
     // MARK: Other fields
 
-//    case raidAchievementMeta                        = "raid_achievement_meta"
-//    case raidAchievementCurve                       = "raid_achievement_curve"
+    //    case raidAchievementMeta                        = "raid_achievement_meta"
+    //    case raidAchievementCurve                       = "raid_achievement_curve"
 
 }
 
@@ -55,7 +75,7 @@ extension RaiderIO {
             URLQueryItem(name: "region", value: region.rawValue),
             URLQueryItem(name: "realm", value: realm),
             URLQueryItem(name: "name", value: name),
-            URLQueryItem(name: "fields", value: fields.map { $0.rawValue }.joined(separator: ","))
+            URLQueryItem(name: "fields", value: fields.map({ $0.value }).joined(separator: ","))
         ]
 
         guard let url = urlComponents.url else {

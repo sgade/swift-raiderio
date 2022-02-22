@@ -21,7 +21,8 @@ final class ProfileTests: XCTestCase {
 
     func testFetchProfile() async throws {
         do {
-            let profile = try await client!.getProfile(region: .eu, realm: "Frostwolf", name: "Kiaro", fields: ProfileField.allCases)
+            let fields: [ProfileField] = [.gear, .guild, .covenant, .mythicPlusScores(by: ["current"])]
+            let profile = try await client!.getProfile(region: .eu, realm: "Frostwolf", name: "Kiaro", fields: fields)
             print(profile)
         } catch {
             print(error)

@@ -52,12 +52,15 @@ public struct Profile {
     public let gear: Gear?
     public let guild: Guild?
     public let covenant: Covenant?
+
+    public let raidProgression: [String: RaidProgression]?
+
+    public let mythicPlusScoresBySeason: [SeasonScores]?
     public let mythicPlusRanks: [String: Ranks]?
     public let previousMythicPlusRanks: [String: Ranks]?
     public let mythicPlusRecentRuns: [DungeonRun]?
     public let mythicPlusHighestLevelRuns: [DungeonRun]?
     public let mythicPlusPreviousWeeklyHighestLevelRuns: [DungeonRun]?
-    public let raidProgression: [String: RaidProgression]?
 
 }
 
@@ -88,6 +91,7 @@ extension Profile: Decodable {
 
         case raidProgression                            = "raid_progression"
 
+        case mythicPlusScoresBySeason                   = "mythic_plus_scores_by_season"
         case mythicPlusRanks                            = "mythic_plus_ranks"
         case mythicPlusRecentRuns                       = "mythic_plus_recent_runs"
         case mythicPlusHighestLevelRuns                 = "mythic_plus_highest_level_runs"
