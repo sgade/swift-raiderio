@@ -85,9 +85,11 @@ extension RaiderIO {
         urlComponents.queryItems = [
             URLQueryItem(name: "region", value: region.rawValue),
             URLQueryItem(name: "realm", value: realm),
-            URLQueryItem(name: "name", value: name),
-            URLQueryItem(name: "fields", value: fields.map({ $0.value }).joined(separator: ","))
+            URLQueryItem(name: "name", value: name)
         ]
+        if fields.count > 0 {
+            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fields.map({ $0.value }).joined(separator: ",")))
+        }
 
         guard let url = urlComponents.url else {
             throw Errors.invalidUrlParameters
