@@ -57,10 +57,16 @@ public struct Profile {
 
     public let mythicPlusScoresBySeason: [SeasonScores]?
     public let mythicPlusRanks: [String: Ranks]?
-    public let previousMythicPlusRanks: [String: Ranks]?
     public let mythicPlusRecentRuns: [DungeonRun]?
+    public let mythicPlusBestRuns: [DungeonRun]?
+    public let mythicPlusAlternateRuns: [DungeonRun]?
     public let mythicPlusHighestLevelRuns: [DungeonRun]?
+    public let mythicPlusWeeklyHighestLevelRuns: [DungeonRun]?
     public let mythicPlusPreviousWeeklyHighestLevelRuns: [DungeonRun]?
+    public let previousMythicPlusRanks: [String: Ranks]?
+
+    public let raidAchievementMeta: [RaidAchievementMeta]?
+    public let raidAchievementCurve: [RaidAchievementCurve]?
 
 }
 
@@ -94,9 +100,15 @@ extension Profile: Decodable {
         case mythicPlusScoresBySeason                   = "mythic_plus_scores_by_season"
         case mythicPlusRanks                            = "mythic_plus_ranks"
         case mythicPlusRecentRuns                       = "mythic_plus_recent_runs"
+        case mythicPlusBestRuns                         = "mythic_plus_best_runs"
+        case mythicPlusAlternateRuns                    = "mythic_plus_alternate_runs"
         case mythicPlusHighestLevelRuns                 = "mythic_plus_highest_level_runs"
+        case mythicPlusWeeklyHighestLevelRuns           = "mythic_plus_weekly_highest_level_runs"
         case mythicPlusPreviousWeeklyHighestLevelRuns   = "mythic_plus_previous_weekly_highest_level_runs"
         case previousMythicPlusRanks                    = "previous_mythic_plus_ranks"
+
+        case raidAchievementMeta                        = "raid_achievement_meta"
+        case raidAchievementCurve                       = "raid_achievement_curve"
 
     }
 

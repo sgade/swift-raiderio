@@ -42,20 +42,31 @@ extension ProfileField {
     // MARK: Mythic Plus fields
 
     public static func mythicPlusScores(by seasons: [String]) -> ProfileField {
-        ProfileField(value: "mythic_plus_scores_by_season\(seasons.map({ ":\($0)" }).joined() )")
+        ProfileField(value: "mythic_plus_scores_by_season\( seasons.map({ ":\($0)" }).joined() )")
     }
     public static let mythicPlusRanks: ProfileField                            = "mythic_plus_ranks"
     public static let mythicPlusRecentRuns: ProfileField                       = "mythic_plus_recent_runs"
-    //    case mythicPlusBestRuns                         = "mythic_plus_best_runs"
-    //    case mythicPlusAlternateRuns                    = "mythic_plus_alternate_runs"
+    public static let mythicPlusBestRuns = mythicPlusBestRuns(all: false)
+    public static func mythicPlusBestRuns(all: Bool) -> ProfileField {
+        ProfileField(value: "mythic_plus_best_runs\( all ? ":all" : "" )")
+    }
+    public static let mythicPlusAlternateRuns = mythicPlusAlternateRuns(all: false)
+    public static func mythicPlusAlternateRuns(all: Bool) -> ProfileField {
+        ProfileField(value: "mythic_plus_alternate_runs\( all ? ":all" : "" )")
+    }
     public static let mythicPlusHighestLevelRuns: ProfileField                 = "mythic_plus_highest_level_runs"
+    public static let mythicPlusWeeklyHighestLevelRuns: ProfileField           = "mythic_plus_weekly_highest_level_runs"
     public static let mythicPlusPreviousWeeklyHighestLevelRuns: ProfileField   = "mythic_plus_previous_weekly_highest_level_runs"
     public static let previousMythicPlusRanks: ProfileField                    = "previous_mythic_plus_ranks"
 
     // MARK: Other fields
 
-    //    case raidAchievementMeta                        = "raid_achievement_meta"
-    //    case raidAchievementCurve                       = "raid_achievement_curve"
+    public static func raidAchievementMeta(tiers: [String]) -> ProfileField {
+        ProfileField(value: "raid_achievement_meta\( tiers.map({ ":\($0)" }).joined() )")
+    }
+    public static func raidAchievementCurve(raidSlugs: [String]) -> ProfileField {
+        ProfileField(value: "raid_achievement_curve\( raidSlugs.map({ ":\($0)" }).joined() )")
+    }
 
 }
 

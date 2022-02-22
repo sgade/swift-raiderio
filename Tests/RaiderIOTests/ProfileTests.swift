@@ -21,7 +21,22 @@ final class ProfileTests: XCTestCase {
 
     func testFetchProfile() async throws {
         do {
-            let fields: [ProfileField] = [.gear, .guild, .covenant, .mythicPlusScores(by: ["current"])]
+            let fields: [ProfileField] = [
+                .gear,
+                .guild,
+                .covenant,
+                .raidProgression,
+                .mythicPlusScores(by: ["current", "previous"]),
+                .mythicPlusRanks,
+                .mythicPlusRecentRuns,
+                .mythicPlusBestRuns,
+                .mythicPlusAlternateRuns,
+                .mythicPlusHighestLevelRuns,
+                .mythicPlusWeeklyHighestLevelRuns,
+                .previousMythicPlusRanks,
+                .raidAchievementMeta(tiers: ["tier28", "tier27"]),
+                .raidAchievementCurve(raidSlugs: ["castle-nathria", "sanctum-of-domination"])
+            ]
             let profile = try await client!.getProfile(region: .eu, realm: "Frostwolf", name: "Kiaro", fields: fields)
             print(profile)
         } catch {
