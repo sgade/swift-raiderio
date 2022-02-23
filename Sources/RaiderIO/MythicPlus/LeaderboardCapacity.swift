@@ -11,6 +11,15 @@ import Foundation
 
 public struct LeaderboardCapacity {
 
+    public struct Affix {
+
+        public let id: Int
+        public let icon: String
+        public let name: [String: String]
+        public let description: [String: String]
+
+    }
+
     public struct Realm {
 
         public struct ConnectedRealm {
@@ -65,19 +74,12 @@ public struct LeaderboardCapacity {
 
 }
 
-
-public struct Affix {
-
-    public let id: Int
-    public let icon: String
-    public let name: [String: String]
-    public let description: [String: String]
-
-}
-
 // MARK: - Decodable
 
 extension LeaderboardCapacity: Decodable {}
+
+
+extension LeaderboardCapacity.Affix: Decodable {}
 
 
 extension LeaderboardCapacity.Realm: Decodable {}
@@ -107,6 +109,3 @@ extension LeaderboardCapacity.Realm.DungeonInfo.Dungeon: Decodable {
 
 
 extension LeaderboardCapacity.Realm.DungeonInfo.LowestDungeonRun: Decodable {}
-
-
-extension Affix: Decodable {}

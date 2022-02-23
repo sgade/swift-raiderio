@@ -49,4 +49,14 @@ final class MythicPlusTests: XCTestCase {
         }
     }
 
+    func testFetchAffixes() async throws {
+        do {
+            let affixes = try await client!.getMythicPlusAffixes(region: .eu, locale: .de)
+            print(affixes)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }

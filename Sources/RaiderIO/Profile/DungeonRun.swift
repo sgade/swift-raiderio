@@ -11,16 +11,6 @@ import Foundation
 
 public struct DungeonRun {
 
-    public struct Affix {
-
-        public let id: Int
-        public let name: String
-        public let description: String
-        public let icon: String
-        public let wowheadUrl: URL
-
-    }
-
     public let dungeon: String
     public let shortName: String
     public let mythicLevel: Int
@@ -54,20 +44,6 @@ extension DungeonRun: Decodable {
         case score
         case affixes
         case url
-
-    }
-
-}
-
-extension DungeonRun.Affix: Decodable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case id
-        case name
-        case description
-        case icon
-        case wowheadUrl     = "wowhead_url"
 
     }
 
