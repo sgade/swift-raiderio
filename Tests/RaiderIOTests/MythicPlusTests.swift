@@ -59,4 +59,14 @@ final class MythicPlusTests: XCTestCase {
         }
     }
 
+    func testFetchRuns() async throws {
+        do {
+            let runs = try await client!.getMythicPlusRuns(season: "season-sl-2", region: .eu, dungeon: "mists-of-tirna-scithe", affixes: "all", page: 0)
+            print(runs)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }

@@ -15,7 +15,7 @@ public struct Affix {
     public let name: String
     public let description: String
     public let icon: String
-    public let wowheadUrl: URL
+    public let wowheadUrl: URL?
 
 }
 
