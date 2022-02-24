@@ -71,7 +71,7 @@ final class RaidingTests: XCTestCase {
         do {
             let rankings = try await client!.getRaidRankings(raid: "sanctum-of-domination",
                                                              difficulty: .normal,
-                                                             region: .eu)
+                                                             region: "eu")
             print(rankings)
         } catch {
             print(error)

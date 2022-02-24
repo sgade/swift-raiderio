@@ -19,6 +19,12 @@ extension RaiderIO {
 
     private static let raidingRaidingProgressionUrl = URL(string: "https://raider.io/api/v1/raiding/progression")!
 
+    /// Retrieve details of raiding progression for a raid.
+    ///
+    /// - Parameters:
+    ///     - raid: Raid to look up. This is the raid's name in slug form: `"tomb-of-sargeras"`.
+    ///     - difficulty: Difficulty to restrict progress to.
+    ///     - region: Name of region to restrict progress to.
     public func getRaidingProgression(raid raidSlug: String,
                                       difficulty: Difficulty,
                                       region: RegionSlug) async throws -> [RaidProgressionEntry] {

@@ -13,11 +13,20 @@ extension RaiderIO {
 
     private static let guildBossKillUrl = URL(string: "https://raider.io/api/v1/guilds/boss-kill")!
 
+    /// Retrieve information about a guild boss kill.
+    ///
+    /// - Parameters:
+    ///     - region: Name of region to look up guild in.
+    ///     - realm: Name of realm that guild is on. This is in slug format, e.g. `"altar-of-storms"`.
+    ///     - guild: Name of the guild to look up. This is not case sensitive.
+    ///     - raid: Raid slug to look up.
+    ///     - boss: Boss slug to look up.
+    ///     - difficulty: Raid difficulty to look up.
     public func getGuildBossKill(region: RegionSlug,
                                  realm: String,
                                  guildName: String,
-                                 raidSlug: String,
-                                 bossSlug: String,
+                                 raid raidSlug: String,
+                                 boss bossSlug: String,
                                  difficulty: Difficulty) async throws -> BossKill? {
         guard var urlComponents = URLComponents(url: RaiderIO.guildBossKillUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters

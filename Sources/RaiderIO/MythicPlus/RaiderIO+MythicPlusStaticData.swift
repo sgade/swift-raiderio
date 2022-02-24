@@ -13,6 +13,10 @@ extension RaiderIO {
 
     private static let mythicPlusStaticDataUrl = URL(string: "https://raider.io/api/v1/mythic-plus/static-data")!
 
+    /// Retrieve mythic plus season and dungeon static data for a specific expansion (slugs, names, etc.).
+    ///
+    /// - Parameters:
+    ///     - expansion: Expansion to get slugs for.
     public func getStaticMythicPlusData(for expansion: Expansion) async throws -> StaticMythicPlusData {
         guard var urlComponents = URLComponents(url: RaiderIO.mythicPlusStaticDataUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters

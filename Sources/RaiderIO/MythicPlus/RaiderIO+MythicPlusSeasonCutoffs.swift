@@ -19,6 +19,11 @@ extension RaiderIO {
 
     private static let mythicPlusSeasonCutoffsUrl = URL(string: "https://raider.io/api/v1/mythic-plus/season-cutoffs")!
 
+    /// Retrieve the Mythic+ Season cutoffs for a region.
+    ///
+    /// - Parameters:
+    ///     - season: Season to retrieve cutoffs for.
+    ///     - region: Region to receive cutoffs for.
     public func getMythicPlusSeasonCutoffs(for season: String, in region: RegionSlug) async throws -> SeasonCutoffs {
         guard var urlComponents = URLComponents(url: RaiderIO.mythicPlusSeasonCutoffsUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters

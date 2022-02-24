@@ -9,6 +9,7 @@
 import Foundation
 
 
+/// Object that allows access to the [Raider.io API](https://raider.io/api).
 public class RaiderIO {
 
     let urlSession: URLSession

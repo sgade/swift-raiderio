@@ -1,5 +1,11 @@
 # Changelog
 
+## (unreleased)
+
+### Updated
+
+* Added documentation from Swagger to Swift types.
+
 ## 0.1.0
 
 ### Added

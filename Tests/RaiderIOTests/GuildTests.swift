@@ -31,7 +31,12 @@ final class GuildTests: XCTestCase {
 
     func testFetchGuildBossKill() async throws {
         do {
-            let bossKill = try await client!.getGuildBossKill(region: .us, realm: "Skullcrusher", guildName: "Ludicrous Speed", raidSlug: "sanctum-of-domination", bossSlug: "the-nine", difficulty: .heroic)
+            let bossKill = try await client!.getGuildBossKill(region: .eu,
+                                                              realm: "Skullcrusher",
+                                                              guildName: "Ludicrous Speed",
+                                                              raid: "sanctum-of-domination",
+                                                              boss: "the-nine",
+                                                              difficulty: .heroic)
 
             XCTAssertNotNil(bossKill)
 
@@ -44,7 +49,12 @@ final class GuildTests: XCTestCase {
 
     func testFetchEmptyGuildBossKill() async throws {
         do {
-            let bossKill = try await client!.getGuildBossKill(region: .eu, realm: "Frostwolf", guildName: "Via Draconis", raidSlug: "sanctum-of-domination", bossSlug: "the-nine", difficulty: .heroic)
+            let bossKill = try await client!.getGuildBossKill(region: .eu,
+                                                              realm: "Frostwolf",
+                                                              guildName: "Via Draconis",
+                                                              raid: "sanctum-of-domination",
+                                                              boss: "the-nine",
+                                                              difficulty: .heroic)
 
             XCTAssertNil(bossKill)
         } catch {
