@@ -32,15 +32,6 @@ public struct HallOfFame {
 
         }
 
-        public struct KillGuild {
-
-            public let guild: Guild
-            public let defeatedAt: String?
-            public let streamers: Streamers
-            public let recruitmentProfiles: [RecruitmentProfile]
-
-        }
-
         public struct DefeatedBy {
 
             public let totalCount: Int
@@ -78,6 +69,16 @@ public struct HallOfFame {
 
 }
 
+
+public struct KillGuild {
+
+    public let guild: Guild
+    public let defeatedAt: ISO8601Date?
+    public let streamers: Streamers
+    public let recruitmentProfiles: [RecruitmentProfile]
+
+}
+
 // MARK: - Decodable
 
 extension HallOfFame: Decodable {}
@@ -90,8 +91,9 @@ extension HallOfFame.BossKill.BossKillVideo: Decodable {}
 
 extension HallOfFame.BossKill.DefeatedBy: Decodable {}
 
-extension HallOfFame.BossKill.KillGuild: Decodable {}
-
 extension HallOfFame.BossKill.AttemptedBy: Decodable {}
 
 extension HallOfFame.WinningGuild: Decodable {}
+
+
+extension KillGuild: Decodable {}

@@ -55,4 +55,16 @@ final class RaidingTests: XCTestCase {
         }
     }
 
+    func testFetchRaidingProgression() async throws {
+        do {
+            let progression = try await client!.getRaidingProgression(raid: "sanctum-of-domination",
+                                                                      difficulty: .normal,
+                                                                      region: .eu)
+            print(progression)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }
