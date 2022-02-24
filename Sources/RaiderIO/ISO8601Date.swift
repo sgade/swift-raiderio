@@ -37,7 +37,21 @@ extension ISO8601Date: Decodable {
             dateString = "\(dateString[dateString.startIndex..<dotIndex])Z"
         }
 
-        let date = try Date(dateString, strategy: .iso8601)
+        var date: Date
+        do {
+            date = try Date(dateString, strategy: .iso8601)
+        } catch let error as NSError {
+            guard error.domain == CocoaError.errorDomain,
+                  error.code == 2048,
+                  dateString.isEmpty
+            else {
+                throw error
+            }
+
+            // NSCocoaErrorDomain: Code 2048 => Cannot parse date
+            //  but input is empty, so we fall back
+            date = Date.distantPast
+        }
         self.init(date)
     }
 
