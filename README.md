@@ -1,3 +1,3 @@
 # swift-raiderio
 
-[RaiderIO API](https://raider.io/api) for Swift.
+[Raider.IO API](https://raider.io/api) for Swift.

@@ -29,4 +29,18 @@ final class RaidingTests: XCTestCase {
         }
     }
 
+    func testFetchBossRankings() async throws {
+        do {
+            let bossRankings = try await client!.getRaidingBossRankings(raid: "sanctum-of-domination",
+                                                                        boss: "the-nine",
+                                                                        difficulty: .normal,
+                                                                        region: RegionSlug.us.rawValue,
+                                                                        realm: "Skullcrusher")
+            print(bossRankings)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }
