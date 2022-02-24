@@ -13,20 +13,20 @@ public struct SeasonScores {
 
     public struct ScoreOverview {
 
-        public let all: Int
-        public let dps: Int
-        public let healer: Int
-        public let tank: Int
-        public let spec0: Int
-        public let spec1: Int
-        public let spec2: Int
-        public let spec3: Int
+        public let all: Float
+        public let dps: Float
+        public let healer: Float
+        public let tank: Float
+        public let spec0: Float
+        public let spec1: Float
+        public let spec2: Float
+        public let spec3: Float
 
     }
 
     public struct SegmentScore {
 
-        public let score: Int
+        public let score: Float
         public let color: String
 
     }
