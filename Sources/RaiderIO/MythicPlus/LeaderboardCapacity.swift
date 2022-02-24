@@ -20,20 +20,7 @@ public struct LeaderboardCapacity {
 
     }
 
-    public struct Realm {
-
-        public struct ConnectedRealm {
-
-            public let id: Int
-            public let connectedRealmId: Int
-            public let name: String
-            public let altName: String?
-            public let slug: String
-            public let altSlug: String
-            public let locale: String
-            public let isConnected: Bool
-
-        }
+    public struct RealmInfo {
 
         public struct DungeonInfo {
 
@@ -63,14 +50,14 @@ public struct LeaderboardCapacity {
         }
 
         public let id: Int
-        public let connectedRealms: [ConnectedRealm]
+        public let connectedRealms: [Realm]
         public let dungeons: [DungeonInfo]
 
     }
 
     let region: Region
     let affixes: [Affix]
-    let realms: [Realm]
+    let realms: [RealmInfo]
 
 }
 
@@ -82,16 +69,13 @@ extension LeaderboardCapacity: Decodable {}
 extension LeaderboardCapacity.Affix: Decodable {}
 
 
-extension LeaderboardCapacity.Realm: Decodable {}
+extension LeaderboardCapacity.RealmInfo: Decodable {}
 
 
-extension LeaderboardCapacity.Realm.ConnectedRealm: Decodable {}
+extension LeaderboardCapacity.RealmInfo.DungeonInfo: Decodable {}
 
 
-extension LeaderboardCapacity.Realm.DungeonInfo: Decodable {}
-
-
-extension LeaderboardCapacity.Realm.DungeonInfo.Dungeon: Decodable {
+extension LeaderboardCapacity.RealmInfo.DungeonInfo.Dungeon: Decodable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -108,4 +92,4 @@ extension LeaderboardCapacity.Realm.DungeonInfo.Dungeon: Decodable {
 }
 
 
-extension LeaderboardCapacity.Realm.DungeonInfo.LowestDungeonRun: Decodable {}
+extension LeaderboardCapacity.RealmInfo.DungeonInfo.LowestDungeonRun: Decodable {}

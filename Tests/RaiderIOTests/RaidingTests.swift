@@ -43,4 +43,16 @@ final class RaidingTests: XCTestCase {
         }
     }
 
+    func testFetchHallOfFame() async throws {
+        do {
+            let hallOfFame = try await client!.getRaidingHallOfFame(raid: "sanctum-of-domination",
+                                                                    difficulty: .normal,
+                                                                    region: .eu)
+            print(hallOfFame)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }

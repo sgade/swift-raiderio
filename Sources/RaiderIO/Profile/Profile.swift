@@ -27,6 +27,13 @@ public struct Profile {
 
     }
 
+    public struct Guild {
+
+        public let name: String
+        public let realm: String
+
+    }
+
     public let name: String
     public let race: String
     public let `class`: String
@@ -108,3 +115,6 @@ extension Profile: Decodable {
     }
 
 }
+
+
+extension Profile.Guild: Decodable {}
