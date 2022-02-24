@@ -11,6 +11,14 @@ import Foundation
 
 public struct GuildProfile {
 
+    public struct RaidRanking {
+
+        public let normal: Ranks
+        public let heroic: Ranks
+        public let mythic: Ranks
+
+    }
+
     public let name: String
     public let faction: Faction
     public let region: RegionSlug
@@ -40,3 +48,6 @@ extension GuildProfile: Decodable {
     }
 
 }
+
+
+extension GuildProfile.RaidRanking: Decodable {}

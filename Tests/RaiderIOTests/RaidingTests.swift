@@ -67,4 +67,16 @@ final class RaidingTests: XCTestCase {
         }
     }
 
+    func testFetchRaidRankings() async throws {
+        do {
+            let rankings = try await client!.getRaidRankings(raid: "sanctum-of-domination",
+                                                             difficulty: .normal,
+                                                             region: .eu)
+            print(rankings)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }
