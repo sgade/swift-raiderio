@@ -20,7 +20,7 @@ public struct Raid {
     }
 
     public let id: Int
-    public let slug: String
+    public let slug: RaidSlug
     public let name: String
     public let shortName: String
     public let encounters: [Encounter]

@@ -105,9 +105,9 @@ extension ProfileField {
 
     /// Retrieve AOTC/Cutting Edge achievement status for a given raid slug (or multiple).
     ///
-    /// - Parameter raidSlugs: The raids slugs to retrieve achivement status for.
-    public static func raidAchievementCurve(raidSlugs: [String]) -> ProfileField {
-        ProfileField(value: "raid_achievement_curve\( raidSlugs.map({ ":\($0)" }).joined() )")
+    /// - Parameter raids: The raids to retrieve achivement status for.
+    public static func raidAchievementCurve(raids: [RaidSlug]) -> ProfileField {
+        ProfileField(value: "raid_achievement_curve\( raids.map({ ":\($0.rawValue)" }).joined() )")
     }
 
 }

@@ -35,10 +35,10 @@ final class ProfileTests: XCTestCase {
                 .mythicPlusWeeklyHighestLevelRuns,
                 .previousMythicPlusRanks,
                 .raidAchievementMeta(tiers: ["tier28", "tier27"]),
-                .raidAchievementCurve(raidSlugs: ["castle-nathria", "sanctum-of-domination"])
+                .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
             ]
-            let profile = try await client!.getProfile(region: .eu, realm: "Frostwolf", name: "Kiaro", fields: fields)
-            print(profile)
+            
+            _ = try await client!.getProfile(region: .eu, realm: "Frostwolf", name: "Kiaro", fields: fields)
         } catch {
             print(error)
             throw error

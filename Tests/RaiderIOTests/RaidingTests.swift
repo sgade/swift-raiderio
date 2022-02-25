@@ -21,8 +21,7 @@ final class RaidingTests: XCTestCase {
 
     func testFetchStaticRaidingData() async throws {
         do {
-            let staticData = try await client!.getStaticRaidingData(for: .shadowlands)
-            print(staticData)
+            _ = try await client!.getStaticRaidingData(for: .shadowlands)
         } catch {
             print(error)
             throw error
@@ -31,12 +30,11 @@ final class RaidingTests: XCTestCase {
 
     func testFetchBossRankings() async throws {
         do {
-            let bossRankings = try await client!.getRaidingBossRankings(raid: "sanctum-of-domination",
-                                                                        boss: "the-nine",
-                                                                        difficulty: .normal,
-                                                                        region: RegionSlug.us.rawValue,
-                                                                        realm: "Skullcrusher")
-            print(bossRankings)
+            _ = try await client!.getRaidingBossRankings(raid: .sanctumOfDomination,
+                                                         boss: "the-nine",
+                                                         difficulty: .normal,
+                                                         region: .german,
+                                                         realm: "Frostwolf")
         } catch {
             print(error)
             throw error
@@ -45,10 +43,9 @@ final class RaidingTests: XCTestCase {
 
     func testFetchHallOfFame() async throws {
         do {
-            let hallOfFame = try await client!.getRaidingHallOfFame(raid: "sanctum-of-domination",
-                                                                    difficulty: .normal,
-                                                                    region: .eu)
-            print(hallOfFame)
+            _ = try await client!.getRaidingHallOfFame(raid: .sanctumOfDomination,
+                                                       difficulty: .normal,
+                                                       region: .eu)
         } catch {
             print(error)
             throw error
@@ -57,10 +54,9 @@ final class RaidingTests: XCTestCase {
 
     func testFetchRaidingProgression() async throws {
         do {
-            let progression = try await client!.getRaidingProgression(raid: "sanctum-of-domination",
-                                                                      difficulty: .normal,
-                                                                      region: .eu)
-            print(progression)
+            _ = try await client!.getRaidingProgression(raid: .sanctumOfDomination,
+                                                        difficulty: .normal,
+                                                        region: .us)
         } catch {
             print(error)
             throw error
@@ -69,10 +65,9 @@ final class RaidingTests: XCTestCase {
 
     func testFetchRaidRankings() async throws {
         do {
-            let rankings = try await client!.getRaidRankings(raid: "sanctum-of-domination",
-                                                             difficulty: .normal,
-                                                             region: "eu")
-            print(rankings)
+            _ = try await client!.getRaidRankings(raid: .sanctumOfDomination,
+                                                  difficulty: .normal,
+                                                  region: .german)
         } catch {
             print(error)
             throw error

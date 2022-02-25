@@ -21,8 +21,10 @@ final class GuildTests: XCTestCase {
 
     func testFetchGuildProfile() async throws {
         do {
-            let guildProfile = try await client!.getGuildProfile(region: .eu, realm: "Frostwolf", name: "Via Draconis", fields: GuildProfileField.allCases)
-            print(guildProfile)
+            _ = try await client!.getGuildProfile(region: .eu,
+                                                  realm: "Frostwolf",
+                                                  name: "Via Draconis",
+                                                  fields: GuildProfileField.allCases)
         } catch {
             print(error)
             throw error
@@ -31,16 +33,14 @@ final class GuildTests: XCTestCase {
 
     func testFetchGuildBossKill() async throws {
         do {
-            let bossKill = try await client!.getGuildBossKill(region: .eu,
+            let bossKill = try await client!.getGuildBossKill(region: .us,
                                                               realm: "Skullcrusher",
                                                               guildName: "Ludicrous Speed",
-                                                              raid: "sanctum-of-domination",
+                                                              raid: .sanctumOfDomination,
                                                               boss: "the-nine",
                                                               difficulty: .heroic)
 
             XCTAssertNotNil(bossKill)
-
-            print(bossKill!)
         } catch {
             print(error)
             throw error
@@ -52,7 +52,7 @@ final class GuildTests: XCTestCase {
             let bossKill = try await client!.getGuildBossKill(region: .eu,
                                                               realm: "Frostwolf",
                                                               guildName: "Via Draconis",
-                                                              raid: "sanctum-of-domination",
+                                                              raid: .sanctumOfDomination,
                                                               boss: "the-nine",
                                                               difficulty: .heroic)
 

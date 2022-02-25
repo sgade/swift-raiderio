@@ -14,7 +14,7 @@ public struct SeasonCutoffs {
     public struct RegionInfo {
 
         public let name: String
-        public let slug: String
+        public let slug: RegionSlug
         public let shortName: String
 
     }

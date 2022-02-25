@@ -21,8 +21,7 @@ final class PeriodsTests: XCTestCase {
 
     func testFetchPeriods() async throws {
         do {
-            let periods = try await client!.getPeriods()
-            print(periods)
+            _ = try await client!.getPeriods()
         } catch {
             print(error)
             throw error

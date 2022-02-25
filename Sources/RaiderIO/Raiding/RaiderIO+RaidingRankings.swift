@@ -30,18 +30,18 @@ extension RaiderIO {
     ///     - realm: Name of realm to restrict to.
     ///              Prefix with `connected-` to retrieve rankings from the connected realm. Requires that region be a standard region: `us`, `eu`, `kr`, `tw`.
     ///     - guilds: Guild IDs of guilds to restrict the results to. Allows filtering to up to 10 different guilds.
-    public func getRaidRankings(raid raidSlug: String,
+    public func getRaidRankings(raid: RaidSlug,
                                 difficulty: Difficulty,
-                                region: String,
+                                region: SubRegionSlug,
                                 realm: String? = nil,
                                 guilds guildIds: [Int] = []) async throws -> [RaidRanking] {
         guard var urlComponents = URLComponents(url: RaiderIO.raidRankingsUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [
-            URLQueryItem(name: "raid", value: raidSlug),
+            URLQueryItem(name: "raid", value: raid.rawValue),
             URLQueryItem(name: "difficulty", value: difficulty.rawValue),
-            URLQueryItem(name: "region", value: region)
+            URLQueryItem(name: "region", value: region.rawValue)
         ]
         if let realm = realm {
             urlComponents.queryItems?.append(URLQueryItem(name: "realm", value: realm))

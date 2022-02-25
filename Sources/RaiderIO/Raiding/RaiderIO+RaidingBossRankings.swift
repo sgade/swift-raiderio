@@ -30,19 +30,19 @@ extension RaiderIO {
     ///               Or a subregion: `english`, `french`, `german`, `italian`, `oceanic`, `russian`, `spanish`, `eu-english`, `eu-portuguese`, `eu-spanish`, `us-english`, `brazil`, `us-spanish`, `us-central`, `us-eastern`, `us-mountain`, `us-pacific`.
     ///     - realm: Name of realm to restrict to.
     ///              Prefix with `connected-` to retrieve rankings from the connected realm. Requires that region be a standard region: `us`, `eu`, `kr`, `tw`.
-    public func getRaidingBossRankings(raid raidSlug: String,
+    public func getRaidingBossRankings(raid: RaidSlug,
                                        boss bossSlug: String,
                                        difficulty: Difficulty,
-                                       region: String,
+                                       region: SubRegionSlug,
                                        realm: String? = nil) async throws -> [BossRanking] {
         guard var urlComponents = URLComponents(url: RaiderIO.raidingBossRankingsUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [
-            URLQueryItem(name: "raid", value: raidSlug),
+            URLQueryItem(name: "raid", value: raid.rawValue),
             URLQueryItem(name: "boss", value: bossSlug),
             URLQueryItem(name: "difficulty", value: difficulty.rawValue),
-            URLQueryItem(name: "region", value: region)
+            URLQueryItem(name: "region", value: region.rawValue)
         ]
         if let realm = realm {
             urlComponents.queryItems?.append(URLQueryItem(name: "realm", value: realm))

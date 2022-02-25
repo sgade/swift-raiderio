@@ -1,0 +1,68 @@
+//
+//  RegionSlug.swift
+//  RaiderIO
+//
+//  Created by Sören Gade on 25.02.22.
+//
+
+
+import Foundation
+
+
+public class RegionSlug: ExpressibleByStringLiteral, Decodable {
+
+    public let rawValue: String
+
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    required public init(stringLiteral value: StringLiteralType) {
+        self.rawValue = value
+    }
+
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.rawValue = try container.decode(String.self)
+    }
+
+}
+
+// MARK: - Constants
+
+extension RegionSlug {
+
+    public static let cn: RegionSlug = "cn"
+    public static let eu: RegionSlug = "eu"
+    public static let kr: RegionSlug = "kr"
+    public static let tw: RegionSlug = "tw"
+    public static let us: RegionSlug = "us"
+
+}
+
+// MARK: - SubRegionSlug
+
+public final class SubRegionSlug: RegionSlug {}
+
+extension SubRegionSlug {
+
+    public static let world: SubRegionSlug = "world"
+    public static let english: SubRegionSlug = "english"
+    public static let french: SubRegionSlug = "french"
+    public static let german: SubRegionSlug = "german"
+    public static let italian: SubRegionSlug = "italian"
+    public static let oceanic: SubRegionSlug = "oceanic"
+    public static let russian: SubRegionSlug = "russian"
+    public static let spanish: SubRegionSlug = "spanish"
+    public static let euEnglish: SubRegionSlug = "eu-english"
+    public static let euPortuguese: SubRegionSlug = "eu-portuguese"
+    public static let euSpanish: SubRegionSlug = "eu-spanish"
+    public static let usEnglish: SubRegionSlug = "us-english"
+    public static let brazil: SubRegionSlug = "brazil"
+    public static let usSpanish: SubRegionSlug = "us-spanish"
+    public static let usCentral: SubRegionSlug = "us-central"
+    public static let usEastern: SubRegionSlug = "us-eastern"
+    public static let usMountain: SubRegionSlug = "us-mountain"
+    public static let usPacific: SubRegionSlug = "us-pacific"
+
+}

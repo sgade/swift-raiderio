@@ -5,6 +5,7 @@
 ### Updated
 
 * Added documentation from Swagger to Swift types.
+* Use raw value represented types for enums that frequently change over time.
 
 ## 0.1.0
 

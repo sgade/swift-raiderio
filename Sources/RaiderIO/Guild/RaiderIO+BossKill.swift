@@ -25,7 +25,7 @@ extension RaiderIO {
     public func getGuildBossKill(region: RegionSlug,
                                  realm: String,
                                  guildName: String,
-                                 raid raidSlug: String,
+                                 raid: RaidSlug,
                                  boss bossSlug: String,
                                  difficulty: Difficulty) async throws -> BossKill? {
         guard var urlComponents = URLComponents(url: RaiderIO.guildBossKillUrl, resolvingAgainstBaseURL: true) else {
@@ -35,7 +35,7 @@ extension RaiderIO {
             URLQueryItem(name: "region", value: region.rawValue),
             URLQueryItem(name: "realm", value: realm),
             URLQueryItem(name: "guild", value: guildName),
-            URLQueryItem(name: "raid", value: raidSlug),
+            URLQueryItem(name: "raid", value: raid.rawValue),
             URLQueryItem(name: "boss", value: bossSlug),
             URLQueryItem(name: "difficulty", value: difficulty.rawValue)
         ]

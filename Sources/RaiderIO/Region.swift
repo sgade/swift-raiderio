@@ -17,17 +17,8 @@ public struct Region {
 
 }
 
-public enum RegionSlug: String {
 
-    case cn
-    case eu
-    case kr
-    case tw
-    case us
-
-}
-
-// MARK: - Codable
+// MARK: - Decodable
 
 extension Region: Decodable {
 
@@ -40,6 +31,3 @@ extension Region: Decodable {
     }
 
 }
-
-
-extension RegionSlug: Codable {}
