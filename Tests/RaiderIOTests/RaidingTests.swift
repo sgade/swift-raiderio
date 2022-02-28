@@ -33,8 +33,7 @@ final class RaidingTests: XCTestCase {
             _ = try await client!.getRaidingBossRankings(raid: .sanctumOfDomination,
                                                          boss: "the-nine",
                                                          difficulty: .normal,
-                                                         region: .german,
-                                                         realm: "Frostwolf")
+                                                         region: .german)
         } catch {
             print(error)
             throw error
