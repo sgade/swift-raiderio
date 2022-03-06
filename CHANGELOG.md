@@ -6,6 +6,7 @@
 
 * Change library name to "RaiderIO".
 * Added public constructors for types.
+* Added missing public modifiers.
 * Added documentation from Swagger to Swift types.
 * Use raw value represented types for enums that frequently change over time.
 

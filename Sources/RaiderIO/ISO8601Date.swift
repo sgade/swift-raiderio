@@ -11,7 +11,7 @@ import Foundation
 
 public struct ISO8601Date {
 
-    let value: Date
+    public let value: Date
 
     public init(_ date: Date) {
         value = date

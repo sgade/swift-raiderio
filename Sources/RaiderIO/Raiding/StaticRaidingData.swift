@@ -11,7 +11,7 @@ import Foundation
 
 public struct StaticRaidingData {
 
-    let raids: [Raid]
+    public let raids: [Raid]
 
     public init(raids: [Raid]) {
         self.raids = raids

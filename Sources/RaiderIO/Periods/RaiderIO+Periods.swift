@@ -11,7 +11,7 @@ import Foundation
 
 private struct PeriodsResponse: Decodable {
 
-    let periods: [RegionalPeriods]
+    public let periods: [RegionalPeriods]
 
 }
 
