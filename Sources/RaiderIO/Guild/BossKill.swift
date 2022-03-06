@@ -22,6 +22,24 @@ public struct BossKill {
         public let itemLevelEquippedMax: Float
         public let itemLevelEquippedMin: Float
 
+        public init(pulledAt: ISO8601Date,
+                    defeatedAt: ISO8601Date,
+                    durationMs: Int,
+                    isSuccess: Bool,
+                    itemLevelTotalAverage: Float,
+                    itemLevelEquippedAverage: Float,
+                    itemLevelEquippedMax: Float,
+                    itemLevelEquippedMin: Float) {
+            self.pulledAt = pulledAt
+            self.defeatedAt = defeatedAt
+            self.durationMs = durationMs
+            self.isSuccess = isSuccess
+            self.itemLevelTotalAverage = itemLevelTotalAverage
+            self.itemLevelEquippedAverage = itemLevelEquippedAverage
+            self.itemLevelEquippedMax = itemLevelEquippedMax
+            self.itemLevelEquippedMin = itemLevelEquippedMin
+        }
+
     }
 
     public struct Player {
@@ -46,14 +64,43 @@ public struct BossKill {
 //            public let items: [Any] // TODO: define object
 //            public let recruitmentProfiles: [Any] // TODO: define object
 
+            public init(id: Int,
+                        name: String,
+                        talents: String,
+                        gender: Gender,
+                        thumbnail: URL,
+                        itemLevelTotal: Float,
+                        itemLevelEquipped: Float,
+                        artifactTraits: Float,
+                        region: Region) {
+                self.id = id
+                self.name = name
+                self.talents = talents
+                self.gender = gender
+                self.thumbnail = thumbnail
+                self.itemLevelTotal = itemLevelTotal
+                self.itemLevelEquipped = itemLevelEquipped
+                self.artifactTraits = artifactTraits
+                self.region = region
+            }
+
         }
 
         public let character: Character
+
+        public init(character: Character) {
+            self.character = character
+        }
 
     }
 
     public let kill: Kill
     public let roster: [Player]
+
+    public init(kill: Kill, roster: [Player]) {
+        self.kill = kill
+        self.roster = roster
+    }
 
 }
 

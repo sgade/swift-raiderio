@@ -25,12 +25,23 @@ public struct Profile {
         let itemLevelTotal: Int
         let artifactTraits: Int
 
+        public init(itemLevelEquipped: Int, itemLevelTotal: Int, artifactTraits: Int) {
+            self.itemLevelEquipped = itemLevelEquipped
+            self.itemLevelTotal = itemLevelTotal
+            self.artifactTraits = artifactTraits
+        }
+
     }
 
     public struct Guild {
 
         public let name: String
         public let realm: String
+
+        public init(name: String, realm: String) {
+            self.name = name
+            self.realm = realm
+        }
 
     }
 
@@ -68,6 +79,68 @@ public struct Profile {
 
     public let raidAchievementMeta: [RaidAchievementMeta]?
     public let raidAchievementCurve: [RaidAchievementCurve]?
+
+    public init(name: String,
+                race: String,
+                `class`: String,
+                activeSpecName: String,
+                activeSpecRole: String,
+                gender: Gender,
+                faction: Faction,
+                region: RegionSlug,
+                realm: String,
+                profileUrl: URL,
+                profileBanner: String,
+                achievementPoints: Int,
+                honorableKills: Int,
+                thumbnailUrl: URL,
+                lastCrawledAt: ISO8601Date,
+                gear: Gear? = nil,
+                guild: Guild? = nil,
+                covenant: Covenant? = nil,
+                raidProgression: [String: RaidProgression]? = nil,
+                mythicPlusScoresBySeason: [SeasonScores]? = nil,
+                mythicPlusRanks: [String: Ranks]? = nil,
+                mythicPlusRecentRuns: [DungeonRun]? = nil,
+                mythicPlusBestRuns: [DungeonRun]? = nil,
+                mythicPlusAlternateRuns: [DungeonRun]? = nil,
+                mythicPlusHighestLevelRuns: [DungeonRun]? = nil,
+                mythicPlusWeeklyHighestLevelRuns: [DungeonRun]? = nil,
+                mythicPlusPreviousWeeklyHighestLevelRuns: [DungeonRun]? = nil,
+                previousMythicPlusRanks: [String: Ranks]? = nil,
+                raidAchievementMeta: [RaidAchievementMeta]? = nil,
+                raidAchievementCurve: [RaidAchievementCurve]? = nil) {
+        self.name = name
+        self.race = race
+        self.class = `class`
+        self.activeSpecName = activeSpecName
+        self.activeSpecRole = activeSpecRole
+        self.gender = gender
+        self.faction = faction
+        self.region = region
+        self.realm = realm
+        self.profileUrl = profileUrl
+        self.profileBanner = profileBanner
+        self.achievementPoints = achievementPoints
+        self.honorableKills = honorableKills
+        self.thumbnailUrl = thumbnailUrl
+        self.lastCrawledAt = lastCrawledAt
+        self.gear = gear
+        self.guild = guild
+        self.covenant = covenant
+        self.raidProgression = raidProgression
+        self.mythicPlusScoresBySeason = mythicPlusScoresBySeason
+        self.mythicPlusRanks = mythicPlusRanks
+        self.mythicPlusRecentRuns = mythicPlusRecentRuns
+        self.mythicPlusBestRuns = mythicPlusBestRuns
+        self.mythicPlusAlternateRuns = mythicPlusAlternateRuns
+        self.mythicPlusHighestLevelRuns = mythicPlusHighestLevelRuns
+        self.mythicPlusWeeklyHighestLevelRuns = mythicPlusWeeklyHighestLevelRuns
+        self.mythicPlusPreviousWeeklyHighestLevelRuns = mythicPlusPreviousWeeklyHighestLevelRuns
+        self.previousMythicPlusRanks = previousMythicPlusRanks
+        self.raidAchievementMeta = raidAchievementMeta
+        self.raidAchievementCurve = raidAchievementCurve
+    }
 
 }
 

@@ -16,6 +16,13 @@ public struct RegionalPeriods {
     public let current: Period
     public let next: Period
 
+    public init(region: RegionSlug, previous: Period, current: Period, next: Period) {
+        self.region = region
+        self.previous = previous
+        self.current = current
+        self.next = next
+    }
+
 }
 
 // MARK: - Decodable

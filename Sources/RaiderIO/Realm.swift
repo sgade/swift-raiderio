@@ -20,6 +20,24 @@ public struct Realm {
     public let locale: String
     public let isConnected: Bool
 
+    public init(id: Int,
+                connectedRealmId: Int,
+                name: String,
+                altName: String? = nil,
+                slug: String,
+                altSlug: String,
+                locale: String,
+                isConnected: Bool) {
+        self.id = id
+        self.connectedRealmId = connectedRealmId
+        self.name = name
+        self.altName = altName
+        self.slug = slug
+        self.altSlug = altSlug
+        self.locale = locale
+        self.isConnected = isConnected
+    }
+
 }
 
 // MARK: - Decodable

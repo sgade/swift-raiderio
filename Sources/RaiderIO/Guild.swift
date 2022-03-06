@@ -19,6 +19,22 @@ public struct Guild {
     public let path: String
     public let logo: URL?
 
+    public init(id: Int,
+                name: String,
+                faction: Faction,
+                realm: Realm,
+                region: Region,
+                path: String,
+                logo: URL? = nil) {
+        self.id = id
+        self.name = name
+        self.faction = faction
+        self.realm = realm
+        self.region = region
+        self.path = path
+        self.logo = logo
+    }
+
 }
 
 // MARK: - Decodable

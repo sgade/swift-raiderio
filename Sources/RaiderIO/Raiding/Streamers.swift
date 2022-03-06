@@ -12,7 +12,12 @@ import Foundation
 public struct Streamers {
 
     public let count: Int
-//    public let stream: Any?
+    public let stream: Stream?
+
+    public init(count: Int, stream: Stream? = nil) {
+        self.count = count
+        self.stream = stream
+    }
 
 }
 
@@ -29,7 +34,35 @@ public struct Stream {
     public let viewerCount: Int
     public let startedAt: ISO8601Date
     public let language: String
-    public let thumbnailUrl: URL
+
+    /// The thumbnail url for the stream.
+    ///
+    /// The URL contains placeholders for `{width}` and `{height}`.
+    public let thumbnailUrl: String
+
+    public init(id: String,
+                name: String,
+                userId: String,
+                gameId: String,
+                type: String,
+                title: String,
+                communityIds: [Int],
+                viewerCount: Int,
+                startedAt: ISO8601Date,
+                language: String,
+                thumbnailUrl: String) {
+        self.id = id
+        self.name = name
+        self.userId = userId
+        self.gameId = gameId
+        self.type = type
+        self.title = title
+        self.communityIds = communityIds
+        self.viewerCount = viewerCount
+        self.startedAt = startedAt
+        self.language = language
+        self.thumbnailUrl = thumbnailUrl
+    }
 
 }
 

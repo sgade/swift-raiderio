@@ -17,6 +17,12 @@ public struct GuildProfile {
         public let heroic: Ranks
         public let mythic: Ranks
 
+        public init(normal: Ranks, heroic: Ranks, mythic: Ranks) {
+            self.normal = normal
+            self.heroic = heroic
+            self.mythic = mythic
+        }
+
     }
 
     public let name: String
@@ -27,6 +33,22 @@ public struct GuildProfile {
 
     public let raidRankings: [String: RaidRanking]?
     public let raidProgression: [String: RaidProgression]?
+
+    public init(name: String,
+                faction: Faction,
+                region: RegionSlug,
+                realm: String,
+                profileUrl: URL,
+                raidRankings: [String: RaidRanking]? = nil,
+                raidProgression: [String: RaidProgression]?) {
+        self.name = name
+        self.faction = faction
+        self.region = region
+        self.realm = realm
+        self.profileUrl = profileUrl
+        self.raidRankings = raidRankings
+        self.raidProgression = raidProgression
+    }
 
 }
 

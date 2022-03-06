@@ -15,6 +15,12 @@ public struct Covenant {
     public let name: String
     public let renownLevel: Int
 
+    public init(id: Int, name: String, renownLevel: Int) {
+        self.id = id
+        self.name = name
+        self.renownLevel = renownLevel
+    }
+
 }
 
 // MARK: - Decodable

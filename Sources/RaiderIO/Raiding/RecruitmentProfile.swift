@@ -15,6 +15,12 @@ public struct RecruitmentProfile {
     public let entityType: String
     public let recruitmentProfileId: Int
 
+    public init(activityType: String, entityType: String, recruitmentProfileId: Int) {
+        self.activityType = activityType
+        self.entityType = entityType
+        self.recruitmentProfileId = recruitmentProfileId
+    }
+
 }
 
 // MARK: - Decodable

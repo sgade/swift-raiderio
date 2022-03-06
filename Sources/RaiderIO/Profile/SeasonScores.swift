@@ -22,6 +22,24 @@ public struct SeasonScores {
         public let spec2: Float
         public let spec3: Float
 
+        public init(all: Float,
+                    dps: Float,
+                    healer: Float,
+                    tank: Float,
+                    spec0: Float,
+                    spec1: Float,
+                    spec2: Float,
+                    spec3: Float) {
+            self.all = all
+            self.dps = dps
+            self.healer = healer
+            self.tank = tank
+            self.spec0 = spec0
+            self.spec1 = spec1
+            self.spec2 = spec2
+            self.spec3 = spec3
+        }
+
     }
 
     public struct SegmentScore {
@@ -29,11 +47,22 @@ public struct SeasonScores {
         public let score: Float
         public let color: String
 
+        public init(score: Float, color: String) {
+            self.score = score
+            self.color = color
+        }
+
     }
 
     public let season: String
     public let scores: ScoreOverview
     public let segments: [String: SegmentScore]
+
+    public init(season: String, scores: ScoreOverview, segments: [String: SegmentScore]) {
+        self.season = season
+        self.scores = scores
+        self.segments = segments
+    }
 
 }
 

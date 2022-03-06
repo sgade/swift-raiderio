@@ -15,6 +15,12 @@ public struct Ranks {
     public let region: Int
     public let realm: Int
 
+    public init(world: Int, region: Int, realm: Int) {
+        self.world = world
+        self.region = region
+        self.realm = realm
+    }
+
 }
 
 // MARK: - Decodable

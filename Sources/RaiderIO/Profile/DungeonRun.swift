@@ -24,6 +24,32 @@ public struct DungeonRun {
     public let affixes: [Affix]
     public let url: URL
 
+    public init(dungeon: String,
+                shortName: String,
+                mythicLevel: Int,
+                completedAt: ISO8601Date,
+                clearTimeMs: Int,
+                parTimeMs: Int,
+                numberOfKeystoneUpgrades: Int,
+                mapChallengeModeId: Int,
+                zoneId: Int,
+                score: Double,
+                affixes: [Affix],
+                url: URL) {
+        self.dungeon = dungeon
+        self.shortName = shortName
+        self.mythicLevel = mythicLevel
+        self.completedAt = completedAt
+        self.clearTimeMs = clearTimeMs
+        self.parTimeMs = parTimeMs
+        self.numberOfKeystoneUpgrades = numberOfKeystoneUpgrades
+        self.mapChallengeModeId = mapChallengeModeId
+        self.zoneId = zoneId
+        self.score = score
+        self.affixes = affixes
+        self.url = url
+    }
+
 }
 
 // MARK: - Decodable

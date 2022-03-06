@@ -15,6 +15,12 @@ public struct Region {
     public let slug: RegionSlug
     public let shortName: String
 
+    public init(name: String, slug: RegionSlug, shortName: String) {
+        self.name = name
+        self.slug = slug
+        self.shortName = shortName
+    }
+
 }
 
 

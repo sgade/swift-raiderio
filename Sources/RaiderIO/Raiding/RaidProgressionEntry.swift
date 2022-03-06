@@ -15,6 +15,12 @@ public struct RaidProgressionEntry {
     public let totalGuilds: Int
     public let guilds: [KillGuild]
 
+    public init(progress: Int, totalGuilds: Int, guilds: [KillGuild]) {
+        self.progress = progress
+        self.totalGuilds = totalGuilds
+        self.guilds = guilds
+    }
+
 }
 
 // MARK: - Decodable

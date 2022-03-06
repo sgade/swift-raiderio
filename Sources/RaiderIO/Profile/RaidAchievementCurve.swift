@@ -14,6 +14,11 @@ public struct RaidAchievementCurve {
     public let raid: String
     public let aotc: ISO8601Date?
 
+    public init(raid: String, aotc: ISO8601Date? = nil) {
+        self.raid = raid
+        self.aotc = aotc
+    }
+
 }
 
 // MARK: - Decodable

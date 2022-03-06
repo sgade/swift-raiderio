@@ -16,6 +16,12 @@ public struct RaidAchievementMeta {
         public let raid: String
         public let timestamp: ISO8601Date?
 
+        public init(id: Int, raid: String, timestamp: ISO8601Date? = nil) {
+            self.id = id
+            self.raid = raid
+            self.timestamp = timestamp
+        }
+
     }
 
     public let tier: String
@@ -24,6 +30,20 @@ public struct RaidAchievementMeta {
     public let metaAchievement: Achievement
     public let completedAchievements: [Achievement]
     public let remainingAchievements: [Achievement]
+
+    public init(tier: String,
+                completedCount: Int,
+                totalCount: Int,
+                metaAchievement: Achievement,
+                completedAchievements: [Achievement],
+                remainingAchievements: [Achievement]) {
+        self.tier = tier
+        self.completedCount = completedCount
+        self.totalCount = totalCount
+        self.metaAchievement = metaAchievement
+        self.completedAchievements = completedAchievements
+        self.remainingAchievements = remainingAchievements
+    }
 
 }
 
