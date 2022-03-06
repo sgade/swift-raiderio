@@ -14,7 +14,7 @@ let package = Package(
         .watchOS(.v8)
     ],
     products: [
-        .library(name: "swift-raiderio", targets: ["RaiderIO"]),
+        .library(name: "RaiderIO", targets: ["RaiderIO"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.

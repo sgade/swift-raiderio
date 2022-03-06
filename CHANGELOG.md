@@ -4,6 +4,7 @@
 
 ### Updated
 
+* Change library name to "RaiderIO".
 * Added documentation from Swagger to Swift types.
 * Use raw value represented types for enums that frequently change over time.
 
