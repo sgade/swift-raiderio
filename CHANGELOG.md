@@ -1,14 +1,28 @@
 # Changelog
 
+## (Unreleased)
+
+### Added
+
+* Make slug types equatable with their rawValue.
+
+### Fixed
+
+* Fixed raidProgression field definition for profile.
+* Added missing public modifiers for Gear.
+
 ## 0.2.0
 
 ### Changed
 
 * Change library name to "RaiderIO".
 * Added public constructors for types.
-* Added missing public modifiers.
 * Added documentation from Swagger to Swift types.
 * Use raw value represented types for enums that frequently change over time.
+
+### Fixed
+
+* Added missing public modifiers.
 
 ## 0.1.0
 
