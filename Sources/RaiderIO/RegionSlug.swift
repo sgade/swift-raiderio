@@ -40,6 +40,20 @@ extension RegionSlug {
 
 }
 
+// MARK: - Equatable
+
+extension RegionSlug {
+
+    public static func == (lhs: RegionSlug, rhs: String) -> Bool {
+        lhs.rawValue == rhs
+    }
+
+    public static func == (lhs: String, rhs: RegionSlug) -> Bool {
+        rhs == lhs
+    }
+
+}
+
 // MARK: - SubRegionSlug
 
 public final class SubRegionSlug: RegionSlug {}

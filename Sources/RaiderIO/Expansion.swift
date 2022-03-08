@@ -35,6 +35,20 @@ extension Expansion: ExpressibleByIntegerLiteral {
 
 }
 
+// MARK: - Equatable
+
+extension Expansion {
+
+    public static func ==(lhs: Expansion, rhs: Int) -> Bool {
+        lhs.rawValue == rhs
+    }
+
+    public static func ==(lhs: Int, rhs: Expansion) -> Bool {
+        lhs == rhs.rawValue
+    }
+
+}
+
 // MARK: - Decodable
 
 extension Expansion: Decodable {

@@ -45,6 +45,20 @@ extension RaidSlug: ExpressibleByStringLiteral {
 
 }
 
+// MARK: - Equatable
+
+extension RaidSlug {
+
+    public static func == (lhs: RaidSlug, rhs: String) -> Bool {
+        lhs.rawValue == rhs
+    }
+
+    public static func == (lhs: String, rhs: RaidSlug) -> Bool {
+        rhs == lhs
+    }
+
+}
+
 // MARK: - Decodable
 
 extension RaidSlug: Decodable {
