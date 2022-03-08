@@ -43,7 +43,7 @@ extension ProfileField {
     // MARK: Raiding fields
 
     /// Retrieve raid progression data for character.
-    public static let raidProgression: ProfileField = "raidProgression"
+    public static let raidProgression: ProfileField = "raid_progression"
 
     // MARK: Mythic Plus fields
 
