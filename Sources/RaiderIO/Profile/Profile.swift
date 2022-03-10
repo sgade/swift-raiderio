@@ -49,7 +49,7 @@ public struct Profile {
     public let race: String
     public let `class`: String
     public let activeSpecName: String
-    public let activeSpecRole: String
+    public let activeSpecRole: Role
     public let gender: Gender
     public let faction: Faction
     public let region: RegionSlug
@@ -84,7 +84,7 @@ public struct Profile {
                 race: String,
                 `class`: String,
                 activeSpecName: String,
-                activeSpecRole: String,
+                activeSpecRole: Role,
                 gender: Gender,
                 faction: Faction,
                 region: RegionSlug,

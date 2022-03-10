@@ -1,5 +1,11 @@
 # Changelog
 
+## (unreleased)
+
+### Added
+
+* Expanded subtypes for BossKill type.
+
 ## 0.3.0 
 
 ### Added

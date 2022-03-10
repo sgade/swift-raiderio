@@ -42,66 +42,10 @@ public struct BossKill {
 
     }
 
-    public struct Player {
-
-        public struct Character {
-
-            public let id: Int
-//            public let covenant: Any // TODO: define object
-            public let name: String
-            public let race: Race
-            public let `class`: Class
-//            public let spec: Any // TODO: define object
-            public let talents: String
-//            public let talentsDetails: [Any] // TODO: define object
-            public let gender: Gender
-            public let thumbnail: URL
-            public let itemLevelTotal: Float
-            public let itemLevelEquipped: Float
-            public let artifactTraits: Float
-//            public let realm: Any // TODO: define object
-            public let region: Region
-//            public let items: [Any] // TODO: define object
-//            public let recruitmentProfiles: [Any] // TODO: define object
-
-            public init(id: Int,
-                        name: String,
-                        race: Race,
-                        class: Class,
-                        talents: String,
-                        gender: Gender,
-                        thumbnail: URL,
-                        itemLevelTotal: Float,
-                        itemLevelEquipped: Float,
-                        artifactTraits: Float,
-                        region: Region) {
-                self.id = id
-                self.name = name
-                self.race = race
-                self.class = `class`
-                self.talents = talents
-                self.gender = gender
-                self.thumbnail = thumbnail
-                self.itemLevelTotal = itemLevelTotal
-                self.itemLevelEquipped = itemLevelEquipped
-                self.artifactTraits = artifactTraits
-                self.region = region
-            }
-
-        }
-
-        public let character: Character
-
-        public init(character: Character) {
-            self.character = character
-        }
-
-    }
-
     public let kill: Kill
-    public let roster: [Player]
+    public let roster: [Character]
 
-    public init(kill: Kill, roster: [Player]) {
+    public init(kill: Kill, roster: [Character]) {
         self.kill = kill
         self.roster = roster
     }
@@ -129,7 +73,3 @@ extension BossKill.Kill: Decodable {
     }
 
 }
-
-
-extension BossKill.Player: Decodable {}
-extension BossKill.Player.Character: Decodable {}
