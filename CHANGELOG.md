@@ -5,6 +5,7 @@
 ### Added
 
 * Expanded subtypes for BossKill type.
+* Use custom Millisecond type.
 
 ## 0.3.0 
 

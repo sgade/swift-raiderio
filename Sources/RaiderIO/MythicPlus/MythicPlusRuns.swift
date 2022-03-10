@@ -18,11 +18,24 @@ public struct MythicPlusRuns {
         public let dungeon: String
         public let page: Int
 
+        public init(season: String, region: RegionSlug, dungeon: String, page: Int) {
+            self.season = season
+            self.region = region
+            self.dungeon = dungeon
+            self.page = page
+        }
+
     }
 
     public let rankings: [MythicPlusRanking]
     public let leaderboardUrl: URL
     public let parameters: Parameters
+
+    public init(rankings: [MythicPlusRanking], leaderboardUrl: URL, parameters: Parameters) {
+        self.rankings = rankings
+        self.leaderboardUrl = leaderboardUrl
+        self.parameters = parameters
+    }
 
 }
 
@@ -36,22 +49,57 @@ public struct MythicPlusRanking {
         public let keystoneTeamId: Int
         public let keystonePlatoonId: Int?
         public let mythicLevel: Int
-        public let clearTimeMs: Int // TODO: use TimeInterval instead
-        public let keystoneTimeMs: Int // TODO: use TimeInterval instead
+        public let clearTime: Milliseconds
+        public let keystoneTime: Milliseconds
         public let completedAt: ISO8601Date
         public let numberOfChests: Int
-        public let timeRemainingMs: Int // TODO: use TimeInterval instead
+        public let timeRemaining: Milliseconds
         public let faction: Faction
         public let weeklyModifiers: [Affix]
         public let numberOfActiveModifiers: Int
 //        public let roster: Any // FIXME: Implement type
 //        public let platoon: Any // FIXME: Implement type
 
+
+        public init(season: String,
+                    keystoneRunId: Int,
+                    keystoneTeamId: Int,
+                    keystonePlatoonId: Int? = nil,
+                    mythicLevel: Int,
+                    clearTime: Milliseconds,
+                    keystoneTime: Milliseconds,
+                    completedAt: ISO8601Date,
+                    numberOfChests: Int,
+                    timeRemaining: Milliseconds,
+                    faction: Faction,
+                    weeklyModifiers: [Affix],
+                    numberOfActiveModifiers: Int) {
+            self.season = season
+            self.keystoneRunId = keystoneRunId
+            self.keystoneTeamId = keystoneTeamId
+            self.keystonePlatoonId = keystonePlatoonId
+            self.mythicLevel = mythicLevel
+            self.clearTime = clearTime
+            self.keystoneTime = keystoneTime
+            self.completedAt = completedAt
+            self.numberOfChests = numberOfChests
+            self.timeRemaining = timeRemaining
+            self.faction = faction
+            self.weeklyModifiers = weeklyModifiers
+            self.numberOfActiveModifiers = numberOfActiveModifiers
+        }
+
     }
 
     public let rank: Int
     public let score: Float
     public let run: Run
+
+    public init(rank: Int, score: Float, run: Run) {
+        self.rank = rank
+        self.score = score
+        self.run = run
+    }
 
 }
 
@@ -85,11 +133,11 @@ extension MythicPlusRanking.Run: Decodable {
         case keystoneTeamId             = "keystone_team_id"
         case keystonePlatoonId          = "keystone_platoon_id"
         case mythicLevel                = "mythic_level"
-        case clearTimeMs                = "clear_time_ms"
-        case keystoneTimeMs             = "keystone_time_ms"
+        case clearTime                  = "clear_time_ms"
+        case keystoneTime               = "keystone_time_ms"
         case completedAt                = "completed_at"
         case numberOfChests             = "num_chests"
-        case timeRemainingMs            = "time_remaining_ms"
+        case timeRemaining              = "time_remaining_ms"
         case faction
         case weeklyModifiers            = "weekly_modifiers"
         case numberOfActiveModifiers    = "num_modifiers_active"

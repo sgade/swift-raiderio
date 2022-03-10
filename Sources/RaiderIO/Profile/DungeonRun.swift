@@ -15,8 +15,8 @@ public struct DungeonRun {
     public let shortName: String
     public let mythicLevel: Int
     public let completedAt: ISO8601Date
-    public let clearTimeMs: Int // TODO: parse this as TimeInterval
-    public let parTimeMs: Int // TODO: parse this as TimeInterval
+    public let clearTime: Milliseconds
+    public let parTime: Milliseconds
     public let numberOfKeystoneUpgrades: Int
     public let mapChallengeModeId: Int
     public let zoneId: Int
@@ -28,8 +28,8 @@ public struct DungeonRun {
                 shortName: String,
                 mythicLevel: Int,
                 completedAt: ISO8601Date,
-                clearTimeMs: Int,
-                parTimeMs: Int,
+                clearTime: Milliseconds,
+                parTime: Milliseconds,
                 numberOfKeystoneUpgrades: Int,
                 mapChallengeModeId: Int,
                 zoneId: Int,
@@ -40,8 +40,8 @@ public struct DungeonRun {
         self.shortName = shortName
         self.mythicLevel = mythicLevel
         self.completedAt = completedAt
-        self.clearTimeMs = clearTimeMs
-        self.parTimeMs = parTimeMs
+        self.clearTime = clearTime
+        self.parTime = parTime
         self.numberOfKeystoneUpgrades = numberOfKeystoneUpgrades
         self.mapChallengeModeId = mapChallengeModeId
         self.zoneId = zoneId
@@ -62,8 +62,8 @@ extension DungeonRun: Decodable {
         case shortName                  = "short_name"
         case mythicLevel                = "mythic_level"
         case completedAt                = "completed_at"
-        case clearTimeMs                = "clear_time_ms"
-        case parTimeMs                  = "par_time_ms"
+        case clearTime                  = "clear_time_ms"
+        case parTime                    = "par_time_ms"
         case numberOfKeystoneUpgrades   = "num_keystone_upgrades"
         case mapChallengeModeId         = "map_challenge_mode_id"
         case zoneId                     = "zone_id"

@@ -15,7 +15,7 @@ public struct BossKill {
 
         public let pulledAt: ISO8601Date
         public let defeatedAt: ISO8601Date
-        public let durationMs: Int // TODO: use TimeInterval instead
+        public let duration: Milliseconds
         public let isSuccess: Bool
         public let itemLevelTotalAverage: Float
         public let itemLevelEquippedAverage: Float
@@ -24,7 +24,7 @@ public struct BossKill {
 
         public init(pulledAt: ISO8601Date,
                     defeatedAt: ISO8601Date,
-                    durationMs: Int,
+                    duration: Milliseconds,
                     isSuccess: Bool,
                     itemLevelTotalAverage: Float,
                     itemLevelEquippedAverage: Float,
@@ -32,7 +32,7 @@ public struct BossKill {
                     itemLevelEquippedMin: Float) {
             self.pulledAt = pulledAt
             self.defeatedAt = defeatedAt
-            self.durationMs = durationMs
+            self.duration = duration
             self.isSuccess = isSuccess
             self.itemLevelTotalAverage = itemLevelTotalAverage
             self.itemLevelEquippedAverage = itemLevelEquippedAverage
@@ -63,7 +63,7 @@ extension BossKill.Kill: Decodable {
 
         case pulledAt
         case defeatedAt
-        case durationMs
+        case duration                   = "durationMs"
         case isSuccess
         case itemLevelTotalAverage      = "itemLevelTotalAvg"
         case itemLevelEquippedAverage   = "itemLevelEquippedAvg"
