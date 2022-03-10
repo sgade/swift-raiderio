@@ -4,6 +4,7 @@
 
 ### Added
 
+* Added search endpoint.
 * Make slug types equatable with their rawValue.
 
 ### Fixed

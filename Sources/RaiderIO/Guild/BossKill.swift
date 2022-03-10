@@ -49,8 +49,8 @@ public struct BossKill {
             public let id: Int
 //            public let covenant: Any // TODO: define object
             public let name: String
-//            public let race: Any // TODO: define object
-//            public let `class`: Any // TODO: define object
+            public let race: Race
+            public let `class`: Class
 //            public let spec: Any // TODO: define object
             public let talents: String
 //            public let talentsDetails: [Any] // TODO: define object
@@ -66,6 +66,8 @@ public struct BossKill {
 
             public init(id: Int,
                         name: String,
+                        race: Race,
+                        class: Class,
                         talents: String,
                         gender: Gender,
                         thumbnail: URL,
@@ -75,6 +77,8 @@ public struct BossKill {
                         region: Region) {
                 self.id = id
                 self.name = name
+                self.race = race
+                self.class = `class`
                 self.talents = talents
                 self.gender = gender
                 self.thumbnail = thumbnail

@@ -49,6 +49,10 @@ extension RaidSlug: ExpressibleByStringLiteral {
 
 extension RaidSlug {
 
+    public static func == (lhs: RaidSlug, rhs: RaidSlug) -> Bool {
+        lhs.rawValue == rhs.rawValue
+    }
+
     public static func == (lhs: RaidSlug, rhs: String) -> Bool {
         lhs.rawValue == rhs
     }

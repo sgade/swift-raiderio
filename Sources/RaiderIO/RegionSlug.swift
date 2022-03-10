@@ -44,6 +44,10 @@ extension RegionSlug {
 
 extension RegionSlug {
 
+    public static func == (lhs: RegionSlug, rhs: RegionSlug) -> Bool {
+        lhs.rawValue == rhs.rawValue
+    }
+
     public static func == (lhs: RegionSlug, rhs: String) -> Bool {
         lhs.rawValue == rhs
     }

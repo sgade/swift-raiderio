@@ -39,11 +39,15 @@ extension Expansion: ExpressibleByIntegerLiteral {
 
 extension Expansion {
 
-    public static func ==(lhs: Expansion, rhs: Int) -> Bool {
+    public static func == (lhs: Expansion, rhs: Expansion) -> Bool {
+        lhs.rawValue == rhs.rawValue
+    }
+
+    public static func == (lhs: Expansion, rhs: Int) -> Bool {
         lhs.rawValue == rhs
     }
 
-    public static func ==(lhs: Int, rhs: Expansion) -> Bool {
+    public static func == (lhs: Int, rhs: Expansion) -> Bool {
         lhs == rhs.rawValue
     }
 
