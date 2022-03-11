@@ -21,11 +21,11 @@ public struct Profile {
 
         }
 
-        public let itemLevelEquipped: Int
-        public let itemLevelTotal: Int
-        public let artifactTraits: Int
+        public let itemLevelEquipped: Float
+        public let itemLevelTotal: Float
+        public let artifactTraits: Float
 
-        public init(itemLevelEquipped: Int, itemLevelTotal: Int, artifactTraits: Int) {
+        public init(itemLevelEquipped: Float, itemLevelTotal: Float, artifactTraits: Float) {
             self.itemLevelEquipped = itemLevelEquipped
             self.itemLevelTotal = itemLevelTotal
             self.artifactTraits = artifactTraits
