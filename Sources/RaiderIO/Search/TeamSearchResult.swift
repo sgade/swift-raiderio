@@ -21,6 +21,26 @@ public struct TeamSearchResult {
     public let subRegion: Region?
     public let path: String
 
+    public init(keystonePlatoonId: Int? = nil,
+                charterId: Int,
+                platoonId: Int? = nil,
+                name: String,
+                slug: String,
+                faction: Faction,
+                region: Region,
+                subRegion: Region? = nil,
+                path: String) {
+        self.keystonePlatoonId = keystonePlatoonId
+        self.charterId = charterId
+        self.platoonId = platoonId
+        self.name = name
+        self.slug = slug
+        self.faction = faction
+        self.region = region
+        self.subRegion = subRegion
+        self.path = path
+    }
+
 }
 
 // MARK: - Decodable

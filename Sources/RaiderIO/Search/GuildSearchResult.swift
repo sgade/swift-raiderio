@@ -18,6 +18,15 @@ public struct GuildSearchResult {
     public let region: Region
     public let path: String
 
+    public init(id: Int, name: String, faction: Faction, realm: Realm, region: Region, path: String) {
+        self.id = id
+        self.name = name
+        self.faction = faction
+        self.realm = realm
+        self.region = region
+        self.path = path
+    }
+
 }
 
 // MARK: - Decodable

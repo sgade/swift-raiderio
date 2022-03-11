@@ -31,6 +31,12 @@ public struct SearchResult {
     public let name: String
     public let data: ResultData
 
+    public init(type: ResultType, name: String, data: ResultData) {
+        self.type = type
+        self.name = name
+        self.data = data
+    }
+
 }
 
 // MARK: - Decodable
