@@ -7,6 +7,10 @@
 * Expanded subtypes for BossKill type.
 * Use custom Millisecond type.
 
+### Fixed
+
+* Make streamers and recruitmentProfiles on RaidRanking optional.
+
 ## 0.3.0 
 
 ### Added

@@ -15,8 +15,8 @@ public struct RaidRanking {
     public let regionRank: Int
     public let guild: Guild
     public let encountersDefeated: [DefeatedEncounter]
-    public let streamers: Streamers
-    public let recruitmentProfiles: [RecruitmentProfile]
+    public let streamers: Streamers?
+    public let recruitmentProfiles: [RecruitmentProfile]?
 
     public init(rank: Int,
                 regionRank: Int,
