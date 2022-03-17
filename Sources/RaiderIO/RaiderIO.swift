@@ -12,10 +12,15 @@ import Foundation
 /// Object that allows access to the [Raider.io API](https://raider.io/api).
 public class RaiderIO {
 
+    public static let raiderIOBaseUrl = URL(string: "https://raider.io/api")!
+
+    public let baseUrl: URL
+
     let urlSession: URLSession
 
-    public init(urlSession: URLSession) {
+    public init(urlSession: URLSession, baseUrl: URL = RaiderIO.raiderIOBaseUrl) {
         self.urlSession = urlSession
+        self.baseUrl = baseUrl
     }
 
 }

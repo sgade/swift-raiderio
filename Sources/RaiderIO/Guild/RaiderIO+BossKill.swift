@@ -11,7 +11,7 @@ import Foundation
 
 extension RaiderIO {
 
-    private static let guildBossKillUrl = URL(string: "https://raider.io/api/v1/guilds/boss-kill")!
+    private static let guildBossKillPath = "/v1/guilds/boss-kill"
 
     /// Retrieve information about a guild boss kill.
     ///
@@ -28,7 +28,8 @@ extension RaiderIO {
                                  raid: RaidSlug,
                                  boss bossSlug: String,
                                  difficulty: Difficulty) async throws -> BossKill? {
-        guard var urlComponents = URLComponents(url: RaiderIO.guildBossKillUrl, resolvingAgainstBaseURL: true) else {
+        let guildBossKillUrl = baseUrl.appendingPathComponent(Self.guildBossKillPath)
+        guard var urlComponents = URLComponents(url: guildBossKillUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

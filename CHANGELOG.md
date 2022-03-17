@@ -4,6 +4,7 @@
 
 ### Added
 
+* Allow configurability of base URL. The default remains at "https://raider.io/api".
 * Expanded subtypes for BossKill type.
 * Use custom Millisecond type.
 * Added a ClassSlug type.

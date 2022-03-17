@@ -17,7 +17,7 @@ extension RaiderIO {
 
     }
 
-    private static let raidingRaidingProgressionUrl = URL(string: "https://raider.io/api/v1/raiding/progression")!
+    private static let raidingProgressionPath = "/v1/raiding/progression"
 
     /// Retrieve details of raiding progression for a raid.
     ///
@@ -28,7 +28,8 @@ extension RaiderIO {
     public func getRaidingProgression(raid: RaidSlug,
                                       difficulty: Difficulty,
                                       region: RegionSlug) async throws -> [RaidProgressionEntry] {
-        guard var urlComponents = URLComponents(url: RaiderIO.raidingRaidingProgressionUrl, resolvingAgainstBaseURL: true) else {
+        let raidingProgressionUrl = baseUrl.appendingPathComponent(Self.raidingProgressionPath)
+        guard var urlComponents = URLComponents(url: raidingProgressionUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

@@ -23,7 +23,7 @@ public enum GuildProfileField: String, CaseIterable {
 
 extension RaiderIO {
 
-    private static let guildProfileUrl = URL(string: "https://raider.io/api/v1/guilds/profile")!
+    private static let guildProfilePath = "/v1/guilds/profile"
 
     /// Retrieve information about a guild.
     ///
@@ -36,7 +36,8 @@ extension RaiderIO {
                                 realm: String,
                                 name: String,
                                 fields: [GuildProfileField] = []) async throws -> GuildProfile {
-        guard var urlComponents = URLComponents(url: RaiderIO.guildProfileUrl, resolvingAgainstBaseURL: true) else {
+        let guildProfileUrl = baseUrl.appendingPathComponent(Self.guildProfilePath)
+        guard var urlComponents = URLComponents(url: guildProfileUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

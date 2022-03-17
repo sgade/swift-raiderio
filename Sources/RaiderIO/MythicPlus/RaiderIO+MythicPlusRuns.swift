@@ -11,7 +11,7 @@ import Foundation
 
 extension RaiderIO {
 
-    private static let mythicPlusRunsUrl = URL(string: "https://raider.io/api/v1/mythic-plus/runs?season=season-sl-2&region=eu&dungeon=all&page=0")!
+    private static let mythicPlusRunsPath = "/v1/mythic-plus/runs"
 
     /// Retrieve information about the top runs that match the given criteria.
     ///
@@ -32,7 +32,8 @@ extension RaiderIO {
                                   dungeon: String = "all",
                                   affixes: String = "all",
                                   page: Int = 0) async throws -> MythicPlusRuns {
-        guard var urlComponents = URLComponents(url: RaiderIO.mythicPlusRunsUrl, resolvingAgainstBaseURL: true) else {
+        let mythicPlusRunsUrl = baseUrl.appendingPathComponent(Self.mythicPlusRunsPath)
+        guard var urlComponents = URLComponents(url: mythicPlusRunsUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

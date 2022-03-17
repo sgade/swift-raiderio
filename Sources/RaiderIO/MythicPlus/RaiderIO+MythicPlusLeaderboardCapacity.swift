@@ -24,7 +24,7 @@ extension RaiderIO {
 
     }
 
-    private static let mythicPlusLeaderboardCapacityUrl = URL(string: "https://raider.io/api/v1/mythic-plus/leaderboard-capacity")!
+    private static let mythicPlusLeaderboardCapacityPath = "/v1/mythic-plus/leaderboard-capacity"
 
     /// Retrieve the leaderboard capacity for a region including lowest level and time to qualify.
     ///
@@ -35,7 +35,8 @@ extension RaiderIO {
     public func getMythicPlusLeaderboardCapacity(for week: RelativeWeek,
                                                  region: RegionSlug,
                                                  realm: String? = nil) async throws -> LeaderboardCapacity {
-        guard var urlComponents = URLComponents(url: RaiderIO.mythicPlusLeaderboardCapacityUrl, resolvingAgainstBaseURL: true) else {
+        let mythicPlusLeaderboardCapacityUrl = baseUrl.appendingPathComponent(Self.mythicPlusLeaderboardCapacityPath)
+        guard var urlComponents = URLComponents(url: mythicPlusLeaderboardCapacityUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

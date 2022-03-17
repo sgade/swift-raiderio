@@ -11,14 +11,15 @@ import Foundation
 
 extension RaiderIO {
 
-    private static let mythicPlusScoreTiersUrl = URL(string: "https://raider.io/api/v1/mythic-plus/score-tiers")!
+    private static let mythicPlusScoreTiersPath = "/v1/mythic-plus/score-tiers"
 
     /// Retrieve the colors used for score tiers in the given season.
     ///
     /// - Parameters:
     ///     - season: Name of the season to retrieve (`season-bfa-1`, etc.). Defaults to current season.
     public func getMythicPlusScoreTiers(for season: String) async throws -> [ScoreTier] {
-        guard var urlComponents = URLComponents(url: RaiderIO.mythicPlusScoreTiersUrl, resolvingAgainstBaseURL: true) else {
+        let mythicPlusScoreTiersUrl = baseUrl.appendingPathComponent(Self.mythicPlusScoreTiersPath)
+        guard var urlComponents = URLComponents(url: mythicPlusScoreTiersUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

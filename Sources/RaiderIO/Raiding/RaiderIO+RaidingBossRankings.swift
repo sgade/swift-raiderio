@@ -17,7 +17,7 @@ extension RaiderIO {
 
     }
 
-    private static let raidingBossRankingsUrl = URL(string: "https://raider.io/api/v1/raiding/boss-rankings")!
+    private static let raidingBossRankingsPath = "/v1/raiding/boss-rankings"
 
     /// Retrieve the boss rankings for a given raid and region.
     ///
@@ -35,7 +35,8 @@ extension RaiderIO {
                                        difficulty: Difficulty,
                                        region: SubRegionSlug,
                                        realm: String? = nil) async throws -> [BossRanking] {
-        guard var urlComponents = URLComponents(url: RaiderIO.raidingBossRankingsUrl, resolvingAgainstBaseURL: true) else {
+        let raidingBossRankingsUrl = baseUrl.appendingPathComponent(Self.raidingBossRankingsPath)
+        guard var urlComponents = URLComponents(url: raidingBossRankingsUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

@@ -17,7 +17,7 @@ extension RaiderIO {
 
     }
 
-    private static let raidRankingsUrl = URL(string: "https://raider.io/api/v1/raiding/raid-rankings")!
+    private static let raidRankingsPath = "/v1/raiding/raid-rankings"
 
     /// Retrieve the raid rankings for a given raid and region.
     ///
@@ -35,7 +35,8 @@ extension RaiderIO {
                                 region: SubRegionSlug,
                                 realm: String? = nil,
                                 guilds guildIds: [Int] = []) async throws -> [RaidRanking] {
-        guard var urlComponents = URLComponents(url: RaiderIO.raidRankingsUrl, resolvingAgainstBaseURL: true) else {
+        let raidRankingsUrl = baseUrl.appendingPathComponent(Self.raidRankingsPath)
+        guard var urlComponents = URLComponents(url: raidRankingsUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

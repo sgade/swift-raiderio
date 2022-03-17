@@ -17,10 +17,11 @@ extension RaiderIO {
 
     }
 
-    private static let searchUrl = URL(string: "https://raider.io/api/search")!
+    private static let searchPath = "/search"
 
     public func search(for term: String) async throws -> [SearchResult] {
-        guard var urlComponents = URLComponents(url: RaiderIO.searchUrl, resolvingAgainstBaseURL: true) else {
+        let searchUrl = baseUrl.appendingPathComponent(Self.searchPath)
+        guard var urlComponents = URLComponents(url: searchUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

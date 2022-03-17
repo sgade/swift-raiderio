@@ -11,13 +11,14 @@ import Foundation
 
 extension RaiderIO {
 
-    private static let raidingStaticDataUrl = URL(string: "https://raider.io/api/v1/raiding/static-data")!
+    private static let raidingStaticDataPath = "/v1/raiding/static-data"
 
     /// Retrieve raid and boss static data for a specific expansion (slugs, names, etc.).
     ///
     /// - Parameter expansion: Expansion to get slugs for.
     public func getStaticRaidingData(for expansion: Expansion) async throws -> StaticRaidingData {
-        guard var urlComponents = URLComponents(url: RaiderIO.raidingStaticDataUrl, resolvingAgainstBaseURL: true) else {
+        let raidingStaticDataUrl = baseUrl.appendingPathComponent(Self.raidingStaticDataPath)
+        guard var urlComponents = URLComponents(url: raidingStaticDataUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

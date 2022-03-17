@@ -9,6 +9,45 @@
 import Foundation
 
 
+extension RaiderIO {
+
+    private static let profilePah = "/v1/characters/profile"
+
+    /// Retrieve information about a character.
+    ///
+    /// - Parameters:
+    ///     - region: Name of region to look up character in.
+    ///     - realm: Name of realm that character is on. This is in slug format, e.g. `"altar-of-storms"`.
+    ///     - name: Name of the character to look up. This is not case sensitive.
+    ///     - fields: List of fields to retrieve for this character.
+    public func getProfile(region: RegionSlug,
+                           realm: String,
+                           name: String,
+                           fields: [ProfileField] = []) async throws -> Profile {
+        let profileUrl = baseUrl.appendingPathComponent(Self.profilePah)
+        guard var urlComponents = URLComponents(url: profileUrl, resolvingAgainstBaseURL: true) else {
+            throw Errors.invalidUrlParameters
+        }
+        urlComponents.queryItems = [
+            URLQueryItem(name: "region", value: region.rawValue),
+            URLQueryItem(name: "realm", value: realm),
+            URLQueryItem(name: "name", value: name)
+        ]
+        if fields.count > 0 {
+            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fields.map({ $0.value }).joined(separator: ",")))
+        }
+
+        guard let url = urlComponents.url else {
+            throw Errors.invalidUrlParameters
+        }
+
+        return try await request(url: url)
+    }
+
+}
+
+// MARK: - ProfileField
+
 public final class ProfileField {
 
     public let value: String
@@ -108,43 +147,6 @@ extension ProfileField {
     /// - Parameter raids: The raids to retrieve achivement status for.
     public static func raidAchievementCurve(raids: [RaidSlug]) -> ProfileField {
         ProfileField(value: "raid_achievement_curve\( raids.map({ ":\($0.rawValue)" }).joined() )")
-    }
-
-}
-
-
-extension RaiderIO {
-
-    private static let profileUrl = URL(string: "https://raider.io/api/v1/characters/profile")!
-
-    /// Retrieve information about a character.
-    ///
-    /// - Parameters:
-    ///     - region: Name of region to look up character in.
-    ///     - realm: Name of realm that character is on. This is in slug format, e.g. `"altar-of-storms"`.
-    ///     - name: Name of the character to look up. This is not case sensitive.
-    ///     - fields: List of fields to retrieve for this character.
-    public func getProfile(region: RegionSlug,
-                           realm: String,
-                           name: String,
-                           fields: [ProfileField] = []) async throws -> Profile {
-        guard var urlComponents = URLComponents(url: RaiderIO.profileUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
-        }
-        urlComponents.queryItems = [
-            URLQueryItem(name: "region", value: region.rawValue),
-            URLQueryItem(name: "realm", value: realm),
-            URLQueryItem(name: "name", value: name)
-        ]
-        if fields.count > 0 {
-            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fields.map({ $0.value }).joined(separator: ",")))
-        }
-
-        guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
-        }
-
-        return try await request(url: url)
     }
 
 }
