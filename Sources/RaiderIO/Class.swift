@@ -13,9 +13,9 @@ public struct Class {
 
     public let id: Int
     public let name: String
-    public let slug: String
+    public let slug: ClassSlug
 
-    public init(id: Int, name: String, slug: String) {
+    public init(id: Int, name: String, slug: ClassSlug) {
         self.id = id
         self.name = name
         self.slug = slug

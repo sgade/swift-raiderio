@@ -6,6 +6,7 @@
 
 * Expanded subtypes for BossKill type.
 * Use custom Millisecond type.
+* Added a ClassSlug type.
 
 ### Fixed
 
