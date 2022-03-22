@@ -25,7 +25,9 @@ extension RaiderIO {
     ///     - raid: Raid to look up. This is the raid's name in slug form: `"tomb-of-sargeras"`.
     ///     - difficulty: Difficulty to restrict progress to.
     ///     - region: Name of region to restrict progress to.
-    public func getRaidingHallOfFame(raid: RaidSlug, difficulty: Difficulty, region: RegionSlug) async throws -> HallOfFame {
+    public func getRaidingHallOfFame(raid: RaidSlug,
+                                     difficulty: Difficulty,
+                                     region: RegionSlug) async throws -> HallOfFame {
         let raidingHallOfFameUrl = baseUrl.appendingPathComponent(Self.raidingHallOfFamePath)
         guard var urlComponents = URLComponents(url: raidingHallOfFameUrl, resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters

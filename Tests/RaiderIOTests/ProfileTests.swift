@@ -37,7 +37,7 @@ final class ProfileTests: XCTestCase {
                 .raidAchievementMeta(tiers: ["tier28", "tier27"]),
                 .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
             ]
-            
+
             _ = try await client!.getProfile(region: .eu, realm: "Frostwolf", name: "Kiaro", fields: fields)
         } catch {
             print(error)

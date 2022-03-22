@@ -32,11 +32,13 @@ public class RegionSlug: ExpressibleByStringLiteral, Decodable {
 
 extension RegionSlug {
 
+    // swiftlint:disable identifier_name
     public static let cn: RegionSlug = "cn"
     public static let eu: RegionSlug = "eu"
     public static let kr: RegionSlug = "kr"
     public static let tw: RegionSlug = "tw"
     public static let us: RegionSlug = "us"
+    // swiftlint:enable identifier_name
 
 }
 

@@ -19,20 +19,17 @@ public struct ISO8601Date {
 
 }
 
-// MARK: - Decodable
+// MARK: Parse from ISO8601 date string
 
-extension ISO8601Date: Decodable {
+extension ISO8601Date {
 
-    public enum Errors: Error {
-
-        case invalidDateFormat(String)
-
+    public init(string: String) throws {
+        let value = try ISO8601Date.parseDate(from: string)
+        self.init(value)
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        var dateString = try container.decode(String.self)
-
+    private static func parseDate(from string: String) throws -> Date {
+        var dateString = string
         if let dotIndex = dateString.lastIndex(of: ".") {
             dateString = "\(dateString[dateString.startIndex..<dotIndex])Z"
         }
@@ -52,7 +49,20 @@ extension ISO8601Date: Decodable {
             //  but input is empty, so we fall back
             date = Date.distantPast
         }
-        self.init(date)
+        return date
+    }
+
+}
+
+// MARK: - Decodable
+
+extension ISO8601Date: Decodable {
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let dateString = try container.decode(String.self)
+
+        try self.init(string: dateString)
     }
 
 }

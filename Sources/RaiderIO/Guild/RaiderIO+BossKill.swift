@@ -13,6 +13,7 @@ extension RaiderIO {
 
     private static let guildBossKillPath = "/v1/guilds/boss-kill"
 
+    // swiftlint:disable function_parameter_count
     /// Retrieve information about a guild boss kill.
     ///
     /// - Parameters:
@@ -58,5 +59,6 @@ extension RaiderIO {
             return nil
         }
     }
+    // swiftlint:enable function_parameter_count
 
 }

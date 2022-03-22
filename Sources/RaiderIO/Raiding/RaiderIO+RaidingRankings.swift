@@ -26,9 +26,12 @@ extension RaiderIO {
     ///     - difficulty: Difficulty to restrict progress to.
     ///     - region: Name of region to restrict progress to.
     ///               Can be a primary region: `world`, `us`, `eu`, `kr`, `tw`.
-    ///               Or a subregion: `english`, `french`, `german`, `italian`, `oceanic`, `russian`, `spanish`, `eu-english`, `eu-portuguese`, `eu-spanish`, `us-english`, `brazil`, `us-spanish`, `us-central`, `us-eastern`, `us-mountain`, `us-pacific`.
+    ///               Or a subregion: `english`, `french`, `german`, `italian`, `oceanic`, `russian`, `spanish`,
+    ///               `eu-english`, `eu-portuguese`, `eu-spanish`, `us-english`, `brazil`, `us-spanish`, `us-central`,
+    ///               `us-eastern`, `us-mountain`, `us-pacific`.
     ///     - realm: Name of realm to restrict to.
-    ///              Prefix with `connected-` to retrieve rankings from the connected realm. Requires that region be a standard region: `us`, `eu`, `kr`, `tw`.
+    ///              Prefix with `connected-` to retrieve rankings from the connected realm. Requires that region be a
+    ///              standard region: `us`, `eu`, `kr`, `tw`.
     ///     - guilds: Guild IDs of guilds to restrict the results to. Allows filtering to up to 10 different guilds.
     public func getRaidRankings(raid: RaidSlug,
                                 difficulty: Difficulty,
@@ -48,7 +51,8 @@ extension RaiderIO {
             urlComponents.queryItems?.append(URLQueryItem(name: "realm", value: realm))
         }
         if !guildIds.isEmpty {
-            urlComponents.queryItems?.append(URLQueryItem(name: "guilds", value: guildIds.map({ "\($0)" }).joined(separator: ",") ))
+            let guildsValue = guildIds.map({ "\($0)" }).joined(separator: ",")
+            urlComponents.queryItems?.append(URLQueryItem(name: "guilds", value: guildsValue))
         }
 
         guard let url = urlComponents.url else {

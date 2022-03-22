@@ -22,8 +22,8 @@ extension RaiderIO {
     ///                      Use special keyword `"all"` to get the stats across all dungeons.
     /// - Parameter affixes: Name of the affixes to restrict the results to.
     ///                      This will support affix in slug form: `"bolstering-explosive-tyrannical"`.
-    ///                      Additionally, you can supply just `"tyrannical"` or `"fortified"` to get the results for any
-    ///                      affix combo with that as the final affix.
+    ///                      Additionally, you can supply just `"tyrannical"` or `"fortified"` to get the results for
+    ///                      any affix combo with that as the final affix.
     ///                      Use the special keyword `"current"` to return the result for the current week's affixes,
     ///                      or `"all"` to retrieve results for all affixes.
     /// - Parameter page: The page number of the results to return.

@@ -27,9 +27,12 @@ extension RaiderIO {
     ///     - difficulty: The difficulty to look up.
     ///     - region: Name of region to restrict progress to.
     ///               Can be a primary region: `world`, `us`, `eu`, `kr`, `tw`.
-    ///               Or a subregion: `english`, `french`, `german`, `italian`, `oceanic`, `russian`, `spanish`, `eu-english`, `eu-portuguese`, `eu-spanish`, `us-english`, `brazil`, `us-spanish`, `us-central`, `us-eastern`, `us-mountain`, `us-pacific`.
+    ///               Or a subregion: `english`, `french`, `german`, `italian`, `oceanic`, `russian`, `spanish`,
+    ///                `eu-english`, `eu-portuguese`, `eu-spanish`, `us-english`, `brazil`, `us-spanish`, `us-central`,
+    ///                `us-eastern`, `us-mountain`, `us-pacific`.
     ///     - realm: Name of realm to restrict to.
-    ///              Prefix with `connected-` to retrieve rankings from the connected realm. Requires that region be a standard region: `us`, `eu`, `kr`, `tw`.
+    ///              Prefix with `connected-` to retrieve rankings from the connected realm. Requires that region be a
+    ///              standard region: `us`, `eu`, `kr`, `tw`.
     public func getRaidingBossRankings(raid: RaidSlug,
                                        boss bossSlug: String,
                                        difficulty: Difficulty,

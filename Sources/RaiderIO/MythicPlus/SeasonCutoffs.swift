@@ -32,9 +32,13 @@ public struct SeasonCutoffs {
     public let p900: SeasonCutoff
     public let p750: SeasonCutoff
     public let p600: SeasonCutoff
+    // swiftlint:disable inclusive_language
     public let keystoneMaster: SeasonCutoff
+    // swiftlint:enable inclusive_language
     public let keystoneConqueror: SeasonCutoff
+    // swiftlint:disable identifier_name
     public let ui: UIInfo
+    // swiftlint:enable identifier_name
 
 }
 

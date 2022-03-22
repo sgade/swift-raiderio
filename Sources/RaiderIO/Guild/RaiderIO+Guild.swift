@@ -20,7 +20,6 @@ public enum GuildProfileField: String, CaseIterable {
 }
 
 
-
 extension RaiderIO {
 
     private static let guildProfilePath = "/v1/guilds/profile"
@@ -46,7 +45,8 @@ extension RaiderIO {
             URLQueryItem(name: "name", value: name)
         ]
         if fields.count > 0 {
-            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fields.map({ $0.rawValue }).joined(separator: ",")))
+            let fieldsValue = fields.map({ $0.rawValue }).joined(separator: ",")
+            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fieldsValue))
         }
 
         guard let url = urlComponents.url else {

@@ -36,7 +36,8 @@ extension RaiderIO {
                                                  region: RegionSlug,
                                                  realm: String? = nil) async throws -> LeaderboardCapacity {
         let mythicPlusLeaderboardCapacityUrl = baseUrl.appendingPathComponent(Self.mythicPlusLeaderboardCapacityPath)
-        guard var urlComponents = URLComponents(url: mythicPlusLeaderboardCapacityUrl, resolvingAgainstBaseURL: true) else {
+        guard var urlComponents = URLComponents(url: mythicPlusLeaderboardCapacityUrl,
+                                                resolvingAgainstBaseURL: true) else {
             throw Errors.invalidUrlParameters
         }
         urlComponents.queryItems = [

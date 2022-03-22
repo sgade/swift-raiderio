@@ -34,7 +34,8 @@ extension RaiderIO {
             URLQueryItem(name: "name", value: name)
         ]
         if fields.count > 0 {
-            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fields.map({ $0.value }).joined(separator: ",")))
+            let fieldsValue = fields.map({ $0.value }).joined(separator: ",")
+            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fieldsValue))
         }
 
         guard let url = urlComponents.url else {
@@ -90,7 +91,8 @@ extension ProfileField {
     ///
     /// - Parameters:
     ///     - seasons: You can specify one or more season values to this field.
-    ///                You can also use the alias `"current"` and `"previous"` instead of a season name to request that relative season.
+    ///                You can also use the alias `"current"` and `"previous"` instead of a season name to request that
+    ///                relative season.
     ///                Note: Results are returned in an array that matches the order of the seasons in the request.
     public static func mythicPlusScores(by seasons: [String]) -> ProfileField {
         ProfileField(value: "mythic_plus_scores_by_season\( seasons.map({ ":\($0)" }).joined() )")
@@ -124,11 +126,15 @@ extension ProfileField {
     /// Retrieve the player's ten highest Mythic+ runs by Mythic+ level (current season only).
     public static let mythicPlusHighestLevelRuns: ProfileField                 = "mythic_plus_highest_level_runs"
 
-    /// Retrieve the player's ten highest Mythic+ runs by Mythic+ level for the current raid week (current season only).
+    /// Retrieve the player's ten highest Mythic+ runs by Mythic+ level for the
+    /// current raid week (current season only).
     public static let mythicPlusWeeklyHighestLevelRuns: ProfileField           = "mythic_plus_weekly_highest_level_runs"
 
-    /// Retrieve the player's ten highest Mythic+ runs by Mythic+ level for the previous raid week (current season only).
+    // swiftlint:disable line_length
+    /// Retrieve the player's ten highest Mythic+ runs by Mythic+ level for the
+    /// previous raid week (current season only).
     public static let mythicPlusPreviousWeeklyHighestLevelRuns: ProfileField   = "mythic_plus_previous_weekly_highest_level_runs"
+    // swiftlint:enable line_length
 
     /// Retrieve mythic plus rankings for player.
     public static let previousMythicPlusRanks: ProfileField                    = "previous_mythic_plus_ranks"
@@ -137,7 +143,8 @@ extension ProfileField {
 
     /// Retrieve raid achievement meta status for a player.
     ///
-    /// - Parameter tiers: This request requires that you specify parameters for the specific tiers you're looking for, e.g. `tier21`.
+    /// - Parameter tiers: This request requires that you specify parameters for the specific tiers you're
+    ///                    looking for, e.g. `tier21`.
     public static func raidAchievementMeta(tiers: [String]) -> ProfileField {
         ProfileField(value: "raid_achievement_meta\( tiers.map({ ":\($0)" }).joined() )")
     }

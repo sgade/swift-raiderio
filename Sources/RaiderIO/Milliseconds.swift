@@ -26,8 +26,8 @@ extension Milliseconds: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
 
-        let ms = try container.decode(Int.self)
-        duration = Double(ms) / 1000.0
+        let value = try container.decode(Int.self)
+        duration = Double(value) / 1000.0
     }
 
 }

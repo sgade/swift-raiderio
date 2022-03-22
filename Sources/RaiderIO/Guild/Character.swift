@@ -9,6 +9,7 @@
 import Foundation
 
 
+// swiftlint:disable type_body_length
 public struct Character {
 
     public struct Covenant {
@@ -126,7 +127,7 @@ public struct Character {
                 public let itemQuality: Quality
                 public let isLegendary: Bool
                 public let isAzeriteArmor: Bool
-                //public let azeritePowers: [Any] // cant determine type without documentation or concrete types
+                // public let azeritePowers: [Any] // FIXME: Can't determine type without documentation or examples
                 public let corruption: Corruption
                 public let dominationShards: [DominationShard]
                 public let gems: [Int]
@@ -280,6 +281,7 @@ public struct Character {
     }
 
 }
+// swiftlint:enable type_body_length
 
 // MARK: - Decodable
 

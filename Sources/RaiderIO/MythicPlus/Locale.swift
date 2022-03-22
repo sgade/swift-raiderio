@@ -9,6 +9,7 @@
 import Foundation
 
 
+// swiftlint:disable identifier_name
 public enum Locale: String {
 
     case en
@@ -23,3 +24,4 @@ public enum Locale: String {
     case tw
 
 }
+// swiftlint:enable identifier_name
