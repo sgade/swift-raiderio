@@ -144,6 +144,18 @@ public struct Profile {
 
 }
 
+// MARK: - Helpers
+
+extension Profile {
+
+    private static let profileBannerBaseUrl = URL(string: "https://cdnassets.raider.io/images/profile/masthead_backdrops/v2")!
+
+    public var profileBannerUrl: URL {
+        Self.profileBannerBaseUrl.appendingPathComponent(profileBanner).appendingPathExtension("jpg")
+    }
+
+}
+
 // MARK: - Decodable
 
 extension Profile: Decodable {
