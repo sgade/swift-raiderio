@@ -9,7 +9,7 @@
 import Foundation
 
 
-public enum Faction: String, Decodable {
+public enum Faction: String, Codable {
 
     case alliance
     case horde

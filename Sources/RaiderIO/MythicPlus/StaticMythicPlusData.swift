@@ -33,15 +33,15 @@ public struct StaticMythicPlusData {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension StaticMythicPlusData: Decodable {}
-
-
-extension StaticMythicPlusData.Season: Decodable {}
+extension StaticMythicPlusData: Codable {}
 
 
-extension StaticMythicPlusData.Dungeon: Decodable {
+extension StaticMythicPlusData.Season: Codable {}
+
+
+extension StaticMythicPlusData.Dungeon: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

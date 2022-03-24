@@ -17,9 +17,9 @@ public enum Role {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Role: Decodable {
+extension Role: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -33,6 +33,19 @@ extension Role: Decodable {
         default: throw DecodingError.dataCorruptedError(in: container,
                                                         debugDescription: "Unknown role value: \(rawValue)")
         }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+
+        var rawValue: String
+        switch self {
+        case .tank: rawValue = "tank"
+        case .healer: rawValue = "healer"
+        case .dps: rawValue = "dps"
+        }
+
+        try container.encode(rawValue)
     }
 
 }

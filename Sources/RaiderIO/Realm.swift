@@ -40,6 +40,6 @@ public struct Realm {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Realm: Decodable {}
+extension Realm: Codable {}

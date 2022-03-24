@@ -43,9 +43,9 @@ public struct TeamSearchResult {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension TeamSearchResult: Decodable {
+extension TeamSearchResult: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

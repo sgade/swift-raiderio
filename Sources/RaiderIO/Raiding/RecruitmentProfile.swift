@@ -23,9 +23,9 @@ public struct RecruitmentProfile {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension RecruitmentProfile: Decodable {
+extension RecruitmentProfile: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

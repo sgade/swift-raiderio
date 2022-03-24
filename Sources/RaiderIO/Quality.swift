@@ -25,6 +25,6 @@ public enum Quality: Int {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Quality: Decodable {}
+extension Quality: Codable {}

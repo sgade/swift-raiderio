@@ -19,6 +19,6 @@ public struct ScoreTier {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension ScoreTier: Decodable {}
+extension ScoreTier: Codable {}

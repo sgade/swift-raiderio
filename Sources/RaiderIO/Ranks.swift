@@ -23,6 +23,6 @@ public struct Ranks {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Ranks: Decodable {}
+extension Ranks: Codable {}

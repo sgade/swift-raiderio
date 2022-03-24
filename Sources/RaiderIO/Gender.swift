@@ -9,7 +9,7 @@
 import Foundation
 
 
-public enum Gender: String, Decodable {
+public enum Gender: String, Codable {
 
     case male
     case female

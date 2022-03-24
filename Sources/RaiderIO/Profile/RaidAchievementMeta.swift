@@ -47,9 +47,9 @@ public struct RaidAchievementMeta {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension RaidAchievementMeta: Decodable {
+extension RaidAchievementMeta: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -65,4 +65,4 @@ extension RaidAchievementMeta: Decodable {
 }
 
 
-extension RaidAchievementMeta.Achievement: Decodable {}
+extension RaidAchievementMeta.Achievement: Codable {}

@@ -23,6 +23,6 @@ public struct Period {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Period: Decodable {}
+extension Period: Codable {}

@@ -31,9 +31,9 @@ public struct RaidProgression {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension RaidProgression: Decodable {
+extension RaidProgression: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

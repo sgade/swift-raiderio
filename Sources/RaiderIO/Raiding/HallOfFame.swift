@@ -143,21 +143,21 @@ public struct KillGuild {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension HallOfFame: Decodable {}
+extension HallOfFame: Codable {}
 
-extension HallOfFame.BossKill: Decodable {}
+extension HallOfFame.BossKill: Codable {}
 
-extension HallOfFame.BossKill.BossSummary: Decodable {}
+extension HallOfFame.BossKill.BossSummary: Codable {}
 
-extension HallOfFame.BossKill.BossKillVideo: Decodable {}
+extension HallOfFame.BossKill.BossKillVideo: Codable {}
 
-extension HallOfFame.BossKill.DefeatedBy: Decodable {}
+extension HallOfFame.BossKill.DefeatedBy: Codable {}
 
-extension HallOfFame.BossKill.AttemptedBy: Decodable {}
+extension HallOfFame.BossKill.AttemptedBy: Codable {}
 
-extension HallOfFame.WinningGuild: Decodable {}
+extension HallOfFame.WinningGuild: Codable {}
 
 
-extension KillGuild: Decodable {}
+extension KillGuild: Codable {}

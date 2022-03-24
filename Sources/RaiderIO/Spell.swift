@@ -27,6 +27,6 @@ public struct Spell {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Spell: Decodable {}
+extension Spell: Codable {}

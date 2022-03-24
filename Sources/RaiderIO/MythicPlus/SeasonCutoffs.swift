@@ -62,11 +62,11 @@ public struct SeasonCutoff {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension SeasonCutoffs: Decodable {}
+extension SeasonCutoffs: Codable {}
 
-extension SeasonCutoffs.RegionInfo: Decodable {
+extension SeasonCutoffs.RegionInfo: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -78,9 +78,9 @@ extension SeasonCutoffs.RegionInfo: Decodable {
 
 }
 
-extension SeasonCutoffs.UIInfo: Decodable {}
+extension SeasonCutoffs.UIInfo: Codable {}
 
 
-extension SeasonCutoff: Decodable {}
+extension SeasonCutoff: Codable {}
 
-extension SeasonCutoff.FactionCutoff: Decodable {}
+extension SeasonCutoff.FactionCutoff: Codable {}

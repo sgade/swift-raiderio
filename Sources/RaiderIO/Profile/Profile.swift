@@ -11,7 +11,7 @@ import Foundation
 
 public struct Profile {
 
-    public struct Gear: Decodable {
+    public struct Gear: Codable {
 
         private enum CodingKeys: String, CodingKey {
 
@@ -156,9 +156,9 @@ extension Profile {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Profile: Decodable {
+extension Profile: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -202,4 +202,4 @@ extension Profile: Decodable {
 }
 
 
-extension Profile.Guild: Decodable {}
+extension Profile.Guild: Codable {}

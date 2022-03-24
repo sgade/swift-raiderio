@@ -24,9 +24,9 @@ public struct Region {
 }
 
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Region: Decodable {
+extension Region: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

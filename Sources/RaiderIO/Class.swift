@@ -23,6 +23,6 @@ public struct Class {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Class: Decodable {}
+extension Class: Codable {}

@@ -19,6 +19,6 @@ public struct StaticRaidingData {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension StaticRaidingData: Decodable {}
+extension StaticRaidingData: Codable {}

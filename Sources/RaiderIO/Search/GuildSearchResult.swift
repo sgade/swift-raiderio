@@ -29,6 +29,6 @@ public struct GuildSearchResult {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension GuildSearchResult: Decodable {}
+extension GuildSearchResult: Codable {}

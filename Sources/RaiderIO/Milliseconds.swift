@@ -19,15 +19,22 @@ public struct Milliseconds {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Milliseconds: Decodable {
+extension Milliseconds: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
 
         let value = try container.decode(Int.self)
         duration = Double(value) / 1000.0
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+
+        let value = duration * 1000.0
+        try container.encode(value)
     }
 
 }

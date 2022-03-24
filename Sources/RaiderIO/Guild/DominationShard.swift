@@ -29,9 +29,9 @@ public struct DominationShard {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension DominationShard: Decodable {
+extension DominationShard: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

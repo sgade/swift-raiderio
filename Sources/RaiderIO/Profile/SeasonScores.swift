@@ -66,12 +66,12 @@ public struct SeasonScores {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension SeasonScores: Decodable {}
+extension SeasonScores: Codable {}
 
 
-extension SeasonScores.ScoreOverview: Decodable {
+extension SeasonScores.ScoreOverview: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -89,4 +89,4 @@ extension SeasonScores.ScoreOverview: Decodable {
 }
 
 
-extension SeasonScores.SegmentScore: Decodable {}
+extension SeasonScores.SegmentScore: Codable {}

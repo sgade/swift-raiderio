@@ -52,9 +52,9 @@ public struct DungeonRun {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension DungeonRun: Decodable {
+extension DungeonRun: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

@@ -283,9 +283,9 @@ public struct Character {
 }
 // swiftlint:enable type_body_length
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Character: Decodable {
+extension Character: Codable {
 
     private enum OuterCodingKeys: String, CodingKey {
 
@@ -338,15 +338,38 @@ extension Character: Decodable {
         recruitmentProfiles = try container.decode([RecruitmentProfile].self, forKey: .recruitmentProfiles)
     }
 
+    public func encode(to encoder: Encoder) throws {
+        var outerContainer = encoder.container(keyedBy: OuterCodingKeys.self)
+        var container = outerContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .character)
+
+        try container.encode(id, forKey: .id)
+        try container.encode(covenant, forKey: .covenant)
+        try container.encode(name, forKey: .name)
+        try container.encode(race, forKey: .race)
+        try container.encode(`class`, forKey: .class)
+        try container.encode(spec, forKey: .spec)
+        try container.encode(talents, forKey: .talents)
+        try container.encode(talentsDetails, forKey: .talentsDetails)
+        try container.encode(gender, forKey: .gender)
+        try container.encode(thumbnail, forKey: .thumbnail)
+        try container.encode(itemLevelTotal, forKey: .itemLevelTotal)
+        try container.encode(itemLevelEquipped, forKey: .itemLevelEquipped)
+        try container.encode(artifactTraits, forKey: .artifactTraits)
+        try container.encode(realm, forKey: .realm)
+        try container.encode(region, forKey: .region)
+        try container.encode(items, forKey: .items)
+        try container.encode(recruitmentProfiles, forKey: .recruitmentProfiles)
+    }
+
 }
 
 
-extension Character.Covenant: Decodable {}
-extension Character.Covenant.Soulbind: Decodable {}
-extension Character.Covenant.Soulbind.Conduit: Decodable {}
-extension Character.Covenant.Soulbind.Trait: Decodable {}
+extension Character.Covenant: Codable {}
+extension Character.Covenant.Soulbind: Codable {}
+extension Character.Covenant.Soulbind.Conduit: Codable {}
+extension Character.Covenant.Soulbind.Trait: Codable {}
 
-extension Character.Specialization: Decodable {
+extension Character.Specialization: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -361,9 +384,9 @@ extension Character.Specialization: Decodable {
 
 }
 
-extension Character.TalentDetail: Decodable {}
+extension Character.TalentDetail: Codable {}
 
-extension Character.Items: Decodable {
+extension Character.Items: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -375,8 +398,8 @@ extension Character.Items: Decodable {
     }
 
 }
-extension Character.Items.Equipment: Decodable {}
-extension Character.Items.Equipment.Item: Decodable {
+extension Character.Items.Equipment: Codable {}
+extension Character.Items.Equipment.Item: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

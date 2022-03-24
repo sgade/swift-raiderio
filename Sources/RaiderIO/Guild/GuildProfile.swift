@@ -52,9 +52,9 @@ public struct GuildProfile {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension GuildProfile: Decodable {
+extension GuildProfile: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -72,4 +72,4 @@ extension GuildProfile: Decodable {
 }
 
 
-extension GuildProfile.RaidRanking: Decodable {}
+extension GuildProfile.RaidRanking: Codable {}

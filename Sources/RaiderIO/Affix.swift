@@ -31,9 +31,9 @@ public struct Affix {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Affix: Decodable {
+extension Affix: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

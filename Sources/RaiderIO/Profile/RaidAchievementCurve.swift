@@ -21,6 +21,6 @@ public struct RaidAchievementCurve {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension RaidAchievementCurve: Decodable {}
+extension RaidAchievementCurve: Codable {}

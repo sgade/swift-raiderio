@@ -37,6 +37,6 @@ public struct BossRanking {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension BossRanking: Decodable {}
+extension BossRanking: Codable {}

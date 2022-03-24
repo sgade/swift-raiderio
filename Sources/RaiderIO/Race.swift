@@ -18,6 +18,6 @@ public struct Race {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Race: Decodable {}
+extension Race: Codable {}

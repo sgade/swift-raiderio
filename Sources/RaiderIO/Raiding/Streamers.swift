@@ -66,12 +66,12 @@ public struct Stream {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Streamers: Decodable {}
+extension Streamers: Codable {}
 
 
-extension Stream: Decodable {
+extension Stream: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

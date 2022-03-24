@@ -23,9 +23,9 @@ public struct Covenant {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Covenant: Decodable {
+extension Covenant: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

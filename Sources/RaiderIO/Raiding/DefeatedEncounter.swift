@@ -23,6 +23,6 @@ public struct DefeatedEncounter {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension DefeatedEncounter: Decodable {}
+extension DefeatedEncounter: Codable {}

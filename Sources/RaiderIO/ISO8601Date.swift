@@ -19,7 +19,7 @@ public struct ISO8601Date {
 
 }
 
-// MARK: Parse from ISO8601 date string
+// MARK: Parse from (JavaScript) ISO8601 date string
 
 extension ISO8601Date {
 
@@ -31,6 +31,7 @@ extension ISO8601Date {
     private static func parseDate(from string: String) throws -> Date {
         var dateString = string
         if let dotIndex = dateString.lastIndex(of: ".") {
+            // remove milliseconds before "Z" for some javascript-related reason
             dateString = "\(dateString[dateString.startIndex..<dotIndex])Z"
         }
 
@@ -52,17 +53,30 @@ extension ISO8601Date {
         return date
     }
 
+    private static func format(date: Date) -> String {
+        let dateString = date.formatted(.iso8601)
+        // insert milliseconds before "Z" for some javascript-related reason
+        return "\(dateString[dateString.startIndex..<dateString.index(before: dateString.endIndex)]).000Z"
+    }
+
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension ISO8601Date: Decodable {
+extension ISO8601Date: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let dateString = try container.decode(String.self)
 
         try self.init(string: dateString)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+
+        let dateString = Self.format(date: value)
+        try container.encode(dateString)
     }
 
 }

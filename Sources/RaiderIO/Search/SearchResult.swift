@@ -39,9 +39,9 @@ public struct SearchResult {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension SearchResult: Decodable {
+extension SearchResult: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -70,6 +70,25 @@ extension SearchResult: Decodable {
         }
     }
 
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        try container.encode(type, forKey: .type)
+        try container.encode(name, forKey: .name)
+
+        switch type {
+        case .character:
+            guard case .character(let characterSearchResult) = data else { break }
+            try container.encode(characterSearchResult, forKey: .data)
+        case .guild:
+            guard case .guild(let guildSearchResult) = data else { break }
+            try container.encode(guildSearchResult, forKey: .data)
+        case .team:
+            guard case .team(let teamSearchResult) = data else { break }
+            try container.encode(teamSearchResult, forKey: .data)
+        }
+    }
+
 }
-extension SearchResult.ResultType: Decodable {}
-extension SearchResult.ResultData: Decodable {}
+extension SearchResult.ResultType: Codable {}
+extension SearchResult.ResultData: Codable {}

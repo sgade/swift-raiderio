@@ -37,6 +37,6 @@ public struct Guild {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Guild: Decodable {}
+extension Guild: Codable {}

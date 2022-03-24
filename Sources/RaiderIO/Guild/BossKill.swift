@@ -52,12 +52,12 @@ public struct BossKill {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension BossKill: Decodable {}
+extension BossKill: Codable {}
 
 
-extension BossKill.Kill: Decodable {
+extension BossKill.Kill: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

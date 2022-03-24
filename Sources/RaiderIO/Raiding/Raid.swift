@@ -41,9 +41,9 @@ public struct Raid {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Raid: Decodable {
+extension Raid: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -58,4 +58,4 @@ extension Raid: Decodable {
 }
 
 
-extension Raid.Encounter: Decodable {}
+extension Raid.Encounter: Codable {}

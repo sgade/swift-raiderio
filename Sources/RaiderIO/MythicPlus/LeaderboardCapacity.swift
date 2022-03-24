@@ -107,21 +107,21 @@ public struct LeaderboardCapacity {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension LeaderboardCapacity: Decodable {}
-
-
-extension LeaderboardCapacity.Affix: Decodable {}
+extension LeaderboardCapacity: Codable {}
 
 
-extension LeaderboardCapacity.RealmInfo: Decodable {}
+extension LeaderboardCapacity.Affix: Codable {}
 
 
-extension LeaderboardCapacity.RealmInfo.DungeonInfo: Decodable {}
+extension LeaderboardCapacity.RealmInfo: Codable {}
 
 
-extension LeaderboardCapacity.RealmInfo.DungeonInfo.Dungeon: Decodable {
+extension LeaderboardCapacity.RealmInfo.DungeonInfo: Codable {}
+
+
+extension LeaderboardCapacity.RealmInfo.DungeonInfo.Dungeon: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -138,4 +138,4 @@ extension LeaderboardCapacity.RealmInfo.DungeonInfo.Dungeon: Decodable {
 }
 
 
-extension LeaderboardCapacity.RealmInfo.DungeonInfo.LowestDungeonRun: Decodable {}
+extension LeaderboardCapacity.RealmInfo.DungeonInfo.LowestDungeonRun: Codable {}

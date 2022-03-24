@@ -103,9 +103,9 @@ public struct MythicPlusRanking {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension MythicPlusRuns: Decodable {
+extension MythicPlusRuns: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
@@ -118,13 +118,13 @@ extension MythicPlusRuns: Decodable {
 }
 
 
-extension MythicPlusRuns.Parameters: Decodable {}
+extension MythicPlusRuns.Parameters: Codable {}
 
 
-extension MythicPlusRanking: Decodable {}
+extension MythicPlusRanking: Codable {}
 
 
-extension MythicPlusRanking.Run: Decodable {
+extension MythicPlusRanking.Run: Codable {
 
     private enum CodingKeys: String, CodingKey {
 

@@ -34,6 +34,6 @@ public struct RaidRanking {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension RaidRanking: Decodable {}
+extension RaidRanking: Codable {}

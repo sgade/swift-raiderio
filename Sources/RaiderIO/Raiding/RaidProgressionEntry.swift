@@ -23,6 +23,6 @@ public struct RaidProgressionEntry {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension RaidProgressionEntry: Decodable {}
+extension RaidProgressionEntry: Codable {}

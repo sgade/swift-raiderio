@@ -27,6 +27,6 @@ public struct Corruption {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension Corruption: Decodable {}
+extension Corruption: Codable {}

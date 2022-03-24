@@ -29,6 +29,6 @@ public struct CharacterSearchResult {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension CharacterSearchResult: Decodable {}
+extension CharacterSearchResult: Codable {}

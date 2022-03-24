@@ -26,6 +26,6 @@ public enum ClassSlug: String {
 
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension ClassSlug: Decodable {}
+extension ClassSlug: Codable {}
