@@ -22,6 +22,7 @@ extension Expansion {
     public static let legion: Expansion = 6
     public static let battleForAzeroth: Expansion = 7
     public static let shadowlands: Expansion = 8
+    public static let dragonflight: Expansion = 9
 
 }
 
