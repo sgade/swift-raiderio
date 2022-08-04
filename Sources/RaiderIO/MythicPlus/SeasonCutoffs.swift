@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 public struct SeasonCutoffs {
 
@@ -41,7 +39,6 @@ public struct SeasonCutoffs {
     // swiftlint:enable identifier_name
 
 }
-
 
 public struct SeasonCutoff {
 
@@ -79,7 +76,6 @@ extension SeasonCutoffs.RegionInfo: Codable {
 }
 
 extension SeasonCutoffs.UIInfo: Codable {}
-
 
 extension SeasonCutoff: Codable {}
 

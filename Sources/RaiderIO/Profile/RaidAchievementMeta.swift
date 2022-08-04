@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct RaidAchievementMeta {
 
     public struct Achievement {
@@ -63,6 +62,5 @@ extension RaidAchievementMeta: Codable {
     }
 
 }
-
 
 extension RaidAchievementMeta.Achievement: Codable {}

@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 10.03.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -22,14 +20,14 @@ extension RaiderIO {
     public func search(for term: String) async throws -> [SearchResult] {
         let searchUrl = baseUrl.appendingPathComponent(Self.searchPath)
         guard var urlComponents = URLComponents(url: searchUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "term", value: term)
         ]
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         let response: SearchResponse = try await request(url: url)

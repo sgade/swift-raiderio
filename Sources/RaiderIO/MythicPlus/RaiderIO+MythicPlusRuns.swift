@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 23.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -34,7 +32,7 @@ extension RaiderIO {
                                   page: Int = 0) async throws -> MythicPlusRuns {
         let mythicPlusRunsUrl = baseUrl.appendingPathComponent(Self.mythicPlusRunsPath)
         guard var urlComponents = URLComponents(url: mythicPlusRunsUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "season", value: season),
@@ -45,7 +43,7 @@ extension RaiderIO {
         ]
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         return try await request(url: url)

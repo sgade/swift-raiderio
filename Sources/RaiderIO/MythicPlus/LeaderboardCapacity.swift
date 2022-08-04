@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 public struct LeaderboardCapacity {
 
@@ -111,15 +109,11 @@ public struct LeaderboardCapacity {
 
 extension LeaderboardCapacity: Codable {}
 
-
 extension LeaderboardCapacity.Affix: Codable {}
-
 
 extension LeaderboardCapacity.RealmInfo: Codable {}
 
-
 extension LeaderboardCapacity.RealmInfo.DungeonInfo: Codable {}
-
 
 extension LeaderboardCapacity.RealmInfo.DungeonInfo.Dungeon: Codable {
 
@@ -136,6 +130,5 @@ extension LeaderboardCapacity.RealmInfo.DungeonInfo.Dungeon: Codable {
     }
 
 }
-
 
 extension LeaderboardCapacity.RealmInfo.DungeonInfo.LowestDungeonRun: Codable {}

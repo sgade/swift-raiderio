@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -19,14 +17,14 @@ extension RaiderIO {
     public func getStaticRaidingData(for expansion: Expansion) async throws -> StaticRaidingData {
         let raidingStaticDataUrl = baseUrl.appendingPathComponent(Self.raidingStaticDataPath)
         guard var urlComponents = URLComponents(url: raidingStaticDataUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "expansion_id", value: "\(expansion.rawValue)")
         ]
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         return try await request(url: url)

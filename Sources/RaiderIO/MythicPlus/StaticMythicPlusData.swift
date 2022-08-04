@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 21.02.22.
 //
 
-
 import Foundation
-
 
 public struct StaticMythicPlusData {
 
@@ -37,9 +35,7 @@ public struct StaticMythicPlusData {
 
 extension StaticMythicPlusData: Codable {}
 
-
 extension StaticMythicPlusData.Season: Codable {}
-
 
 extension StaticMythicPlusData.Dungeon: Codable {
 

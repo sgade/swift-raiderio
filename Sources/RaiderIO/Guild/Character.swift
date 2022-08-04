@@ -5,10 +5,9 @@
 //  Created by Sören Gade on 10.03.22.
 //
 
-
 import Foundation
 
-
+// swiftlint:disable file_length
 // swiftlint:disable type_body_length
 public struct Character {
 
@@ -363,10 +362,12 @@ extension Character: Codable {
 
 }
 
-
 extension Character.Covenant: Codable {}
+
 extension Character.Covenant.Soulbind: Codable {}
+
 extension Character.Covenant.Soulbind.Conduit: Codable {}
+
 extension Character.Covenant.Soulbind.Trait: Codable {}
 
 extension Character.Specialization: Codable {
@@ -398,7 +399,9 @@ extension Character.Items: Codable {
     }
 
 }
+
 extension Character.Items.Equipment: Codable {}
+
 extension Character.Items.Equipment.Item: Codable {
 
     private enum CodingKeys: String, CodingKey {

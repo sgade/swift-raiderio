@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -20,14 +18,14 @@ extension RaiderIO {
     public func getMythicPlusScoreTiers(for season: String) async throws -> [ScoreTier] {
         let mythicPlusScoreTiersUrl = baseUrl.appendingPathComponent(Self.mythicPlusScoreTiersPath)
         guard var urlComponents = URLComponents(url: mythicPlusScoreTiersUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "season", value: season)
         ]
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         return try await request(url: url)

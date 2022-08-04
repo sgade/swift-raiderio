@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 10.03.22.
 //
 
-
 import Foundation
-
 
 public struct CharacterSearchResult {
 

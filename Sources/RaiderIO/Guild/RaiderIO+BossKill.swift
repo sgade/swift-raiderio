@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -31,7 +29,7 @@ extension RaiderIO {
                                  difficulty: Difficulty) async throws -> BossKill? {
         let guildBossKillUrl = baseUrl.appendingPathComponent(Self.guildBossKillPath)
         guard var urlComponents = URLComponents(url: guildBossKillUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "region", value: region.rawValue),
@@ -43,7 +41,7 @@ extension RaiderIO {
         ]
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         do {

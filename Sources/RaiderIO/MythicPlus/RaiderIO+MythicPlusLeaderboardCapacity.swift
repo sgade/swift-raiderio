@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -38,7 +36,7 @@ extension RaiderIO {
         let mythicPlusLeaderboardCapacityUrl = baseUrl.appendingPathComponent(Self.mythicPlusLeaderboardCapacityPath)
         guard var urlComponents = URLComponents(url: mythicPlusLeaderboardCapacityUrl,
                                                 resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "scope", value: week.rawValue),
@@ -49,7 +47,7 @@ extension RaiderIO {
         }
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         let response: LeaderboardCapacityResponse = try await request(url: url)

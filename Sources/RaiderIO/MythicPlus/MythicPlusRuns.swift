@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 23.02.22.
 //
 
-
 import Foundation
-
 
 public struct MythicPlusRuns {
 
@@ -39,7 +37,6 @@ public struct MythicPlusRuns {
 
 }
 
-
 public struct MythicPlusRanking {
 
     public struct Run {
@@ -57,9 +54,8 @@ public struct MythicPlusRanking {
         public let faction: Faction
         public let weeklyModifiers: [Affix]
         public let numberOfActiveModifiers: Int
-//        public let roster: Any // FIXME: Implement type
-//        public let platoon: Any // FIXME: Implement type
-
+        // public let roster: Any // FIXME: Implement type
+        // public let platoon: Any // FIXME: Implement type
 
         public init(season: String,
                     keystoneRunId: Int,
@@ -117,12 +113,9 @@ extension MythicPlusRuns: Codable {
 
 }
 
-
 extension MythicPlusRuns.Parameters: Codable {}
 
-
 extension MythicPlusRanking: Codable {}
-
 
 extension MythicPlusRanking.Run: Codable {
 

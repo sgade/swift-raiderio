@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 17.03.22.
 //
 
-
 import Foundation
-
 
 public enum ClassSlug: String {
 

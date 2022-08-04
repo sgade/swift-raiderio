@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 23.02.22.
 //
 
-
 import Foundation
-
 
 // swiftlint:disable identifier_name
 public enum Locale: String {

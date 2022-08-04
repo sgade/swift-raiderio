@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 public struct Raid {
 
@@ -56,6 +54,5 @@ extension Raid: Codable {
     }
 
 }
-
 
 extension Raid.Encounter: Codable {}

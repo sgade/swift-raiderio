@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 public struct BossKill {
 
@@ -55,7 +53,6 @@ public struct BossKill {
 // MARK: - Codable
 
 extension BossKill: Codable {}
-
 
 extension BossKill.Kill: Codable {
 

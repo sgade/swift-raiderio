@@ -5,6 +5,3 @@ included:
 disabled_rules:
   - multiple_closures_with_trailing_closure
   - nesting 
-
-vertical_whitespace:
-  max_empty_lines: 2

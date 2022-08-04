@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 public struct SeasonScores {
 
@@ -70,7 +68,6 @@ public struct SeasonScores {
 
 extension SeasonScores: Codable {}
 
-
 extension SeasonScores.ScoreOverview: Codable {
 
     private enum CodingKeys: String, CodingKey {
@@ -87,6 +84,5 @@ extension SeasonScores.ScoreOverview: Codable {
     }
 
 }
-
 
 extension SeasonScores.SegmentScore: Codable {}

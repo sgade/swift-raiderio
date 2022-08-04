@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 24.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -30,7 +28,7 @@ extension RaiderIO {
                                      region: RegionSlug) async throws -> HallOfFame {
         let raidingHallOfFameUrl = baseUrl.appendingPathComponent(Self.raidingHallOfFamePath)
         guard var urlComponents = URLComponents(url: raidingHallOfFameUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "raid", value: raid.rawValue),
@@ -39,7 +37,7 @@ extension RaiderIO {
         ]
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         let response: HallOfFameResponse = try await request(url: url)

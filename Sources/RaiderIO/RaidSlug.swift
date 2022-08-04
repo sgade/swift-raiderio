@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 25.02.22.
 //
 
-
 import Foundation
-
 
 public struct RaidSlug {
 

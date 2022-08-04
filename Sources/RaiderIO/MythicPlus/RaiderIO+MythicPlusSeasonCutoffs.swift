@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -27,7 +25,7 @@ extension RaiderIO {
     public func getMythicPlusSeasonCutoffs(for season: String, in region: RegionSlug) async throws -> SeasonCutoffs {
         let mythicPlusSeasonCutoffsUrl = baseUrl.appendingPathComponent(Self.mythicPlusSeasonCutoffsPath)
         guard var urlComponents = URLComponents(url: mythicPlusSeasonCutoffsUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "season", value: season),
@@ -35,7 +33,7 @@ extension RaiderIO {
         ]
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         let response: SeasonCutoffsReponse = try await request(url: url)

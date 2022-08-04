@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 public struct GuildProfile {
 
@@ -70,6 +68,5 @@ extension GuildProfile: Codable {
     }
 
 }
-
 
 extension GuildProfile.RaidRanking: Codable {}

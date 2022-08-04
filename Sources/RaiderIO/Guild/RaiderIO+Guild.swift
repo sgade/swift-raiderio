@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 22.02.22.
 //
 
-
 import Foundation
-
 
 public enum GuildProfileField: String, CaseIterable {
 
@@ -18,7 +16,6 @@ public enum GuildProfileField: String, CaseIterable {
     case raidRankings       = "raid_rankings"
 
 }
-
 
 extension RaiderIO {
 
@@ -37,7 +34,7 @@ extension RaiderIO {
                                 fields: [GuildProfileField] = []) async throws -> GuildProfile {
         let guildProfileUrl = baseUrl.appendingPathComponent(Self.guildProfilePath)
         guard var urlComponents = URLComponents(url: guildProfileUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "region", value: region.rawValue),
@@ -50,7 +47,7 @@ extension RaiderIO {
         }
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         return try await request(url: url)

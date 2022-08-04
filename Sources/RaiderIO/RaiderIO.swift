@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 21.02.22.
 //
 
-
 import Foundation
-
 
 /// Object that allows access to the [Raider.io API](https://raider.io/api).
 public class RaiderIO {
@@ -25,7 +23,6 @@ public class RaiderIO {
 
 }
 
-
 extension RaiderIO {
 
     private struct ErrorResponse: Decodable {
@@ -42,7 +39,7 @@ extension RaiderIO {
 
         let (data, response) = try await urlSession.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw Errors.failedRequest
+            throw RaiderIOError.failedRequest
         }
 
         let decoder = JSONDecoder()
@@ -51,11 +48,11 @@ extension RaiderIO {
             switch httpResponse.statusCode {
             case 400:
                 let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
-                throw Errors.server(statusCode: errorResponse.statusCode,
+                throw RaiderIOError.server(statusCode: errorResponse.statusCode,
                                     error: errorResponse.error,
                                     message: errorResponse.message)
             default:
-                throw Errors.http(statusCode: httpResponse.statusCode)
+                throw RaiderIOError.http(statusCode: httpResponse.statusCode)
             }
         }
 

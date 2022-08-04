@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 24.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -40,7 +38,7 @@ extension RaiderIO {
                                        realm: String? = nil) async throws -> [BossRanking] {
         let raidingBossRankingsUrl = baseUrl.appendingPathComponent(Self.raidingBossRankingsPath)
         guard var urlComponents = URLComponents(url: raidingBossRankingsUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "raid", value: raid.rawValue),
@@ -53,7 +51,7 @@ extension RaiderIO {
         }
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         let response: BossRankingsResponse = try await request(url: url)

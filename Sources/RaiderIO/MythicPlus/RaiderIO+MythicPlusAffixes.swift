@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 23.02.22.
 //
 
-
 import Foundation
-
 
 extension RaiderIO {
 
@@ -21,7 +19,7 @@ extension RaiderIO {
     public func getMythicPlusAffixes(region: RegionSlug, locale: Locale) async throws -> Affixes {
         let mythicPlusAffixesUrl = baseUrl.appendingPathComponent(Self.mythicPlusAffixesPath)
         guard var urlComponents = URLComponents(url: mythicPlusAffixesUrl, resolvingAgainstBaseURL: true) else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
         urlComponents.queryItems = [
             URLQueryItem(name: "region", value: region.rawValue),
@@ -29,7 +27,7 @@ extension RaiderIO {
         ]
 
         guard let url = urlComponents.url else {
-            throw Errors.invalidUrlParameters
+            throw RaiderIOError.invalidUrlParameters
         }
 
         return try await request(url: url)

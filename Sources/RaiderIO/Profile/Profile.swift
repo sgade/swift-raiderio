@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 21.02.22.
 //
 
-
 import Foundation
-
 
 public struct Profile {
 
@@ -148,7 +146,9 @@ public struct Profile {
 
 extension Profile {
 
+    // swiftlint:disable line_length
     private static let profileBannerBaseUrl = URL(string: "https://cdnassets.raider.io/images/profile/masthead_backdrops/v2")!
+    // swiftlint:enable line_length
 
     public var profileBannerUrl: URL {
         Self.profileBannerBaseUrl.appendingPathComponent(profileBanner).appendingPathExtension("jpg")
@@ -200,6 +200,5 @@ extension Profile: Codable {
     }
 
 }
-
 
 extension Profile.Guild: Codable {}

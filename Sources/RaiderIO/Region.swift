@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 21.02.22.
 //
 
-
 import Foundation
-
 
 public struct Region {
 
@@ -22,7 +20,6 @@ public struct Region {
     }
 
 }
-
 
 // MARK: - Codable
 

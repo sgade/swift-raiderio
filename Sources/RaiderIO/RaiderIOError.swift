@@ -1,15 +1,13 @@
 //
-//  Errors.swift
+//  RaiderIOError.swift
 //  RaiderIO
 //
 //  Created by Sören Gade on 21.02.22.
 //
 
-
 import Foundation
 
-
-public enum Errors: Error {
+public enum RaiderIOError: Error {
 
     case invalidUrlParameters
     case failedRequest

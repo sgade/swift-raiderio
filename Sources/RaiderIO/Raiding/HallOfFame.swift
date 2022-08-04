@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 24.02.22.
 //
 
-
 import Foundation
-
 
 public struct HallOfFame {
 
@@ -123,7 +121,6 @@ public struct HallOfFame {
 
 }
 
-
 public struct KillGuild {
 
     public let guild: Guild
@@ -158,6 +155,5 @@ extension HallOfFame.BossKill.DefeatedBy: Codable {}
 extension HallOfFame.BossKill.AttemptedBy: Codable {}
 
 extension HallOfFame.WinningGuild: Codable {}
-
 
 extension KillGuild: Codable {}

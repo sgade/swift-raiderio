@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 21.02.22.
 //
 
-
 import Foundation
-
 
 private struct PeriodsResponse: Decodable {
 

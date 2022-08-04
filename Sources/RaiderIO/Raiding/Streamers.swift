@@ -5,9 +5,7 @@
 //  Created by Sören Gade on 24.02.22.
 //
 
-
 import Foundation
-
 
 public struct Streamers {
 
@@ -20,7 +18,6 @@ public struct Streamers {
     }
 
 }
-
 
 public struct Stream {
 
@@ -69,7 +66,6 @@ public struct Stream {
 // MARK: - Codable
 
 extension Streamers: Codable {}
-
 
 extension Stream: Codable {
 
