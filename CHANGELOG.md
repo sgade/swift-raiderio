@@ -1,6 +1,6 @@
 # Changelog
 
-## (unreleased)
+## 0.4.0 
 
 ### Added
 
@@ -8,6 +8,7 @@
 * Expanded subtypes for BossKill type.
 * Use custom Millisecond type.
 * Added a ClassSlug type.
+* Add Dragonflight expansion value.
 
 ### Fixed
 
