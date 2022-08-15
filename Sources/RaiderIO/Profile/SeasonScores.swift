@@ -9,25 +9,27 @@ import Foundation
 
 public struct SeasonScores {
 
+    public typealias ScoreValue = MythicPlusCalculation.Rating
+
     public struct ScoreOverview {
 
-        public let all: Float
-        public let dps: Float
-        public let healer: Float
-        public let tank: Float
-        public let spec0: Float
-        public let spec1: Float
-        public let spec2: Float
-        public let spec3: Float
+        public let all: ScoreValue
+        public let dps: ScoreValue
+        public let healer: ScoreValue
+        public let tank: ScoreValue
+        public let spec0: ScoreValue
+        public let spec1: ScoreValue
+        public let spec2: ScoreValue
+        public let spec3: ScoreValue
 
-        public init(all: Float,
-                    dps: Float,
-                    healer: Float,
-                    tank: Float,
-                    spec0: Float,
-                    spec1: Float,
-                    spec2: Float,
-                    spec3: Float) {
+        public init(all: ScoreValue,
+                    dps: ScoreValue,
+                    healer: ScoreValue,
+                    tank: ScoreValue,
+                    spec0: ScoreValue,
+                    spec1: ScoreValue,
+                    spec2: ScoreValue,
+                    spec3: ScoreValue) {
             self.all = all
             self.dps = dps
             self.healer = healer
@@ -42,10 +44,10 @@ public struct SeasonScores {
 
     public struct SegmentScore {
 
-        public let score: Float
+        public let score: ScoreValue
         public let color: String
 
-        public init(score: Float, color: String) {
+        public init(score: ScoreValue, color: String) {
             self.score = score
             self.color = color
         }

@@ -18,7 +18,7 @@ public struct DungeonRun {
     public let numberOfKeystoneUpgrades: Int
     public let mapChallengeModeId: Int
     public let zoneId: Int
-    public let score: Double
+    public let score: MythicPlusScore
     public let affixes: [Affix]
     public let url: URL
 
@@ -31,7 +31,7 @@ public struct DungeonRun {
                 numberOfKeystoneUpgrades: Int,
                 mapChallengeModeId: Int,
                 zoneId: Int,
-                score: Double,
+                score: MythicPlusScore,
                 affixes: [Affix],
                 url: URL) {
         self.dungeon = dungeon

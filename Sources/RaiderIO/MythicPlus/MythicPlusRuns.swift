@@ -88,10 +88,10 @@ public struct MythicPlusRanking {
     }
 
     public let rank: Int
-    public let score: Float
+    public let score: MythicPlusScore
     public let run: Run
 
-    public init(rank: Int, score: Float, run: Run) {
+    public init(rank: Int, score: MythicPlusScore, run: Run) {
         self.rank = rank
         self.score = score
         self.run = run
