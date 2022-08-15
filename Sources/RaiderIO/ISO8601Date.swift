@@ -59,6 +59,14 @@ extension ISO8601Date {
 
 }
 
+// MARK: - Convenience
+
+extension ISO8601Date {
+
+    public static let now = ISO8601Date(.now)
+
+}
+
 // MARK: - Codable
 
 extension ISO8601Date: Codable {

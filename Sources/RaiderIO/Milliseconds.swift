@@ -17,6 +17,26 @@ public struct Milliseconds {
 
 }
 
+// MARK: - ExpressibleByIntegerLiteral
+
+extension Milliseconds: ExpressibleByIntegerLiteral {
+
+    public init(integerLiteral value: IntegerLiteralType) {
+        self.init(duration: TimeInterval(value))
+    }
+
+}
+
+// MARK: - ExpressibleByFloatLiteral
+
+extension Milliseconds: ExpressibleByFloatLiteral {
+
+    public init(floatLiteral value: FloatLiteralType) {
+        self.init(duration: TimeInterval(value))
+    }
+
+}
+
 // MARK: - Codable
 
 extension Milliseconds: Codable {
