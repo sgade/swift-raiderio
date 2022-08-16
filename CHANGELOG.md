@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0
+
+### Added
+
+* Mythic+ rating calculations
+* Custom type for mythic+ scores
+
 ## 0.4.0 
 
 ### Added
