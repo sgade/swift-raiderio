@@ -1,5 +1,11 @@
 # Changelog
 
+## [unreleased]
+
+### Added
+
+* Evoker class, Vault of Incarnates and talent loadouts.
+
 ## 0.5.0
 
 ### Added

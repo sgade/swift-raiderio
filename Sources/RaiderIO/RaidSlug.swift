@@ -17,6 +17,10 @@ public struct RaidSlug {
 
 extension RaidSlug {
 
+    public static let vaultOfTheIncarnates: RaidSlug = "vault-of-the-incarnates"
+    public static let fatedSepulcherOfTheFirstOnes: RaidSlug = "fated-sepulcher-of-the-first-ones"
+    public static let fatedSanctumOfDomination: RaidSlug = "fated-sanctum-of-domination"
+    public static let fatedCastleNathria: RaidSlug = "fated-castle-nathria"
     public static let sepulcherOfTheFirstOnes: RaidSlug = "sepulcher-of-the-first-ones"
     public static let sanctumOfDomination: RaidSlug = "sanctum-of-domination"
     public static let castleNathria: RaidSlug = "castle-nathria"

@@ -15,7 +15,6 @@ public struct BossKill {
         public let defeatedAt: ISO8601Date
         public let duration: Milliseconds
         public let isSuccess: Bool
-        public let itemLevelTotalAverage: Float
         public let itemLevelEquippedAverage: Float
         public let itemLevelEquippedMax: Float
         public let itemLevelEquippedMin: Float
@@ -24,7 +23,6 @@ public struct BossKill {
                     defeatedAt: ISO8601Date,
                     duration: Milliseconds,
                     isSuccess: Bool,
-                    itemLevelTotalAverage: Float,
                     itemLevelEquippedAverage: Float,
                     itemLevelEquippedMax: Float,
                     itemLevelEquippedMin: Float) {
@@ -32,7 +30,6 @@ public struct BossKill {
             self.defeatedAt = defeatedAt
             self.duration = duration
             self.isSuccess = isSuccess
-            self.itemLevelTotalAverage = itemLevelTotalAverage
             self.itemLevelEquippedAverage = itemLevelEquippedAverage
             self.itemLevelEquippedMax = itemLevelEquippedMax
             self.itemLevelEquippedMin = itemLevelEquippedMin
@@ -62,7 +59,6 @@ extension BossKill.Kill: Codable {
         case defeatedAt
         case duration                   = "durationMs"
         case isSuccess
-        case itemLevelTotalAverage      = "itemLevelTotalAvg"
         case itemLevelEquippedAverage   = "itemLevelEquippedAvg"
         case itemLevelEquippedMax
         case itemLevelEquippedMin

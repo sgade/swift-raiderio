@@ -93,12 +93,13 @@ public struct Character {
 
     }
 
+    /// Talent details for Legion, Battle for Azeroth and Shadowlands.
     public struct TalentDetail {
 
-        public let specId: Int
+        public let specId: Int?
         public let icon: String
         public let spellId: Int
-        public let classId: Int
+        public let classId: Int?
         public let tierId: Int
         public let columnId: Int
 
@@ -109,6 +110,51 @@ public struct Character {
             self.classId = classId
             self.tierId = tierId
             self.columnId = columnId
+        }
+
+    }
+
+    /// The talent loadout starting with Dragonflight.
+    public struct TalentLoadout {
+
+        public struct Loadout {
+
+            public struct Node {
+
+                public struct Entry {
+
+                    public let id: Int
+                    public let type: Int
+                    public let maxRanks: Int
+                    public let spell: Spell
+
+                }
+
+                public let id: Int
+                public let treeId: Int
+                public let type: Int
+                public let entries: [Entry]
+                public let important: Bool
+                public let positionX: Int
+                public let positionY: Int
+                public let row: Int
+                public let column: Int
+
+            }
+
+            public let entryIndex: Int
+            public let rank: Int
+
+        }
+
+        public let specId: Int
+        public let loadout: [Loadout]
+        public let loadoutText: String
+
+        public init(specId: Int, loadout: [Loadout], loadoutText: String) {
+            self.specId = specId
+            self.loadout = loadout
+            self.loadoutText = loadoutText
         }
 
     }
@@ -226,16 +272,16 @@ public struct Character {
     }
 
     public let id: Int
-    public let covenant: Covenant
+    public let covenant: Covenant?
     public let name: String
     public let race: Race
     public let `class`: Class
     public let spec: Specialization
-    public let talents: String
+    public let talents: String?
     public let talentsDetails: [TalentDetail]?
+    public let talentLoadout: TalentLoadout?
     public let gender: Gender
     public let thumbnail: String
-    public let itemLevelTotal: Float
     public let itemLevelEquipped: Float
     public let artifactTraits: Float
     public let realm: Realm
@@ -249,8 +295,9 @@ public struct Character {
                 race: Race,
                 class: Class,
                 spec: Specialization,
-                talents: String,
+                talents: String? = nil,
                 talentsDetails: [TalentDetail]? = nil,
+                talentLoadout: TalentLoadout?,
                 gender: Gender,
                 thumbnail: String,
                 itemLevelTotal: Float,
@@ -268,9 +315,9 @@ public struct Character {
         self.spec = spec
         self.talents = talents
         self.talentsDetails = talentsDetails
+        self.talentLoadout = talentLoadout
         self.gender = gender
         self.thumbnail = thumbnail
-        self.itemLevelTotal = itemLevelTotal
         self.itemLevelEquipped = itemLevelEquipped
         self.artifactTraits = artifactTraits
         self.realm = realm
@@ -302,6 +349,7 @@ extension Character: Codable {
         case spec
         case talents
         case talentsDetails
+        case talentLoadout
         case gender
         case thumbnail
         case itemLevelTotal
@@ -319,16 +367,16 @@ extension Character: Codable {
         let container = try outerContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .character)
 
         id = try container.decode(Int.self, forKey: .id)
-        covenant = try container.decode(Covenant.self, forKey: .covenant)
+        covenant = try container.decodeIfPresent(Covenant.self, forKey: .covenant)
         name = try container.decode(String.self, forKey: .name)
         race = try container.decode(Race.self, forKey: .race)
         `class` = try container.decode(Class.self, forKey: .class)
         spec = try container.decode(Specialization.self, forKey: .spec)
-        talents = try container.decode(String.self, forKey: .talents)
-        talentsDetails = try container.decode([TalentDetail].self, forKey: .talentsDetails)
+        talents = try container.decodeIfPresent(String.self, forKey: .talents)
+        talentsDetails = try container.decodeIfPresent([TalentDetail].self, forKey: .talentsDetails)
+        talentLoadout = try container.decodeIfPresent(TalentLoadout.self, forKey: .talentLoadout)
         gender = try container.decode(Gender.self, forKey: .gender)
         thumbnail = try container.decode(String.self, forKey: .thumbnail)
-        itemLevelTotal = try container.decode(Float.self, forKey: .itemLevelTotal)
         itemLevelEquipped = try container.decode(Float.self, forKey: .itemLevelEquipped)
         artifactTraits = try container.decode(Float.self, forKey: .artifactTraits)
         realm = try container.decode(Realm.self, forKey: .realm)
@@ -342,16 +390,16 @@ extension Character: Codable {
         var container = outerContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .character)
 
         try container.encode(id, forKey: .id)
-        try container.encode(covenant, forKey: .covenant)
+        try container.encodeIfPresent(covenant, forKey: .covenant)
         try container.encode(name, forKey: .name)
         try container.encode(race, forKey: .race)
         try container.encode(`class`, forKey: .class)
         try container.encode(spec, forKey: .spec)
-        try container.encode(talents, forKey: .talents)
-        try container.encode(talentsDetails, forKey: .talentsDetails)
+        try container.encodeIfPresent(talents, forKey: .talents)
+        try container.encodeIfPresent(talentsDetails, forKey: .talentsDetails)
+        try container.encodeIfPresent(talentLoadout, forKey: .talentLoadout)
         try container.encode(gender, forKey: .gender)
         try container.encode(thumbnail, forKey: .thumbnail)
-        try container.encode(itemLevelTotal, forKey: .itemLevelTotal)
         try container.encode(itemLevelEquipped, forKey: .itemLevelEquipped)
         try container.encode(artifactTraits, forKey: .artifactTraits)
         try container.encode(realm, forKey: .realm)
@@ -363,11 +411,8 @@ extension Character: Codable {
 }
 
 extension Character.Covenant: Codable {}
-
 extension Character.Covenant.Soulbind: Codable {}
-
 extension Character.Covenant.Soulbind.Conduit: Codable {}
-
 extension Character.Covenant.Soulbind.Trait: Codable {}
 
 extension Character.Specialization: Codable {
@@ -386,6 +431,27 @@ extension Character.Specialization: Codable {
 }
 
 extension Character.TalentDetail: Codable {}
+
+extension Character.TalentLoadout: Codable {}
+extension Character.TalentLoadout.Loadout: Codable {}
+extension Character.TalentLoadout.Loadout.Node: Codable {
+
+    private enum CodingKeys: String, CodingKey {
+
+        case id
+        case treeId
+        case type
+        case entries
+        case important
+        case positionX = "posX"
+        case positionY = "posY"
+        case row
+        case column
+
+    }
+
+}
+extension Character.TalentLoadout.Loadout.Node.Entry: Codable {}
 
 extension Character.Items: Codable {
 

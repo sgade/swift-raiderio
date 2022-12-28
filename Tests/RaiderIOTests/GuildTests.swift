@@ -29,7 +29,7 @@ final class GuildTests: XCTestCase {
         }
     }
 
-    func testFetchGuildBossKill() async throws {
+    func testFetchGuildBossKillFromShadowlands() async throws {
         do {
             let bossKill = try await client!.getGuildBossKill(region: .us,
                                                               realm: "Skullcrusher",
@@ -37,6 +37,22 @@ final class GuildTests: XCTestCase {
                                                               raid: .sanctumOfDomination,
                                                               boss: "the-nine",
                                                               difficulty: .heroic)
+
+            XCTAssertNotNil(bossKill)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
+    func testFetchGuildBossKillFromDragonflight() async throws {
+        do {
+            let bossKill = try await client!.getGuildBossKill(region: .eu,
+                                                              realm: "Tarren Mill",
+                                                              guildName: "Echo",
+                                                              raid: .vaultOfTheIncarnates,
+                                                              boss: "raszageth-the-stormeater",
+                                                              difficulty: .mythic)
 
             XCTAssertNotNil(bossKill)
         } catch {

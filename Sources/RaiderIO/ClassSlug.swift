@@ -12,6 +12,7 @@ public enum ClassSlug: String {
     case deathKnight = "death-knight"
     case demonHunter = "demon-hunter"
     case druid
+    case evoker
     case hunter
     case mage
     case monk
