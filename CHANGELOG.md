@@ -5,6 +5,7 @@
 ### Added
 
 * Evoker class, Vault of Incarnates and talent loadouts.
+* Support for Battle for Azeroth and Legion boss kills.
 
 ## 0.5.0
 

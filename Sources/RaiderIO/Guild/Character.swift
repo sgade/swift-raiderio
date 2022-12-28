@@ -271,7 +271,7 @@ public struct Character {
 
     }
 
-    public let id: Int
+    public let id: Int?
     public let covenant: Covenant?
     public let name: String
     public let race: Race
@@ -289,7 +289,7 @@ public struct Character {
     public let items: Items
     public let recruitmentProfiles: [RecruitmentProfile]
 
-    public init(id: Int,
+    public init(id: Int?,
                 covenant: Covenant,
                 name: String,
                 race: Race,
@@ -366,7 +366,7 @@ extension Character: Codable {
         let outerContainer = try decoder.container(keyedBy: OuterCodingKeys.self)
         let container = try outerContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .character)
 
-        id = try container.decode(Int.self, forKey: .id)
+        id = try container.decodeIfPresent(Int.self, forKey: .id)
         covenant = try container.decodeIfPresent(Covenant.self, forKey: .covenant)
         name = try container.decode(String.self, forKey: .name)
         race = try container.decode(Race.self, forKey: .race)

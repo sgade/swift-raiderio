@@ -29,6 +29,38 @@ final class GuildTests: XCTestCase {
         }
     }
 
+    func testFetchGuildBossKillFromLegion() async throws {
+        do {
+            let bossKill = try await client!.getGuildBossKill(region: .kr,
+                                                              realm: "Azshara",
+                                                              guildName: "AFK R",
+                                                              raid: .tombOfSageras,
+                                                              boss: "kiljaeden",
+                                                              difficulty: .mythic)
+
+            XCTAssertNotNil(bossKill)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
+    func testFetchGuildBossKillFromBattleForAzeroth() async throws {
+        do {
+            let bossKill = try await client!.getGuildBossKill(region: .eu,
+                                                              realm: "Tarren Mill",
+                                                              guildName: "Method",
+                                                              raid: .NyalothaTheWakingCity,
+                                                              boss: "nzoth-the-corruptor",
+                                                              difficulty: .mythic)
+
+            XCTAssertNotNil(bossKill)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
     func testFetchGuildBossKillFromShadowlands() async throws {
         do {
             let bossKill = try await client!.getGuildBossKill(region: .us,
