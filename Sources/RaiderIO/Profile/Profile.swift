@@ -52,7 +52,7 @@ public struct Profile {
     public let faction: Faction
     public let region: RegionSlug
     public let realm: String
-    public let profileUrl: SpecialCharacterURL
+    public let profileUrl: URL
     public let profileBanner: String
     public let achievementPoints: Int
     public let honorableKills: Int
@@ -87,7 +87,7 @@ public struct Profile {
                 faction: Faction,
                 region: RegionSlug,
                 realm: String,
-                profileUrl: SpecialCharacterURL,
+                profileUrl: URL,
                 profileBanner: String,
                 achievementPoints: Int,
                 honorableKills: Int,
@@ -197,6 +197,46 @@ extension Profile: Codable {
         case raidAchievementMeta                        = "raid_achievement_meta"
         case raidAchievementCurve                       = "raid_achievement_curve"
 
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        name = try container.decode(String.self, forKey: .name)
+        race = try container.decode(String.self, forKey: .race)
+        `class` = try container.decode(String.self, forKey: .class)
+        activeSpecName = try container.decode(String.self, forKey: .activeSpecName)
+        activeSpecRole = try container.decode(Role.self, forKey: .activeSpecRole)
+        gender = try container.decode(Gender.self, forKey: .gender)
+        faction = try container.decode(Faction.self, forKey: .faction)
+        region = try container.decode(RegionSlug.self, forKey: .region)
+        realm = try container.decode(String.self, forKey: .realm)
+
+        profileUrl = try container.decode(SpecialCharactersURL.self, forKey: .profileUrl).url
+        profileBanner = try container.decode(String.self, forKey: .profileBanner)
+        achievementPoints = try container.decode(Int.self, forKey: .achievementPoints)
+        honorableKills = try container.decode(Int.self, forKey: .honorableKills)
+        thumbnailUrl = try container.decode(URL.self, forKey: .thumbnailUrl)
+        lastCrawledAt = try container.decode(ISO8601Date.self, forKey: .lastCrawledAt)
+
+        gear = try container.decodeIfPresent(Gear.self, forKey: .gear)
+        guild = try container.decodeIfPresent(Guild.self, forKey: .guild)
+        covenant = try container.decodeIfPresent(Covenant.self, forKey: .covenant)
+
+        raidProgression = try container.decodeIfPresent([String: RaidProgression].self, forKey: .raidProgression)
+
+        mythicPlusScoresBySeason = try container.decodeIfPresent([SeasonScores].self, forKey: .mythicPlusScoresBySeason)
+        mythicPlusRanks = try container.decodeIfPresent([String: Ranks].self, forKey: .mythicPlusRanks)
+        mythicPlusRecentRuns = try container.decodeIfPresent([DungeonRun].self, forKey: .mythicPlusRecentRuns)
+        mythicPlusBestRuns = try container.decodeIfPresent([DungeonRun].self, forKey: .mythicPlusBestRuns)
+        mythicPlusAlternateRuns = try container.decodeIfPresent([DungeonRun].self, forKey: .mythicPlusAlternateRuns)
+        mythicPlusHighestLevelRuns = try container.decodeIfPresent([DungeonRun].self, forKey: .mythicPlusHighestLevelRuns)
+        mythicPlusWeeklyHighestLevelRuns = try container.decodeIfPresent([DungeonRun].self, forKey: .mythicPlusWeeklyHighestLevelRuns)
+        mythicPlusPreviousWeeklyHighestLevelRuns = try container.decodeIfPresent([DungeonRun].self, forKey: .mythicPlusPreviousWeeklyHighestLevelRuns)
+        previousMythicPlusRanks = try container.decodeIfPresent([String: Ranks].self, forKey: .previousMythicPlusRanks)
+
+        raidAchievementMeta = try container.decodeIfPresent([RaidAchievementMeta].self, forKey: .raidAchievementMeta)
+        raidAchievementCurve = try container.decodeIfPresent([RaidAchievementCurve].self, forKey: .raidAchievementCurve)
     }
 
 }
