@@ -1,5 +1,11 @@
 # Changelog
 
+## (unreleased)
+
+### Fixed
+
+* Support parsing url strings with non-allowed characters.
+
 ## 0.6.0
 
 ### Added

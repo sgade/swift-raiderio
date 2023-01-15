@@ -43,4 +43,30 @@ final class ProfileTests: XCTestCase {
         }
     }
 
+    func testFetchSpecialCharacterProfile() async throws {
+        do {
+            let fields: [ProfileField] = [
+                .gear,
+                .guild,
+                .covenant,
+                .raidProgression,
+                .mythicPlusScores(by: ["current", "previous"]),
+                .mythicPlusRanks,
+                .mythicPlusRecentRuns,
+                .mythicPlusBestRuns,
+                .mythicPlusAlternateRuns,
+                .mythicPlusHighestLevelRuns,
+                .mythicPlusWeeklyHighestLevelRuns,
+                .previousMythicPlusRanks,
+                .raidAchievementMeta(tiers: ["tier28", "tier27"]),
+                .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
+            ]
+
+            _ = try await client!.getProfile(region: .eu, realm: "Azshara", name: "Jêwlz", fields: fields)
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+
 }

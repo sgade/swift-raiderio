@@ -52,7 +52,7 @@ public struct Profile {
     public let faction: Faction
     public let region: RegionSlug
     public let realm: String
-    public let profileUrl: URL
+    public let profileUrl: SpecialCharacterURL
     public let profileBanner: String
     public let achievementPoints: Int
     public let honorableKills: Int
@@ -87,7 +87,7 @@ public struct Profile {
                 faction: Faction,
                 region: RegionSlug,
                 realm: String,
-                profileUrl: URL,
+                profileUrl: SpecialCharacterURL,
                 profileBanner: String,
                 achievementPoints: Int,
                 honorableKills: Int,
