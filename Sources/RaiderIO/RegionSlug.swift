@@ -47,7 +47,7 @@ extension RegionSlug {
 
 // MARK: - Equatable
 
-extension RegionSlug {
+extension RegionSlug: Equatable {
 
     public static func == (lhs: RegionSlug, rhs: RegionSlug) -> Bool {
         lhs.rawValue == rhs.rawValue

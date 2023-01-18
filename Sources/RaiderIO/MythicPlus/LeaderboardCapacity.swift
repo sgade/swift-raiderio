@@ -29,34 +29,6 @@ public struct LeaderboardCapacity {
 
         public struct DungeonInfo {
 
-            public struct Dungeon {
-
-                public let id: Int
-                public let name: String
-                public let shortName: String
-                public let slug: String
-                public let expansion: Expansion
-                public let patch: String
-                public let keystoneTimer: Milliseconds
-
-                public init(id: Int,
-                            name: String,
-                            shortName: String,
-                            slug: String,
-                            expansion: Expansion,
-                            patch: String,
-                            keystoneTimer: Milliseconds) {
-                    self.id = id
-                    self.name = name
-                    self.shortName = shortName
-                    self.slug = slug
-                    self.expansion = expansion
-                    self.patch = patch
-                    self.keystoneTimer = keystoneTimer
-                }
-
-            }
-
             public struct LowestDungeonRun {
 
                 public let rank: Int
@@ -114,21 +86,5 @@ extension LeaderboardCapacity.Affix: Codable {}
 extension LeaderboardCapacity.RealmInfo: Codable {}
 
 extension LeaderboardCapacity.RealmInfo.DungeonInfo: Codable {}
-
-extension LeaderboardCapacity.RealmInfo.DungeonInfo.Dungeon: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case id
-        case name
-        case shortName          = "short_name"
-        case slug
-        case expansion          = "expansion_id"
-        case patch
-        case keystoneTimer      = "keystone_timer_ms"
-
-    }
-
-}
 
 extension LeaderboardCapacity.RealmInfo.DungeonInfo.LowestDungeonRun: Codable {}

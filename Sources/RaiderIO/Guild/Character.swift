@@ -78,11 +78,11 @@ public struct Character {
         public let id: Int
         public let name: String
         public let slug: String
-        public let classId: Int
+        public let classId: Int?
         public let role: Role
         public let isMelee: Bool
 
-        public init(id: Int, name: String, slug: String, classId: Int, role: Role, isMelee: Bool) {
+        public init(id: Int, name: String, slug: String, classId: Int?, role: Role, isMelee: Bool) {
             self.id = id
             self.name = name
             self.slug = slug
@@ -165,6 +165,14 @@ public struct Character {
 
             public struct Item {
 
+                public struct AzeritePower {
+
+                    public let id: Int
+                    public let spell: Spell
+                    public let tier: Int
+
+                }
+
                 public let id: Int
                 public let itemLevel: Int
                 public let icon: String
@@ -172,7 +180,7 @@ public struct Character {
                 public let itemQuality: Quality
                 public let isLegendary: Bool
                 public let isAzeriteArmor: Bool
-                // public let azeritePowers: [Any] // FIXME: Can't determine type without documentation or examples
+                public let azeritePowers: [AzeritePower?]
                 public let corruption: Corruption
                 public let dominationShards: [DominationShard]
                 public let gems: [Int]
@@ -185,6 +193,7 @@ public struct Character {
                             itemQuality: Quality,
                             isLegendary: Bool,
                             isAzeriteArmor: Bool,
+                            azeritePowers: [AzeritePower?],
                             corruption: Corruption,
                             dominationShards: [DominationShard],
                             gems: [Int],
@@ -196,6 +205,7 @@ public struct Character {
                     self.itemQuality = itemQuality
                     self.isLegendary = isLegendary
                     self.isAzeriteArmor = isAzeriteArmor
+                    self.azeritePowers = azeritePowers
                     self.corruption = corruption
                     self.dominationShards = dominationShards
                     self.gems = gems
@@ -272,6 +282,7 @@ public struct Character {
     }
 
     public let id: Int?
+    public let personaId: Int?
     public let covenant: Covenant?
     public let name: String
     public let race: Race
@@ -280,16 +291,17 @@ public struct Character {
     public let talents: String?
     public let talentsDetails: [TalentDetail]?
     public let talentLoadout: TalentLoadout?
-    public let gender: Gender
-    public let thumbnail: String
-    public let itemLevelEquipped: Float
-    public let artifactTraits: Float
+    public let gender: Gender?
+    public let thumbnail: String?
+    public let itemLevelEquipped: Float?
+    public let artifactTraits: Float?
     public let realm: Realm
     public let region: Region
-    public let items: Items
+    public let items: Items?
     public let recruitmentProfiles: [RecruitmentProfile]
 
     public init(id: Int?,
+                personaId: Int?,
                 covenant: Covenant,
                 name: String,
                 race: Race,
@@ -298,16 +310,16 @@ public struct Character {
                 talents: String? = nil,
                 talentsDetails: [TalentDetail]? = nil,
                 talentLoadout: TalentLoadout?,
-                gender: Gender,
-                thumbnail: String,
-                itemLevelTotal: Float,
-                itemLevelEquipped: Float,
-                artifactTraits: Float,
+                gender: Gender?,
+                thumbnail: String?,
+                itemLevelEquipped: Float?,
+                artifactTraits: Float?,
                 realm: Realm,
                 region: Region,
-                items: Items,
+                items: Items?,
                 recruitmentProfiles: [RecruitmentProfile]) {
         self.id = id
+        self.personaId = personaId
         self.covenant = covenant
         self.name = name
         self.race = race
@@ -342,6 +354,7 @@ extension Character: Codable {
     private enum CodingKeys: String, CodingKey {
 
         case id
+        case personaId              = "persona_id"
         case covenant
         case name
         case race
@@ -363,10 +376,16 @@ extension Character: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let outerContainer = try decoder.container(keyedBy: OuterCodingKeys.self)
-        let container = try outerContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .character)
+        let container: KeyedDecodingContainer<CodingKeys>
+        do {
+            let outerContainer = try decoder.container(keyedBy: OuterCodingKeys.self)
+            container = try outerContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .character)
+        } catch DecodingError.keyNotFound {
+            container = try decoder.container(keyedBy: CodingKeys.self)
+        }
 
         id = try container.decodeIfPresent(Int.self, forKey: .id)
+        personaId = try container.decodeIfPresent(Int.self, forKey: .personaId)
         covenant = try container.decodeIfPresent(Covenant.self, forKey: .covenant)
         name = try container.decode(String.self, forKey: .name)
         race = try container.decode(Race.self, forKey: .race)
@@ -375,13 +394,13 @@ extension Character: Codable {
         talents = try container.decodeIfPresent(String.self, forKey: .talents)
         talentsDetails = try container.decodeIfPresent([TalentDetail].self, forKey: .talentsDetails)
         talentLoadout = try container.decodeIfPresent(TalentLoadout.self, forKey: .talentLoadout)
-        gender = try container.decode(Gender.self, forKey: .gender)
-        thumbnail = try container.decode(String.self, forKey: .thumbnail)
-        itemLevelEquipped = try container.decode(Float.self, forKey: .itemLevelEquipped)
-        artifactTraits = try container.decode(Float.self, forKey: .artifactTraits)
+        gender = try container.decodeIfPresent(Gender.self, forKey: .gender)
+        thumbnail = try container.decodeIfPresent(String.self, forKey: .thumbnail)
+        itemLevelEquipped = try container.decodeIfPresent(Float.self, forKey: .itemLevelEquipped)
+        artifactTraits = try container.decodeIfPresent(Float.self, forKey: .artifactTraits)
         realm = try container.decode(Realm.self, forKey: .realm)
         region = try container.decode(Region.self, forKey: .region)
-        items = try container.decode(Items.self, forKey: .items)
+        items = try container.decodeIfPresent(Items.self, forKey: .items)
         recruitmentProfiles = try container.decode([RecruitmentProfile].self, forKey: .recruitmentProfiles)
     }
 
@@ -390,6 +409,7 @@ extension Character: Codable {
         var container = outerContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .character)
 
         try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(personaId, forKey: .personaId)
         try container.encodeIfPresent(covenant, forKey: .covenant)
         try container.encode(name, forKey: .name)
         try container.encode(race, forKey: .race)
@@ -398,13 +418,13 @@ extension Character: Codable {
         try container.encodeIfPresent(talents, forKey: .talents)
         try container.encodeIfPresent(talentsDetails, forKey: .talentsDetails)
         try container.encodeIfPresent(talentLoadout, forKey: .talentLoadout)
-        try container.encode(gender, forKey: .gender)
-        try container.encode(thumbnail, forKey: .thumbnail)
-        try container.encode(itemLevelEquipped, forKey: .itemLevelEquipped)
-        try container.encode(artifactTraits, forKey: .artifactTraits)
+        try container.encodeIfPresent(gender, forKey: .gender)
+        try container.encodeIfPresent(thumbnail, forKey: .thumbnail)
+        try container.encodeIfPresent(itemLevelEquipped, forKey: .itemLevelEquipped)
+        try container.encodeIfPresent(artifactTraits, forKey: .artifactTraits)
         try container.encode(realm, forKey: .realm)
         try container.encode(region, forKey: .region)
-        try container.encode(items, forKey: .items)
+        try container.encodeIfPresent(items, forKey: .items)
         try container.encode(recruitmentProfiles, forKey: .recruitmentProfiles)
     }
 
@@ -479,6 +499,7 @@ extension Character.Items.Equipment.Item: Codable {
         case itemQuality        = "item_quality"
         case isLegendary        = "is_legendary"
         case isAzeriteArmor     = "is_azerite_armor"
+        case azeritePowers      = "azerite_powers"
         case corruption
         case dominationShards   = "domination_shards"
         case gems
@@ -487,3 +508,5 @@ extension Character.Items.Equipment.Item: Codable {
     }
 
 }
+
+extension Character.Items.Equipment.Item.AzeritePower: Codable {}
