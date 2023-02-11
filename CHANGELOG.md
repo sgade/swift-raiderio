@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.0
+
+### Added
+
+* Add undocumented API call for more information about dungeon runs.
+
+### Fixed
+
+* Characters without guilds work.
+
 ## 0.6.1
 
 ### Fixed
