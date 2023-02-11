@@ -226,7 +226,7 @@ extension ExtendedDungeonRun {
         public let character: Character
         public let oldCharacter: Character?
         public let isTransfer: Bool
-        public let guild: Guild
+        public let guild: Guild?
         public let role: Role
         public let items: Character.Items
         public let ranks: Ranks

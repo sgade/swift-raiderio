@@ -11,7 +11,7 @@ extension RaiderIO {
 
     private static let iconCDNBaseUrl = URL(string: "https://cdnassets.raider.io/images/wow/icons/medium/")!
 
-    func iconUrl(with iconName: String) -> URL {
+    public func iconUrl(with iconName: String) -> URL {
         Self.iconCDNBaseUrl
             .appendingPathComponent(iconName)
             .appendingPathExtension(".jpg")

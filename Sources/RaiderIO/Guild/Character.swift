@@ -183,6 +183,7 @@ public struct Character {
                 public let azeritePowers: [AzeritePower?]
                 public let corruption: Corruption
                 public let dominationShards: [DominationShard]
+                public let tier: String?
                 public let gems: [Int]
                 public let bonuses: [Int]
 
@@ -196,6 +197,7 @@ public struct Character {
                             azeritePowers: [AzeritePower?],
                             corruption: Corruption,
                             dominationShards: [DominationShard],
+                            tier: String?,
                             gems: [Int],
                             bonuses: [Int]) {
                     self.id = id
@@ -208,6 +210,7 @@ public struct Character {
                     self.azeritePowers = azeritePowers
                     self.corruption = corruption
                     self.dominationShards = dominationShards
+                    self.tier = tier
                     self.gems = gems
                     self.bonuses = bonuses
                 }
@@ -502,6 +505,7 @@ extension Character.Items.Equipment.Item: Codable {
         case azeritePowers      = "azerite_powers"
         case corruption
         case dominationShards   = "domination_shards"
+        case tier
         case gems
         case bonuses
 
