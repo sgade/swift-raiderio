@@ -1,5 +1,11 @@
 # Changelog
 
+## (unreleased)
+
+### Fixed
+
+* LoggingSources properties support profiles as well as characters.
+
 ## 0.7.0
 
 ### Added

@@ -241,10 +241,21 @@ extension ExtendedDungeonRun {
 
     public struct LoggingSource {
 
-        public let characterName: String
-        public let anonymized: Bool
+        // Profile information
+        public let name: String?
+        public let avatar: String?
+        // Character information
+        public let characterName: String?
+        public let anonymized: Bool?
 
-        public init(characterName: String, anonymized: Bool) {
+        public init(
+            name: String?,
+            avatar: String?,
+            characterName: String?,
+            anonymized: Bool?
+        ) {
+            self.name = name
+            self.avatar = avatar
             self.characterName = characterName
             self.anonymized = anonymized
         }
