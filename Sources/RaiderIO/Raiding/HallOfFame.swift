@@ -71,13 +71,13 @@ public struct HallOfFame {
 
         public let boss: String
         public let bossSummary: BossSummary
-        public let bossKillVideo: BossKillVideo
+        public let bossKillVideo: BossKillVideo?
         public let defeatedBy: DefeatedBy
         public let attemptedBy: AttemptedBy
 
         public init(boss: String,
                     bossSummary: BossSummary,
-                    bossKillVideo: BossKillVideo,
+                    bossKillVideo: BossKillVideo?,
                     defeatedAt: DefeatedBy,
                     attemptedBy: AttemptedBy) {
             self.boss = boss

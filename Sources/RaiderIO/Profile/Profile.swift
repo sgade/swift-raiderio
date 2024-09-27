@@ -20,10 +20,12 @@ public struct Profile {
         }
 
         public let itemLevelEquipped: Float
-        public let itemLevelTotal: Float
+        public let itemLevelTotal: Float?
         public let artifactTraits: Float
 
-        public init(itemLevelEquipped: Float, itemLevelTotal: Float, artifactTraits: Float) {
+        public init(itemLevelEquipped: Float,
+                    itemLevelTotal: Float?,
+                    artifactTraits: Float) {
             self.itemLevelEquipped = itemLevelEquipped
             self.itemLevelTotal = itemLevelTotal
             self.artifactTraits = artifactTraits

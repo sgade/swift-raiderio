@@ -27,4 +27,24 @@ public struct Spell {
 
 // MARK: - Codable
 
-extension Spell: Codable {}
+extension Spell: Codable {
+
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        icon = try container.decode(String.self, forKey: .icon)
+        school = try container.decode(Int.self, forKey: .school)
+
+        do {
+            rank = try container.decodeIfPresent(Int.self, forKey: .rank)
+        } catch DecodingError.typeMismatch {
+            if let stringValue = try container.decodeIfPresent(String.self, forKey: .rank) {
+                rank = Int(stringValue)
+            } else {
+                rank = nil
+            }
+        }
+    }
+
+}

@@ -6,6 +6,10 @@
 
 * Using swift-testing for unit tests
 
+### Fixes
+
+* Updates to make it work with current raider.io API.
+
 ## 0.7.1
 
 ### Fixed
