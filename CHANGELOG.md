@@ -1,6 +1,12 @@
 # Changelog
 
-## 0.7.1 
+## (unreleased)
+
+### Changed
+
+* Using swift-testing for unit tests
+
+## 0.7.1
 
 ### Fixed
 
@@ -36,7 +42,7 @@
 * Mythic+ rating calculations
 * Custom type for mythic+ scores
 
-## 0.4.0 
+## 0.4.0
 
 ### Added
 
@@ -50,7 +56,7 @@
 
 * Make streamers and recruitmentProfiles on RaidRanking optional.
 
-## 0.3.0 
+## 0.3.0
 
 ### Added
 

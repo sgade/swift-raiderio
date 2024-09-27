@@ -6,60 +6,67 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class MythicPlusRatingTests: XCTestCase {
+@Suite
+struct MythicPlusRatingTests {
 
-    var client: RaiderIO?
+    let client = RaiderIO(urlSession: .shared)
 
-    override func setUp() {
-        client = RaiderIO(urlSession: .shared)
-    }
-
-    func testCalculateRatingForSingleRun() {
+    @Test
+    func calculateRatingForSingleRun() {
         let run = DungeonRun.run1
         let rating = MythicPlusCalculation.rating(for: run)
 
-        XCTAssertEqual(rating, run.score * MythicPlusCalculation.betterRunMultiplier)
+        #expect(rating == run.score * MythicPlusCalculation.betterRunMultiplier)
     }
 
-    func testCalculateRatingForBetterRun() {
+    @Test
+    func calculateRatingForBetterRun() {
         let run1 = DungeonRun.run1
         let run2 = DungeonRun.run2
         let rating = MythicPlusCalculation.rating(for: run1, alternateRun: run2)
 
-        XCTAssertEqual(rating, run1.score * MythicPlusCalculation.betterRunMultiplier)
+        #expect(rating == run1.score * MythicPlusCalculation.betterRunMultiplier)
     }
 
-    func testCalculateRatingForWorseRun() {
+    @Test
+    func calculateRatingForWorseRun() {
         let run1 = DungeonRun.run1
         let run2 = DungeonRun.run2
         let rating = MythicPlusCalculation.rating(for: run2, alternateRun: run1)
 
-        XCTAssertEqual(rating, run2.score * MythicPlusCalculation.worseRunMultiplier)
+        #expect(rating == run2.score * MythicPlusCalculation.worseRunMultiplier)
     }
 
-    func testCalculateTotalRatingForSingleRun() {
+    @Test
+    func calculateTotalRatingForSingleRun() {
         let run = DungeonRun.run1
         let rating = MythicPlusCalculation.totalRating(run1: run, run2: nil)
         let ratingForOne = MythicPlusCalculation.rating(for: run)
 
-        XCTAssertEqual(rating, run.score * MythicPlusCalculation.betterRunMultiplier)
-        XCTAssertEqual(rating, ratingForOne)
+        #expect(rating == run.score * MythicPlusCalculation.betterRunMultiplier)
+        #expect(rating == ratingForOne)
     }
 
-    func testCalculateTotalRating() {
+    @Test
+    func calculateTotalRating() {
         let run1 = DungeonRun.run1
         let run2 = DungeonRun.run2
         let rating = MythicPlusCalculation.totalRating(run1: run1, run2: run2)
 
-        XCTAssertEqual(rating, run1.score * MythicPlusCalculation.betterRunMultiplier + run2.score * MythicPlusCalculation.worseRunMultiplier)
+        #expect(
+            rating ==
+            run1.score * MythicPlusCalculation.betterRunMultiplier + run2.score * MythicPlusCalculation.worseRunMultiplier
+        )
     }
 
 }
 
-extension DungeonRun {
+// MARK: - Test data
+
+private extension DungeonRun {
 
     static let run1 = DungeonRun(dungeon: "Iron Docks",
                                  shortName: "ID",

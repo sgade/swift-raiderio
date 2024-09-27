@@ -6,23 +6,18 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class PeriodsTests: XCTestCase {
+@Suite
+struct PeriodsTests {
 
-    var client: RaiderIO?
+    let client = RaiderIO(urlSession: .shared)
 
-    override func setUp() {
-        client = RaiderIO(urlSession: .shared)
-    }
-
-    func testFetchPeriods() async throws {
-        do {
-            _ = try await client!.getPeriods()
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchPeriods() async {
+        await #expect(throws: Never.self) {
+            try await client.getPeriods()
         }
     }
 

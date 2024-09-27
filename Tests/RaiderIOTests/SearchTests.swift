@@ -6,69 +6,54 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class SearchTests: XCTestCase {
+@Suite
+struct SearchTests {
 
-    var client: RaiderIO!
+    let client = RaiderIO(urlSession: .shared)
 
-    override func setUp() {
-        client = RaiderIO(urlSession: .shared)
+    @Test
+    func searchForKnownCharacter() async throws {
+        let results = try await client.search(for: "Kiaro")
+
+        let expectedResult = results.first(where: {
+            guard case .character(let character) = $0.data else {
+                return false
+            }
+            return character.region.slug == .eu && character.realm.name == "Frostwolf" && character.name == "Kiaro"
+        })
+
+        #expect(expectedResult != nil)
     }
 
-    func testSearchForCharacter() async throws {
-        do {
-            let results = try await client.search(for: "Kiaro")
+    @Test
+    func searchForKnownGuild() async throws {
+        let results = try await client.search(for: "Via Draconis")
 
-            let expectedResult = results.first(where: {
-                guard case .character(let character) = $0.data else {
-                    return false
-                }
-                return character.region.slug == .eu && character.realm.name == "Frostwolf" && character.name == "Kiaro"
-            })
+        let expectedResult = results.first(where: {
+            guard case .guild(let guild) = $0.data else {
+                return false
+            }
+            return guild.region.slug == .eu && guild.realm.name == "Frostwolf" && guild.name == "Via Draconis"
+        })
 
-            XCTAssertNotNil(expectedResult)
-        } catch {
-            print(error)
-            throw error
-        }
+        #expect(expectedResult != nil)
     }
 
-    func testSearchForGuild() async throws {
-        do {
-            let results = try await client.search(for: "Via Draconis")
+    @Test
+    func searchForKnownTeam() async throws {
+        let results = try await client.search(for: "Via Draconis")
 
-            let expectedResult = results.first(where: {
-                guard case .guild(let guild) = $0.data else {
-                    return false
-                }
-                return guild.region.slug == .eu && guild.realm.name == "Frostwolf" && guild.name == "Via Draconis"
-            })
+        let expectedResult = results.first(where: {
+            guard case .team(let team) = $0.data else {
+                return false
+            }
+            return team.region.slug == .eu && team.name == "Via Draconis"
+        })
 
-            XCTAssertNotNil(expectedResult)
-        } catch {
-            print(error)
-            throw error
-        }
-    }
-
-    func testSearchForTeam() async throws {
-        do {
-            let results = try await client.search(for: "Via Draconis")
-
-            let expectedResult = results.first(where: {
-                guard case .team(let team) = $0.data else {
-                    return false
-                }
-                return team.region.slug == .eu && team.name == "Via Draconis"
-            })
-
-            XCTAssertNotNil(expectedResult)
-        } catch {
-            print(error)
-            throw error
-        }
+        #expect(expectedResult != nil)
     }
 
 }

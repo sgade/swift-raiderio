@@ -6,106 +6,91 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class GuildTests: XCTestCase {
+@Suite
+struct GuildTests {
 
-    var client: RaiderIO?
+    let client = RaiderIO(urlSession: .shared)
 
-    override func setUp() {
-        client = RaiderIO(urlSession: .shared)
-    }
-
-    func testFetchGuildProfile() async throws {
-        do {
-            _ = try await client!.getGuildProfile(region: .eu,
-                                                  realm: "Frostwolf",
-                                                  name: "Via Draconis",
-                                                  fields: GuildProfileField.allCases)
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchGuildProfile() async {
+        await #expect(throws: Never.self) {
+            try await client.getGuildProfile(region: .eu,
+                                             realm: "Frostwolf",
+                                             name: "Via Draconis",
+                                             fields: GuildProfileField.allCases)
         }
     }
 
-    func testFetchGuildBossKillFromLegion() async throws {
-        do {
-            let bossKill = try await client!.getGuildBossKill(region: .kr,
-                                                              realm: "Azshara",
-                                                              guildName: "AFK R",
-                                                              raid: .tombOfSageras,
-                                                              boss: "kiljaeden",
-                                                              difficulty: .mythic)
+    @Test
+    func fetchGuildBossKillFromLegion() async {
+        await #expect(throws: Never.self) {
+            let bossKill = try await client.getGuildBossKill(region: .kr,
+                                                             realm: "Azshara",
+                                                             guildName: "AFK R",
+                                                             raid: .tombOfSageras,
+                                                             boss: "kiljaeden",
+                                                             difficulty: .mythic)
 
-            XCTAssertNotNil(bossKill)
-        } catch {
-            print(error)
-            throw error
+            #expect(bossKill != nil)
         }
     }
 
-    func testFetchGuildBossKillFromBattleForAzeroth() async throws {
-        do {
-            let bossKill = try await client!.getGuildBossKill(region: .eu,
-                                                              realm: "Tarren Mill",
-                                                              guildName: "Method",
-                                                              raid: .NyalothaTheWakingCity,
-                                                              boss: "nzoth-the-corruptor",
-                                                              difficulty: .mythic)
+    @Test
+    func fetchGuildBossKillFromBattleForAzeroth() async {
+        await #expect(throws: Never.self) {
+            let bossKill = try await client.getGuildBossKill(region: .eu,
+                                                             realm: "Tarren Mill",
+                                                             guildName: "Method",
+                                                             raid: .NyalothaTheWakingCity,
+                                                             boss: "nzoth-the-corruptor",
+                                                             difficulty: .mythic)
 
-            XCTAssertNotNil(bossKill)
-        } catch {
-            print(error)
-            throw error
+            #expect(bossKill != nil)
         }
     }
 
-    func testFetchGuildBossKillFromShadowlands() async throws {
-        do {
-            let bossKill = try await client!.getGuildBossKill(region: .us,
-                                                              realm: "Skullcrusher",
-                                                              guildName: "Ludicrous Speed",
-                                                              raid: .sanctumOfDomination,
-                                                              boss: "the-nine",
-                                                              difficulty: .heroic)
+    @Test
+    func fetchGuildBossKillFromShadowlands() async {
+        await #expect(throws: Never.self) {
+            let bossKill = try await client.getGuildBossKill(region: .us,
+                                                             realm: "Skullcrusher",
+                                                             guildName: "Ludicrous Speed",
+                                                             raid: .sanctumOfDomination,
+                                                             boss: "the-nine",
+                                                             difficulty: .heroic)
 
-            XCTAssertNotNil(bossKill)
-        } catch {
-            print(error)
-            throw error
+            #expect(bossKill != nil)
         }
     }
 
-    func testFetchGuildBossKillFromDragonflight() async throws {
-        do {
-            let bossKill = try await client!.getGuildBossKill(region: .eu,
-                                                              realm: "Tarren Mill",
-                                                              guildName: "Echo",
-                                                              raid: .vaultOfTheIncarnates,
-                                                              boss: "raszageth-the-stormeater",
-                                                              difficulty: .mythic)
+    @Test
+    func fetchGuildBossKillFromDragonflight() async {
+        await #expect(throws: Never.self) {
+            let bossKill = try await client.getGuildBossKill(region: .eu,
+                                                             realm: "Tarren Mill",
+                                                             guildName: "Echo",
+                                                             raid: .vaultOfTheIncarnates,
+                                                             boss: "raszageth-the-stormeater",
+                                                             difficulty: .mythic)
 
-            XCTAssertNotNil(bossKill)
-        } catch {
-            print(error)
-            throw error
+            #expect(bossKill != nil)
         }
     }
 
-    func testFetchEmptyGuildBossKill() async throws {
-        do {
-            let bossKill = try await client!.getGuildBossKill(region: .eu,
-                                                              realm: "Frostwolf",
-                                                              guildName: "Via Draconis",
-                                                              raid: .sanctumOfDomination,
-                                                              boss: "the-nine",
-                                                              difficulty: .heroic)
-
-            XCTAssertNil(bossKill)
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchEmptyGuildBossKill() async {
+        await #expect(throws: Never.self) {
+            let bossKill = try await client.getGuildBossKill(region: .eu,
+                                                             realm: "Frostwolf",
+                                                             guildName: "Via Draconis",
+                                                             raid: .sanctumOfDomination,
+                                                             boss: "the-nine",
+                                                             difficulty: .heroic)
+            
+            #expect(bossKill == nil)
         }
     }
 

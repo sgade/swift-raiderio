@@ -6,45 +6,40 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class ProfileTests: XCTestCase {
+@Suite
+struct ProfileTests {
 
-    var client: RaiderIO?
+    let client = RaiderIO(urlSession: .shared)
 
-    override func setUp() {
-        client = RaiderIO(urlSession: .shared)
-    }
+    @Test
+    func testFetchProfile() async {
+        let fields: [ProfileField] = [
+            .gear,
+            .guild,
+            .covenant,
+            .raidProgression,
+            .mythicPlusScores(by: ["current", "previous"]),
+            .mythicPlusRanks,
+            .mythicPlusRecentRuns,
+            .mythicPlusBestRuns,
+            .mythicPlusAlternateRuns,
+            .mythicPlusHighestLevelRuns,
+            .mythicPlusWeeklyHighestLevelRuns,
+            .previousMythicPlusRanks,
+            .raidAchievementMeta(tiers: ["tier28", "tier27"]),
+            .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
+        ]
 
-    func testFetchProfile() async throws {
-        do {
-            let fields: [ProfileField] = [
-                .gear,
-                .guild,
-                .covenant,
-                .raidProgression,
-                .mythicPlusScores(by: ["current", "previous"]),
-                .mythicPlusRanks,
-                .mythicPlusRecentRuns,
-                .mythicPlusBestRuns,
-                .mythicPlusAlternateRuns,
-                .mythicPlusHighestLevelRuns,
-                .mythicPlusWeeklyHighestLevelRuns,
-                .previousMythicPlusRanks,
-                .raidAchievementMeta(tiers: ["tier28", "tier27"]),
-                .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
-            ]
-
-            _ = try await client!.getProfile(region: .eu, realm: "Frostwolf", name: "Kiaro", fields: fields)
-        } catch {
-            print(error)
-            throw error
+        await #expect(throws: Never.self) {
+            try await client.getProfile(region: .eu, realm: "Frostwolf", name: "Kiaro", fields: fields)
         }
     }
 
-    func testFetchSpecialCharacterProfile() async throws {
-        do {
+    @Test
+    func fetchSpecialCharacterProfile() async {
             let fields: [ProfileField] = [
                 .gear,
                 .guild,
@@ -62,10 +57,8 @@ final class ProfileTests: XCTestCase {
                 .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
             ]
 
-            _ = try await client!.getProfile(region: .eu, realm: "Azshara", name: "Jêwlz", fields: fields)
-        } catch {
-            print(error)
-            throw error
+        await #expect(throws: Never.self) {
+            try await client.getProfile(region: .eu, realm: "Azshara", name: "Jêwlz", fields: fields)
         }
     }
 

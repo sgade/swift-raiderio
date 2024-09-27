@@ -6,12 +6,14 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class DungeonRunIdTests: XCTestCase {
+@Suite
+struct DungeonRunIdTests {
 
-    func testIdParsing() {
+    @Test
+    func idParsing() {
         let url = URL(string: "https://raider.io/mythic-plus-runs/season-df-1/11611033-16-ruby-life-pools")!
 
         let run = DungeonRun(
@@ -29,7 +31,7 @@ final class DungeonRunIdTests: XCTestCase {
             url: url
         )
 
-        XCTAssertEqual(run.id, 11611033)
+        #expect(run.id == 11611033)
     }
 
 }

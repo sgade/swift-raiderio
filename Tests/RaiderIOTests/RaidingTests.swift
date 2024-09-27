@@ -6,68 +6,55 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class RaidingTests: XCTestCase {
+@Suite
+struct RaidingTests {
 
-    var client: RaiderIO?
+    let client = RaiderIO(urlSession: .shared)
 
-    override func setUp() {
-        client = RaiderIO(urlSession: .shared)
-    }
-
-    func testFetchStaticRaidingData() async throws {
-        do {
-            _ = try await client!.getStaticRaidingData(for: .shadowlands)
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchStaticRaidingData() async {
+        await #expect(throws: Never.self) {
+            try await client.getStaticRaidingData(for: .shadowlands)
         }
     }
 
-    func testFetchBossRankings() async throws {
-        do {
-            _ = try await client!.getRaidingBossRankings(raid: .sanctumOfDomination,
-                                                         boss: "the-nine",
-                                                         difficulty: .normal,
-                                                         region: .german)
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchBossRankings() async {
+        await #expect(throws: Never.self) {
+            try await client.getRaidingBossRankings(raid: .sanctumOfDomination,
+                                                    boss: "the-nine",
+                                                    difficulty: .normal,
+                                                    region: .german)
         }
     }
 
-    func testFetchHallOfFame() async throws {
-        do {
-            _ = try await client!.getRaidingHallOfFame(raid: .sanctumOfDomination,
-                                                       difficulty: .normal,
-                                                       region: .eu)
-        } catch {
-            print(error)
-            throw error
-        }
-    }
-
-    func testFetchRaidingProgression() async throws {
-        do {
-            _ = try await client!.getRaidingProgression(raid: .sanctumOfDomination,
-                                                        difficulty: .normal,
-                                                        region: .us)
-        } catch {
-            print(error)
-            throw error
-        }
-    }
-
-    func testFetchRaidRankings() async throws {
-        do {
-            _ = try await client!.getRaidRankings(raid: .sanctumOfDomination,
+    @Test
+    func fetchHallOfFame() async {
+        await #expect(throws: Never.self) {
+            try await client.getRaidingHallOfFame(raid: .sanctumOfDomination,
                                                   difficulty: .normal,
-                                                  region: .german)
-        } catch {
-            print(error)
-            throw error
+                                                  region: .eu)
+        }
+    }
+
+    @Test
+    func fetchRaidingProgression() async {
+        await #expect(throws: Never.self) {
+            try await client.getRaidingProgression(raid: .sanctumOfDomination,
+                                                   difficulty: .normal,
+                                                   region: .us)
+        }
+    }
+
+    @Test
+    func fetchRaidRankings() async {
+        await #expect(throws: Never.self) {
+            try await client.getRaidRankings(raid: .sanctumOfDomination,
+                                             difficulty: .normal,
+                                             region: .german)
         }
     }
 

@@ -6,63 +6,50 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class MythicPlusTests: XCTestCase {
+@Suite
+struct MythicPlusTests {
 
-    var client: RaiderIO?
+    let client = RaiderIO(urlSession: .shared)
 
-    override func setUp() {
-        client = RaiderIO(urlSession: .shared)
-    }
-
-    func testFetchStaticMythicPlusData() async throws {
-        do {
-            _ = try await client!.getStaticMythicPlusData(for: .shadowlands)
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchStaticMythicPlusData() async {
+        await #expect(throws: Never.self) {
+            try await client.getStaticMythicPlusData(for: .shadowlands)
         }
     }
 
-    func testFetchScoreTiers() async throws {
-        do {
-            _ = try await client!.getMythicPlusScoreTiers(for: "season-sl-2")
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchScoreTiers() async {
+        await #expect(throws: Never.self) {
+            try await client.getMythicPlusScoreTiers(for: "season-sl-2")
         }
     }
 
-    func testFetchLeaderboardCapacity() async throws {
-        do {
-            _ = try await client!.getMythicPlusLeaderboardCapacity(for: .current, region: .eu, realm: "Frostwolf")
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchLeaderboardCapacity() async {
+        await #expect(throws: Never.self) {
+            try await client.getMythicPlusLeaderboardCapacity(for: .current, region: .eu, realm: "Frostwolf")
         }
     }
 
-    func testFetchAffixes() async throws {
-        do {
-            _ = try await client!.getMythicPlusAffixes(region: .eu, locale: .de)
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchAffixes() async {
+        await #expect(throws: Never.self) {
+            try await client.getMythicPlusAffixes(region: .eu, locale: .de)
         }
     }
 
-    func testFetchRuns() async throws {
-        do {
-            _ = try await client!.getMythicPlusRuns(season: "season-sl-2",
-                                                    region: .eu,
-                                                    dungeon: "mists-of-tirna-scithe",
-                                                    affixes: "all",
-                                                    page: 0)
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchRuns() async {
+        await #expect(throws: Never.self) {
+            try await client.getMythicPlusRuns(season: "season-sl-2",
+                                               region: .eu,
+                                               dungeon: "mists-of-tirna-scithe",
+                                               affixes: "all",
+                                               page: 0)
         }
     }
 

@@ -6,23 +6,18 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import RaiderIO
 
-final class ExtendedDungeonRunTests: XCTestCase {
+@Suite
+struct ExtendedDungeonRunTests {
 
-    var client: RaiderIO?
+    let client = RaiderIO(urlSession: .shared)
 
-    override func setUp() {
-        client = RaiderIO(urlSession: .shared)
-    }
-
-    func testFetchGuildProfile() async throws {
-        do {
-            _ = try await client?.getExtendedRun(with: 11611033, season: "season-df-1")
-        } catch {
-            print(error)
-            throw error
+    @Test
+    func fetchGuildProfile() async {
+        await #expect(throws: Never.self) {
+            try await client.getExtendedRun(with: 11611033, season: "season-df-1")
         }
     }
 
