@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.0
+
+### Changed
+
+* Using Swagger API definition file for generating the client now. A few endpoints are still undocumented.
+* Update raid slugs for Dragonflight and The War Within.
+* Update to Swift 6.2.
+* Requires macOS 26, iOS 26, and alike.
+
 ## 0.7.2
 
 ### Changed
