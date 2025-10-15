@@ -9,8 +9,6 @@ import Foundation
 
 extension RaiderIO {
 
-    private static let profilePah = "/v1/characters/profile"
-
     /// Retrieve information about a character.
     ///
     /// - Parameters:
@@ -22,25 +20,26 @@ extension RaiderIO {
                            realm: String,
                            name: String,
                            fields: [ProfileField] = []) async throws -> Profile {
-        let profileUrl = baseUrl.appendingPathComponent(Self.profilePah)
-        guard var urlComponents = URLComponents(url: profileUrl, resolvingAgainstBaseURL: true) else {
-            throw RaiderIOError.invalidUrlParameters
-        }
-        urlComponents.queryItems = [
-            URLQueryItem(name: "region", value: region.rawValue),
-            URLQueryItem(name: "realm", value: realm),
-            URLQueryItem(name: "name", value: name)
-        ]
-        if fields.count > 0 {
-            let fieldsValue = fields.map({ $0.value }).joined(separator: ",")
-            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fieldsValue))
+        let region = try produce {
+            Operations.getApiV1CharactersProfile.Input.Query.regionPayload(rawValue: region.rawValue)
         }
 
-        guard let url = urlComponents.url else {
-            throw RaiderIOError.invalidUrlParameters
+        let fieldsValue: String? = if fields.count > 0 {
+            fields.map({ $0.value }).joined(separator: ",")
+        } else {
+            nil
         }
 
-        return try await request(url: url)
+        return try await parse {
+            try await client.getApiV1CharactersProfile(
+                query: .init(
+                    region: region,
+                    realm: realm,
+                    name: name,
+                    fields: fieldsValue
+                )
+            ).ok.body.any
+        }
     }
 
 }
