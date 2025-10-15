@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RaiderIOError: Error {
+public enum RaiderIOError: Error, Equatable {
 
     case invalidUrlParameters
     case failedRequest

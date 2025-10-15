@@ -92,7 +92,16 @@ extension RaiderIO {
         let data = try await Data(collecting: response, upTo: size)
 
         let decoder = JSONDecoder()
-        return try decoder.decode(T.self, from: data)
+        do {
+            return try decoder.decode(T.self, from: data)
+        } catch DecodingError.keyNotFound {
+            let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
+            throw RaiderIOError.server(
+                statusCode: errorResponse.statusCode,
+                error: errorResponse.error,
+                message: errorResponse.message
+            )
+        }
     }
 
 }

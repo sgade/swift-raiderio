@@ -22,6 +22,19 @@ struct RaidingTests {
     }
 
     @Test
+    func fetchInvalidStaticRaidingData() async {
+        let expectedError = RaiderIOError.server(
+            statusCode: 400,
+            error: "Bad Request",
+            message: "Requested unsupported expansion_id"
+        )
+
+        await #expect(throws: expectedError) {
+            try await client.getStaticRaidingData(for: .init(rawValue: 5))
+        }
+    }
+
+    @Test
     func fetchBossRankings() async {
         await #expect(throws: Never.self) {
             try await client.getRaidingBossRankings(raid: .sanctumOfDomination,
