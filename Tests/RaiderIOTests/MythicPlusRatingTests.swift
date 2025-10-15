@@ -12,7 +12,7 @@ import Testing
 @Suite
 struct MythicPlusRatingTests {
 
-    let client = RaiderIO(urlSession: .shared)
+    let client = RaiderIO(urlSession: URLSession(configuration: .ephemeral))
 
     @Test
     func calculateRatingForSingleRun() {

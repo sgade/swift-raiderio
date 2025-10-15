@@ -62,13 +62,29 @@ extension RaiderIO {
         let decoder = JSONDecoder()
         do {
             return try decoder.decode(T.self, from: data)
-        } catch DecodingError.keyNotFound {
+        } catch let decodingError as DecodingError {
+            throw tryParsingErrorResponse(
+                data,
+                using: decoder,
+                originalError: decodingError
+            )
+        }
+    }
+
+    private func tryParsingErrorResponse(
+        _ data: Data,
+        using decoder: JSONDecoder,
+        originalError: some Error
+    ) -> any Error {
+        do {
             let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
-            throw RaiderIOError.server(
+            return RaiderIOError.server(
                 statusCode: errorResponse.statusCode,
                 error: errorResponse.error,
                 message: errorResponse.message
             )
+        } catch {
+            return originalError
         }
     }
 

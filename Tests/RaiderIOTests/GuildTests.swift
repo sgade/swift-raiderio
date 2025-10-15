@@ -12,7 +12,7 @@ import Testing
 @Suite
 struct GuildTests {
 
-    let client = RaiderIO(urlSession: .shared)
+    let client = RaiderIO(urlSession: URLSession(configuration: .ephemeral))
 
     @Test
     func fetchGuildProfile() async {
