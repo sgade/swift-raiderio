@@ -15,12 +15,12 @@ private struct PeriodsResponse: Decodable {
 
 extension RaiderIO {
 
-    private static let periodsPath = "/v1/periods"
-
     /// Retrieve the current, previous, and next period ids and date ranges.
     public func getPeriods() async throws -> [RegionalPeriods] {
-        let periodsUrl = baseUrl.appendingPathComponent(Self.periodsPath)
-        let response: PeriodsResponse = try await request(url: periodsUrl)
+        let response: PeriodsResponse = try await parse {
+            try await client.getApiV1Periods()
+                .default.body.any
+        }
         return response.periods
     }
 
