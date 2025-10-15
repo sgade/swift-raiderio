@@ -26,14 +26,12 @@ extension RaiderIO {
     ///     - realm: Name of realm that guild is on. This is in slug format, e.g. `"altar-of-storms"`.
     ///     - name: Name of the guild to look up. This is not case sensitive.
     ///     - fields: List of fields to retrieve for this guild.
-    public func getGuildProfile(region: RegionSlug,
-                                realm: String,
-                                name: String,
-                                fields: [GuildProfileField] = []) async throws -> GuildProfile {
-        let region = try produce {
-            Operations.getApiV1GuildsProfile.Input.Query.regionPayload(rawValue: region.rawValue)
-        }
-
+    public func getGuildProfile(
+        region: RegionSlug,
+        realm: String,
+        name: String,
+        fields: [GuildProfileField] = []
+    ) async throws -> GuildProfile {
         let fieldsValue: String? = if fields.count > 0 {
             fields.map({ $0.rawValue }).joined(separator: ",")
         } else {
@@ -42,7 +40,7 @@ extension RaiderIO {
 
         return try await parse {
             try await client.getApiV1GuildsProfile(query: .init(
-                region: region,
+                region: try convert(from: region),
                 realm: realm,
                 name: name,
                 fields: fieldsValue

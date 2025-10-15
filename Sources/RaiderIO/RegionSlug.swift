@@ -7,11 +7,11 @@
 
 import Foundation
 
-public class RegionSlug: ExpressibleByStringLiteral, Codable {
+public class RegionSlug: ExpressibleByStringLiteral, RawRepresentable, Codable {
 
     public let rawValue: String
 
-    public init(rawValue: String) {
+    required public init(rawValue: String) {
         self.rawValue = rawValue
     }
 

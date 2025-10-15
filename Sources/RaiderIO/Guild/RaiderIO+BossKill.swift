@@ -27,27 +27,15 @@ extension RaiderIO {
         boss bossSlug: String,
         difficulty: Difficulty
     ) async throws -> BossKill? {
-        let region = try produce {
-            Operations.getApiV1GuildsBosskill.Input.Query.regionPayload(rawValue: region.rawValue)
-        }
-
-        let raid = try produce {
-            Operations.getApiV1GuildsBosskill.Input.Query.raidPayload(rawValue: raid.rawValue)
-        }
-
-        let difficulty = try produce {
-            Operations.getApiV1GuildsBosskill.Input.Query.difficultyPayload(rawValue: difficulty.rawValue)
-        }
-
         do {
             return try await parse {
                 try await client.getApiV1GuildsBosskill(query: .init(
-                    region: region,
+                    region: try convert(from: region),
                     realm: realm,
                     guild: guildName,
-                    raid: raid,
+                    raid: try convert(from: raid),
                     boss: bossSlug,
-                    difficulty: difficulty
+                    difficulty: try convert(from: difficulty)
                 )).default.body.any
             }
         } catch DecodingError.keyNotFound(let codingKey, let context) {

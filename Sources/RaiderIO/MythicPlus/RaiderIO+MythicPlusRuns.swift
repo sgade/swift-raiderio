@@ -9,8 +9,6 @@ import Foundation
 
 extension RaiderIO {
 
-    private static let mythicPlusRunsPath = "/v1/mythic-plus/runs"
-
     /// Retrieve information about the top runs that match the given criteria.
     ///
     /// - Parameter season: Name of season to request data for.
@@ -25,28 +23,22 @@ extension RaiderIO {
     ///                      Use the special keyword `"current"` to return the result for the current week's affixes,
     ///                      or `"all"` to retrieve results for all affixes.
     /// - Parameter page: The page number of the results to return.
-    public func getMythicPlusRuns(season: String,
-                                  region: RegionSlug,
-                                  dungeon: String = "all",
-                                  affixes: String = "all",
-                                  page: Int = 0) async throws -> MythicPlusRuns {
-        let mythicPlusRunsUrl = baseUrl.appendingPathComponent(Self.mythicPlusRunsPath)
-        guard var urlComponents = URLComponents(url: mythicPlusRunsUrl, resolvingAgainstBaseURL: true) else {
-            throw RaiderIOError.invalidUrlParameters
+    public func getMythicPlusRuns(
+        season: String,
+        region: RegionSlug,
+        dungeon: String = "all",
+        affixes: String = "all",
+        page: Int = 0
+    ) async throws -> MythicPlusRuns {
+        try await parse {
+            try await client.getApiV1MythicplusRuns(query: .init(
+                season: season,
+                region: convert(from: region),
+                dungeon: dungeon,
+                affixes: affixes,
+                page: page
+            )).default.body.any
         }
-        urlComponents.queryItems = [
-            URLQueryItem(name: "season", value: season),
-            URLQueryItem(name: "region", value: region.rawValue),
-            URLQueryItem(name: "dungeon", value: dungeon),
-            URLQueryItem(name: "affixes", value: affixes),
-            URLQueryItem(name: "page", value: "\(page)")
-        ]
-
-        guard let url = urlComponents.url else {
-            throw RaiderIOError.invalidUrlParameters
-        }
-
-        return try await request(url: url)
     }
 
 }

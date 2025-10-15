@@ -67,11 +67,11 @@ extension RaiderIO {
         return try decoder.decode(T.self, from: data)
     }
 
-    func produce<T>(_ producer: () -> T?) throws -> T {
-        guard let value = producer() else {
-            throw RaiderIOError.producingFailed
+    func convert<Value: RawRepresentable, T: RawRepresentable>(from value: Value) throws -> T where Value.RawValue == T.RawValue {
+        guard let newValue = T.init(rawValue: value.rawValue) else {
+            throw RaiderIOError.typeConversionFailure
         }
-        return value
+        return newValue
     }
 
     func parse<T: Decodable>(

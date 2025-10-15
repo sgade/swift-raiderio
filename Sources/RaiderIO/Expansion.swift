@@ -7,9 +7,13 @@
 
 import Foundation
 
-public struct Expansion {
+public struct Expansion: RawRepresentable {
 
     public let rawValue: Int
+
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
 
 }
 

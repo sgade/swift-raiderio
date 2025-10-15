@@ -7,9 +7,13 @@
 
 import Foundation
 
-public struct RaidSlug {
+public struct RaidSlug: RawRepresentable {
 
     public let rawValue: String
+
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
 
 }
 

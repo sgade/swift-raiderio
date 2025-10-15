@@ -22,10 +22,6 @@ extension RaiderIO {
         name: String,
         fields: [ProfileField] = []
     ) async throws -> Profile {
-        let region = try produce {
-            Operations.getApiV1CharactersProfile.Input.Query.regionPayload(rawValue: region.rawValue)
-        }
-
         let fieldsValue: String? = if fields.count > 0 {
             fields.map({ $0.value }).joined(separator: ",")
         } else {
@@ -34,7 +30,7 @@ extension RaiderIO {
 
         return try await parse {
             try await client.getApiV1CharactersProfile(query: .init(
-                region: region,
+                region: try convert(from: region),
                 realm: realm,
                 name: name,
                 fields: fieldsValue
