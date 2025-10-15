@@ -13,5 +13,6 @@ public enum RaiderIOError: Error {
     case failedRequest
     case http(statusCode: Int)
     case server(statusCode: Int, error: String, message: String)
+    case producingFailed
 
 }

@@ -57,7 +57,6 @@ public struct Profile {
     public let profileUrl: URL
     public let profileBanner: String
     public let achievementPoints: Int
-    public let honorableKills: Int
     public let thumbnailUrl: URL
     public let lastCrawledAt: ISO8601Date
 
@@ -92,7 +91,6 @@ public struct Profile {
                 profileUrl: URL,
                 profileBanner: String,
                 achievementPoints: Int,
-                honorableKills: Int,
                 thumbnailUrl: URL,
                 lastCrawledAt: ISO8601Date,
                 gear: Gear? = nil,
@@ -122,7 +120,6 @@ public struct Profile {
         self.profileUrl = profileUrl
         self.profileBanner = profileBanner
         self.achievementPoints = achievementPoints
-        self.honorableKills = honorableKills
         self.thumbnailUrl = thumbnailUrl
         self.lastCrawledAt = lastCrawledAt
         self.gear = gear
@@ -176,7 +173,6 @@ extension Profile: Codable {
         case profileUrl                                 = "profile_url"
         case profileBanner                              = "profile_banner"
         case achievementPoints                          = "achievement_points"
-        case honorableKills                             = "honorable_kills"
         case thumbnailUrl                               = "thumbnail_url"
         case lastCrawledAt                              = "last_crawled_at"
 
@@ -217,7 +213,6 @@ extension Profile: Codable {
         profileUrl = try container.decode(SpecialCharactersURL.self, forKey: .profileUrl).url
         profileBanner = try container.decode(String.self, forKey: .profileBanner)
         achievementPoints = try container.decode(Int.self, forKey: .achievementPoints)
-        honorableKills = try container.decode(Int.self, forKey: .honorableKills)
         thumbnailUrl = try container.decode(URL.self, forKey: .thumbnailUrl)
         lastCrawledAt = try container.decode(ISO8601Date.self, forKey: .lastCrawledAt)
 
