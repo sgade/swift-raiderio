@@ -15,8 +15,6 @@ extension RaiderIO {
 
     }
 
-    private static let raidingBossRankingsPath = "/v1/raiding/boss-rankings"
-
     /// Retrieve the boss rankings for a given raid and region.
     ///
     /// - Parameters:
@@ -31,30 +29,22 @@ extension RaiderIO {
     ///     - realm: Name of realm to restrict to.
     ///              Prefix with `connected-` to retrieve rankings from the connected realm. Requires that region be a
     ///              standard region: `us`, `eu`, `kr`, `tw`.
-    public func getRaidingBossRankings(raid: RaidSlug,
-                                       boss bossSlug: String,
-                                       difficulty: Difficulty,
-                                       region: SubRegionSlug,
-                                       realm: String? = nil) async throws -> [BossRanking] {
-        let raidingBossRankingsUrl = baseUrl.appendingPathComponent(Self.raidingBossRankingsPath)
-        guard var urlComponents = URLComponents(url: raidingBossRankingsUrl, resolvingAgainstBaseURL: true) else {
-            throw RaiderIOError.invalidUrlParameters
+    public func getRaidingBossRankings(
+        raid: RaidSlug,
+        boss bossSlug: String,
+        difficulty: Difficulty,
+        region: SubRegionSlug,
+        realm: String? = nil
+    ) async throws -> [BossRanking] {
+        let response: BossRankingsResponse = try await parse {
+            try await client.getApiV1RaidingBossrankings(query: .init(
+                raid: try convert(from: raid),
+                boss: bossSlug,
+                difficulty: try convert(from: difficulty),
+                region: region.rawValue,
+                realm: realm
+            )).default.body.any
         }
-        urlComponents.queryItems = [
-            URLQueryItem(name: "raid", value: raid.rawValue),
-            URLQueryItem(name: "boss", value: bossSlug),
-            URLQueryItem(name: "difficulty", value: difficulty.rawValue),
-            URLQueryItem(name: "region", value: region.rawValue)
-        ]
-        if let realm = realm {
-            urlComponents.queryItems?.append(URLQueryItem(name: "realm", value: realm))
-        }
-
-        guard let url = urlComponents.url else {
-            throw RaiderIOError.invalidUrlParameters
-        }
-
-        let response: BossRankingsResponse = try await request(url: url)
         return response.bossRankings
     }
 

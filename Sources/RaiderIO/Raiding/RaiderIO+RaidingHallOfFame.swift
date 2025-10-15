@@ -15,32 +15,24 @@ extension RaiderIO {
 
     }
 
-    private static let raidingHallOfFamePath = "/v1/raiding/hall-of-fame"
-
     /// Retrieve the hall of fame for a given raid.
     ///
     /// - Parameters:
     ///     - raid: Raid to look up. This is the raid's name in slug form: `"tomb-of-sargeras"`.
     ///     - difficulty: Difficulty to restrict progress to.
     ///     - region: Name of region to restrict progress to.
-    public func getRaidingHallOfFame(raid: RaidSlug,
-                                     difficulty: Difficulty,
-                                     region: RegionSlug) async throws -> HallOfFame {
-        let raidingHallOfFameUrl = baseUrl.appendingPathComponent(Self.raidingHallOfFamePath)
-        guard var urlComponents = URLComponents(url: raidingHallOfFameUrl, resolvingAgainstBaseURL: true) else {
-            throw RaiderIOError.invalidUrlParameters
+    public func getRaidingHallOfFame(
+        raid: RaidSlug,
+        difficulty: Difficulty,
+        region: RegionSlug
+    ) async throws -> HallOfFame {
+        let response: HallOfFameResponse = try await parse {
+            try await client.getApiV1RaidingHalloffame(query: .init(
+                raid: try convert(from: raid),
+                difficulty: try convert(from: difficulty),
+                region: try convert(from: region)
+            )).default.body.any
         }
-        urlComponents.queryItems = [
-            URLQueryItem(name: "raid", value: raid.rawValue),
-            URLQueryItem(name: "difficulty", value: difficulty.rawValue),
-            URLQueryItem(name: "region", value: region.rawValue)
-        ]
-
-        guard let url = urlComponents.url else {
-            throw RaiderIOError.invalidUrlParameters
-        }
-
-        let response: HallOfFameResponse = try await request(url: url)
         return response.hallOfFame
     }
 

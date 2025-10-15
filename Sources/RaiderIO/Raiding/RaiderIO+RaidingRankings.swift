@@ -15,8 +15,6 @@ extension RaiderIO {
 
     }
 
-    private static let raidRankingsPath = "/v1/raiding/raid-rankings"
-
     /// Retrieve the raid rankings for a given raid and region.
     ///
     /// - Parameters:
@@ -31,33 +29,29 @@ extension RaiderIO {
     ///              Prefix with `connected-` to retrieve rankings from the connected realm. Requires that region be a
     ///              standard region: `us`, `eu`, `kr`, `tw`.
     ///     - guilds: Guild IDs of guilds to restrict the results to. Allows filtering to up to 10 different guilds.
-    public func getRaidRankings(raid: RaidSlug,
-                                difficulty: Difficulty,
-                                region: SubRegionSlug,
-                                realm: String? = nil,
-                                guilds guildIds: [Int] = []) async throws -> [RaidRanking] {
-        let raidRankingsUrl = baseUrl.appendingPathComponent(Self.raidRankingsPath)
-        guard var urlComponents = URLComponents(url: raidRankingsUrl, resolvingAgainstBaseURL: true) else {
-            throw RaiderIOError.invalidUrlParameters
-        }
-        urlComponents.queryItems = [
-            URLQueryItem(name: "raid", value: raid.rawValue),
-            URLQueryItem(name: "difficulty", value: difficulty.rawValue),
-            URLQueryItem(name: "region", value: region.rawValue)
-        ]
-        if let realm = realm {
-            urlComponents.queryItems?.append(URLQueryItem(name: "realm", value: realm))
-        }
-        if !guildIds.isEmpty {
-            let guildsValue = guildIds.map({ "\($0)" }).joined(separator: ",")
-            urlComponents.queryItems?.append(URLQueryItem(name: "guilds", value: guildsValue))
+    public func getRaidRankings(
+        raid: RaidSlug,
+        difficulty: Difficulty,
+        region: SubRegionSlug,
+        realm: String? = nil,
+        guilds guildIds: [Int] = []
+    ) async throws -> [RaidRanking] {
+        let guildsValue: String? = if !guildIds.isEmpty {
+            guildIds.map({ "\($0)" }).joined(separator: ",")
+        } else {
+            nil
         }
 
-        guard let url = urlComponents.url else {
-            throw RaiderIOError.invalidUrlParameters
+        let response: RaidRankingsResponse = try await parse {
+            try await client.getApiV1RaidingRaidrankings(query: .init(
+                raid: try convert(from: raid),
+                difficulty: try convert(from: difficulty),
+                region: region.rawValue,
+                realm: realm,
+                guilds: guildsValue
+            )).default.body.any
         }
-
-        let response: RaidRankingsResponse = try await request(url: url)
+        
         return response.raidRankings
     }
 
