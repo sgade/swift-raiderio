@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Affix {
+public struct Affix: Sendable {
 
     public let id: Int
     public let name: String
@@ -15,11 +15,13 @@ public struct Affix {
     public let icon: String
     public let wowheadUrl: URL?
 
-    public init(id: Int,
-                name: String,
-                description: String,
-                icon: String,
-                wowheadUrl: URL? = nil) {
+    public init(
+        id: Int,
+        name: String,
+        description: String,
+        icon: String,
+        wowheadUrl: URL? = nil
+    ) {
         self.id = id
         self.name = name
         self.description = description

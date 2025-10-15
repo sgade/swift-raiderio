@@ -1,5 +1,4 @@
-// swift-tools-version:5.10
-
+// swift-tools-version:6.2
 
 import PackageDescription
 
@@ -7,14 +6,17 @@ import PackageDescription
 let package = Package(
     name: "swift-raiderio",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v13),
-        .macCatalyst(.v15),
-        .tvOS(.v15),
-        .watchOS(.v8)
+        .iOS(.v26),
+        .macOS(.v26),
+        .macCatalyst(.v26),
+        .tvOS(.v26),
+        .watchOS(.v26)
     ],
     products: [
-        .library(name: "RaiderIO", targets: ["RaiderIO"])
+        .library(
+            name: "RaiderIO",
+            targets: ["RaiderIO"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.10.3"),
@@ -35,6 +37,9 @@ let package = Package(
                 )
             ]
         ),
-        .testTarget(name: "RaiderIOTests", dependencies: ["RaiderIO"]),
+        .testTarget(
+            name: "RaiderIOTests",
+            dependencies: ["RaiderIO"]
+        ),
     ]
 )

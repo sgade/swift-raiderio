@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ISO8601Date {
+public struct ISO8601Date: Sendable {
 
     public let value: Date
 

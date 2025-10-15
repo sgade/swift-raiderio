@@ -42,7 +42,7 @@ extension RaiderIO {
 
 // MARK: - ProfileField
 
-public final class ProfileField {
+public final class ProfileField: Sendable {
 
     public let value: String
 

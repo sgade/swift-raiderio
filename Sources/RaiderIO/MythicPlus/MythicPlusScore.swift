@@ -7,10 +7,10 @@
 
 import Foundation
 
-public struct MythicPlusScore {
+public struct MythicPlusScore: Sendable {
 
     /// The exact score value.
-    public var value: Double
+    public let value: Double
 
     public init(_ value: Double) {
         self.value = value

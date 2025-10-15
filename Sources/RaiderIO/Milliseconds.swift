@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Milliseconds {
+public struct Milliseconds: Sendable {
 
     public let duration: TimeInterval
 

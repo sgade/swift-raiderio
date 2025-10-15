@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Expansion: RawRepresentable {
+public struct Expansion: Sendable, RawRepresentable {
 
     public let rawValue: Int
 

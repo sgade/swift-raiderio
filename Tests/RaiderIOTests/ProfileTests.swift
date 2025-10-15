@@ -40,22 +40,22 @@ struct ProfileTests {
 
     @Test
     func fetchSpecialCharacterProfile() async {
-            let fields: [ProfileField] = [
-                .gear,
-                .guild,
-                .covenant,
-                .raidProgression,
-                .mythicPlusScores(by: ["current", "previous"]),
-                .mythicPlusRanks,
-                .mythicPlusRecentRuns,
-                .mythicPlusBestRuns,
-                .mythicPlusAlternateRuns,
-                .mythicPlusHighestLevelRuns,
-                .mythicPlusWeeklyHighestLevelRuns,
-                .previousMythicPlusRanks,
-                .raidAchievementMeta(tiers: ["tier28", "tier27"]),
-                .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
-            ]
+        let fields: [ProfileField] = [
+            .gear,
+            .guild,
+            .covenant,
+            .raidProgression,
+            .mythicPlusScores(by: ["current", "previous"]),
+            .mythicPlusRanks,
+            .mythicPlusRecentRuns,
+            .mythicPlusBestRuns,
+            .mythicPlusAlternateRuns,
+            .mythicPlusHighestLevelRuns,
+            .mythicPlusWeeklyHighestLevelRuns,
+            .previousMythicPlusRanks,
+            .raidAchievementMeta(tiers: ["tier28", "tier27"]),
+            .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
+        ]
 
         await #expect(throws: Never.self) {
             try await client.getProfile(region: .eu, realm: "Azshara", name: "Jêwlz", fields: fields)

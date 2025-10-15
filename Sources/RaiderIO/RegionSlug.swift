@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RegionSlug: ExpressibleByStringLiteral, RawRepresentable, Codable {
+public class RegionSlug: ExpressibleByStringLiteral, RawRepresentable, Codable, @unchecked Sendable {
 
     public let rawValue: String
 
@@ -65,7 +65,7 @@ extension RegionSlug: Equatable {
 
 // MARK: - SubRegionSlug
 
-public final class SubRegionSlug: RegionSlug {}
+public final class SubRegionSlug: RegionSlug, @unchecked Sendable {}
 
 extension SubRegionSlug {
 

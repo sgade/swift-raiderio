@@ -83,13 +83,15 @@ struct GuildTests {
     @Test
     func fetchEmptyGuildBossKill() async {
         await #expect(throws: Never.self) {
-            let bossKill = try await client.getGuildBossKill(region: .eu,
-                                                             realm: "Frostwolf",
-                                                             guildName: "Via Draconis",
-                                                             raid: .sanctumOfDomination,
-                                                             boss: "the-nine",
-                                                             difficulty: .heroic)
-            
+            let bossKill = try await client.getGuildBossKill(
+                region: .eu,
+                realm: "Frostwolf",
+                guildName: "Via Draconis",
+                raid: .sanctumOfDomination,
+                boss: "the-nine",
+                difficulty: .heroic
+            )
+
             #expect(bossKill == nil)
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RaidSlug: RawRepresentable {
+public struct RaidSlug: RawRepresentable, Sendable {
 
     public let rawValue: String
 

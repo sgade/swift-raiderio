@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DungeonRun {
+public struct DungeonRun: Sendable {
 
     public let dungeon: String
     public let shortName: String
@@ -22,18 +22,20 @@ public struct DungeonRun {
     public let affixes: [Affix]
     public let url: URL
 
-    public init(dungeon: String,
-                shortName: String,
-                mythicLevel: Int,
-                completedAt: ISO8601Date,
-                clearTime: Milliseconds,
-                parTime: Milliseconds,
-                numberOfKeystoneUpgrades: Int,
-                mapChallengeModeId: Int,
-                zoneId: Int,
-                score: MythicPlusScore,
-                affixes: [Affix],
-                url: URL) {
+    public init(
+        dungeon: String,
+        shortName: String,
+        mythicLevel: Int,
+        completedAt: ISO8601Date,
+        clearTime: Milliseconds,
+        parTime: Milliseconds,
+        numberOfKeystoneUpgrades: Int,
+        mapChallengeModeId: Int,
+        zoneId: Int,
+        score: MythicPlusScore,
+        affixes: [Affix],
+        url: URL
+    ) {
         self.dungeon = dungeon
         self.shortName = shortName
         self.mythicLevel = mythicLevel
