@@ -16,10 +16,12 @@ extension RaiderIO {
     ///     - realm: Name of realm that character is on. This is in slug format, e.g. `"altar-of-storms"`.
     ///     - name: Name of the character to look up. This is not case sensitive.
     ///     - fields: List of fields to retrieve for this character.
-    public func getProfile(region: RegionSlug,
-                           realm: String,
-                           name: String,
-                           fields: [ProfileField] = []) async throws -> Profile {
+    public func getProfile(
+        region: RegionSlug,
+        realm: String,
+        name: String,
+        fields: [ProfileField] = []
+    ) async throws -> Profile {
         let region = try produce {
             Operations.getApiV1CharactersProfile.Input.Query.regionPayload(rawValue: region.rawValue)
         }
@@ -31,14 +33,12 @@ extension RaiderIO {
         }
 
         return try await parse {
-            try await client.getApiV1CharactersProfile(
-                query: .init(
-                    region: region,
-                    realm: realm,
-                    name: name,
-                    fields: fieldsValue
-                )
-            ).ok.body.any
+            try await client.getApiV1CharactersProfile(query: .init(
+                region: region,
+                realm: realm,
+                name: name,
+                fields: fieldsValue
+            )).ok.body.any
         }
     }
 

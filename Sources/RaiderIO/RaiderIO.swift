@@ -85,7 +85,7 @@ extension RaiderIO {
         )
     }
 
-    func parse<T: Decodable>(
+    private func parse<T: Decodable>(
         response: HTTPBody,
         upToBytes size: Int = 50 * 1024 * 1024
     ) async throws -> T {

@@ -19,8 +19,6 @@ public enum GuildProfileField: String, CaseIterable {
 
 extension RaiderIO {
 
-    private static let guildProfilePath = "/v1/guilds/profile"
-
     /// Retrieve information about a guild.
     ///
     /// - Parameters:
@@ -32,25 +30,24 @@ extension RaiderIO {
                                 realm: String,
                                 name: String,
                                 fields: [GuildProfileField] = []) async throws -> GuildProfile {
-        let guildProfileUrl = baseUrl.appendingPathComponent(Self.guildProfilePath)
-        guard var urlComponents = URLComponents(url: guildProfileUrl, resolvingAgainstBaseURL: true) else {
-            throw RaiderIOError.invalidUrlParameters
-        }
-        urlComponents.queryItems = [
-            URLQueryItem(name: "region", value: region.rawValue),
-            URLQueryItem(name: "realm", value: realm),
-            URLQueryItem(name: "name", value: name)
-        ]
-        if fields.count > 0 {
-            let fieldsValue = fields.map({ $0.rawValue }).joined(separator: ",")
-            urlComponents.queryItems?.append(URLQueryItem(name: "fields", value: fieldsValue))
+        let region = try produce {
+            Operations.getApiV1GuildsProfile.Input.Query.regionPayload(rawValue: region.rawValue)
         }
 
-        guard let url = urlComponents.url else {
-            throw RaiderIOError.invalidUrlParameters
+        let fieldsValue: String? = if fields.count > 0 {
+            fields.map({ $0.rawValue }).joined(separator: ",")
+        } else {
+            nil
         }
 
-        return try await request(url: url)
+        return try await parse {
+            try await client.getApiV1GuildsProfile(query: .init(
+                region: region,
+                realm: realm,
+                name: name,
+                fields: fieldsValue
+            )).ok.body.any
+        }
     }
 
 }
