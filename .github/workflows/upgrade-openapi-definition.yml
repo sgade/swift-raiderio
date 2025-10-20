@@ -1,0 +1,24 @@
+name: Upgrade OpenAPI definition
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  upgrade:
+    name: Upgrade OpenAPI definition
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Current definition version
+        uses: sergeysova/jq-action@v2
+        with:
+          cmd: jq .info.version Sources/RaiderIO/openapi.json
+      - name: Fetch OpenAPI definition
+        run: ./upgrade-openapi-definition.sh
+      - name: New definition version
+        uses: sergeysova/jq-action@v2
+        with:
+          cmd: jq .info.version Sources/RaiderIO/openapi.json
