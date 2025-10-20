@@ -14,7 +14,7 @@ extension RaiderIO {
     /// - Parameter expansion: Expansion to get slugs for.
     public func getStaticRaidingData(for expansion: Expansion) async throws -> StaticRaidingData {
         try await parse {
-            try await client.getApiV1RaidingStaticdata(query: .init(expansion_id: expansion.rawValue))
+            try await client.getApiV1RaidingStaticdata(query: .init(expansionId: expansion.rawValue))
                 .default.body.any
         }
     }

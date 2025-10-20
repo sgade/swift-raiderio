@@ -15,7 +15,7 @@ extension RaiderIO {
     ///     - expansion: Expansion to get slugs for.
     public func getStaticMythicPlusData(for expansion: Expansion) async throws -> StaticMythicPlusData {
         try await parse {
-            try await client.getApiV1MythicplusStaticdata(query: .init(expansion_id: expansion.rawValue))
+            try await client.getApiV1MythicplusStaticdata(query: .init(expansionId: expansion.rawValue))
                 .default.body.any
         }
     }
