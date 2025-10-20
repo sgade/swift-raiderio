@@ -12,13 +12,31 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.PUSH_TOKEN }}
+
       - name: Current definition version
         uses: sergeysova/jq-action@v2
         with:
           cmd: jq .info.version Sources/RaiderIO/openapi.json
+
       - name: Fetch OpenAPI definition
         run: ./upgrade-openapi-definition.sh
+
       - name: New definition version
         uses: sergeysova/jq-action@v2
         with:
           cmd: jq .info.version Sources/RaiderIO/openapi.json
+
+      - name: Verify schema was updated
+        id: verify-changes
+        uses: tj-actions/verify-changed-files@v16
+        with:
+          files: |
+            Sources/RaiderIO/openapi.json
+
+      - name: Commit version change
+        if: steps.verify-changes.outputs.files_changed == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update RaiderIO OpenAPI definition"
