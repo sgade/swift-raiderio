@@ -38,21 +38,3 @@ public struct Raid {
     }
 
 }
-
-// MARK: - Codable
-
-extension Raid: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case id
-        case slug
-        case name
-        case shortName      = "short_name"
-        case encounters
-
-    }
-
-}
-
-extension Raid.Encounter: Codable {}

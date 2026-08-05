@@ -9,12 +9,6 @@ import Foundation
 
 extension RaiderIO {
 
-    private struct BossRankingsResponse: Decodable {
-
-        public let bossRankings: [BossRanking]
-
-    }
-
     /// Retrieve the boss rankings for a given raid and region.
     ///
     /// - Parameters:
@@ -36,16 +30,18 @@ extension RaiderIO {
         region: SubRegionSlug,
         realm: String? = nil
     ) async throws -> [BossRanking] {
-        let response: BossRankingsResponse = try await parse {
-            try await client.getApiV1RaidingBossrankings(query: .init(
-                raid: try convert(from: raid),
-                boss: bossSlug,
-                difficulty: try convert(from: difficulty),
-                region: region.rawValue,
-                realm: realm
-            )).default.body.any
+        switch try await client.getApiV1RaidingBossrankings(query: .init(
+            raid: try convert(from: raid),
+            boss: bossSlug,
+            difficulty: try convert(from: difficulty),
+            region: region.rawValue,
+            realm: realm
+        )) {
+        case .ok(let ok):
+            return try (ok.body.json.bossRankings ?? []).map(BossRanking.init)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
-        return response.bossRankings
     }
 
 }

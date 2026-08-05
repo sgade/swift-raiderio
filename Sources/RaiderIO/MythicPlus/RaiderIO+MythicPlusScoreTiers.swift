@@ -14,10 +14,13 @@ extension RaiderIO {
     /// - Parameters:
     ///     - season: Name of the season to retrieve (`season-bfa-1`, etc.). Defaults to current season.
     public func getMythicPlusScoreTiers(for season: String) async throws -> [ScoreTier] {
-        try await parse {
-            try await client.getApiV1MythicplusScoretiers(query: .init(
-                season: season
-            )).default.body.any
+        switch try await client.getApiV1MythicplusScoretiers(query: .init(
+            season: season
+        )) {
+        case .ok(let ok):
+            return try ok.body.json.map(ScoreTier.init)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
     }
 

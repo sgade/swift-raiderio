@@ -13,3 +13,14 @@ public enum Gender: String, Codable {
     case female
 
 }
+
+extension Gender {
+
+    init(_ rawValue: String) throws {
+        guard let value = Gender(rawValue: rawValue) else {
+            throw RaiderIOError.typeConversionFailure
+        }
+        self = value
+    }
+
+}

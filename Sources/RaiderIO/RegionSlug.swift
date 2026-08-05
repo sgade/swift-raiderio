@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RegionSlug: ExpressibleByStringLiteral, RawRepresentable, Codable, @unchecked Sendable {
+public class RegionSlug: ExpressibleByStringLiteral, RawRepresentable, @unchecked Sendable {
 
     public let rawValue: String
 
@@ -17,16 +17,6 @@ public class RegionSlug: ExpressibleByStringLiteral, RawRepresentable, Codable, 
 
     required public init(stringLiteral value: StringLiteralType) {
         rawValue = value
-    }
-
-    required public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        rawValue = try container.decode(String.self)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(rawValue)
     }
 
 }

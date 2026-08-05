@@ -28,19 +28,3 @@ public struct RaidProgression {
     }
 
 }
-
-// MARK: - Codable
-
-extension RaidProgression: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case summary
-        case totalBosses        = "total_bosses"
-        case normalBossesKilled = "normal_bosses_killed"
-        case heroicBossesKilled = "heroic_bosses_killed"
-        case mythicBossesKilled = "mythic_bosses_killed"
-
-    }
-
-}

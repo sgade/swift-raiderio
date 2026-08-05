@@ -30,23 +30,3 @@ public struct StaticMythicPlusData {
     public let dungeons: [Dungeon]
 
 }
-
-// MARK: - Codable
-
-extension StaticMythicPlusData: Codable {}
-
-extension StaticMythicPlusData.Season: Codable {}
-
-extension StaticMythicPlusData.Dungeon: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case id
-        case challengeModeId    = "challenge_mode_id"
-        case slug
-        case name
-        case shortName          = "short_name"
-
-    }
-
-}

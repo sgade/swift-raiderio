@@ -1,5 +1,37 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+* The generated OpenAPI client now lives in its own internal `RaiderIOAPI` target;
+  `RaiderIO`'s hand-written models are constructed directly from its typed responses
+  instead of independently re-parsing raw JSON. `RaiderIO` no longer needs to import
+  `OpenAPIRuntime` except where it builds the network client itself.
+* Request failures from the generated client now surface as `RaiderIOError.http(statusCode:)`
+  rather than the richer `RaiderIOError.server(statusCode:error:message:)` - getting the
+  exact server-provided error message would require re-parsing the raw response body, which
+  this change moves away from. `RaiderIOError.server` is still used by the one endpoint
+  (`search`) that isn't covered by the generated client.
+* Fixed several inaccuracies in RaiderIO's vendored OpenAPI spec that surfaced during this
+  migration (see `upgrade-openapi-definition.sh`): a handful of numeric fields typed
+  `integer` that the live API actually returns as fractional numbers (`artifactTraits`,
+  `itemLevelEquipped`/`itemLevelTotal`), `corruption.spells` typed as strings when it's
+  actually full spell objects, and `RaidProgression.expansion_id` marked required when at
+  least one raid omits it. Also typed the previously-untyped equipped-gear ("items") object.
+
+### Removed
+
+* `Profile.guild`, `.covenant`, `.mythicPlusHighestLevelRuns`, `.mythicPlusWeeklyHighestLevelRuns`,
+  `.mythicPlusPreviousWeeklyHighestLevelRuns`, `.raidAchievementMeta`, `.raidAchievementCurve`,
+  and the matching `ProfileField` request options - none of these are modeled by RaiderIO's
+  OpenAPI response schema, so they could only ever decode to `nil`.
+* `Character.personaId`, `.covenant`, `.talents`, `.talentsDetails`, and equipped-item
+  `.corruption`/domination shards/azerite powers - same reason (unbacked by the schema, and
+  the underlying WoW mechanics are long-retired Battle for Azeroth/Shadowlands-era systems).
+* `RaidRanking.streamers`/`.recruitmentProfiles` - never actually backed by the raid-rankings
+  response schema.
+
 ## 0.8.0
 
 ### Changed

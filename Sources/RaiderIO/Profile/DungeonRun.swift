@@ -51,26 +51,3 @@ public struct DungeonRun: Sendable {
     }
 
 }
-
-// MARK: - Codable
-
-extension DungeonRun: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case dungeon
-        case shortName                  = "short_name"
-        case mythicLevel                = "mythic_level"
-        case completedAt                = "completed_at"
-        case clearTime                  = "clear_time_ms"
-        case parTime                    = "par_time_ms"
-        case numberOfKeystoneUpgrades   = "num_keystone_upgrades"
-        case mapChallengeModeId         = "map_challenge_mode_id"
-        case zoneId                     = "zone_id"
-        case score
-        case affixes
-        case url
-
-    }
-
-}

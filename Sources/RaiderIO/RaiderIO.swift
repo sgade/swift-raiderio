@@ -7,6 +7,7 @@
 
 import Foundation
 import RaiderIOAPI
+import OpenAPIRuntime
 import OpenAPIURLSession
 
 /// Network client that accesses the [Raider.io API](https://raider.io/api).
@@ -22,6 +23,12 @@ public final class RaiderIO: Sendable {
         let baseUrl = try! Servers.Server1.url()
         client = Client(
             serverURL: baseUrl,
+            // The one schema field typed as a real `date-time` (KeystoneRun.completedAt)
+            // carries JS-style millisecond timestamps the default `.iso8601` transcoder
+            // can't parse. Reuse ISO8601Date's existing lenient parsing instead of
+            // `.iso8601WithFractionalSeconds`, which is strict the other way (fails on
+            // timestamps *without* fractional seconds).
+            configuration: Configuration(dateTranscoder: .raiderIO),
             transport: URLSessionTransport(configuration: .init(session: urlSession))
         )
 
@@ -40,52 +47,6 @@ extension RaiderIO {
             throw RaiderIOError.typeConversionFailure
         }
         return newValue
-    }
-
-    func parse<T: Decodable>(
-        _ producer: () async throws -> HTTPBody,
-        upToBytes size: Int = 50 * 1024 * 1024
-    ) async throws -> T {
-        let response = try await producer()
-        return try await parse(
-            response: response,
-            upToBytes: size
-        )
-    }
-
-    private func parse<T: Decodable>(
-        response: HTTPBody,
-        upToBytes size: Int = 50 * 1024 * 1024
-    ) async throws -> T {
-        let data = try await Data(collecting: response, upTo: size)
-
-        let decoder = JSONDecoder()
-        do {
-            return try decoder.decode(T.self, from: data)
-        } catch let decodingError as DecodingError {
-            throw tryParsingErrorResponse(
-                data,
-                using: decoder,
-                originalError: decodingError
-            )
-        }
-    }
-
-    private func tryParsingErrorResponse(
-        _ data: Data,
-        using decoder: JSONDecoder,
-        originalError: some Error
-    ) -> any Error {
-        do {
-            let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
-            return RaiderIOError.server(
-                statusCode: errorResponse.statusCode,
-                error: errorResponse.error,
-                message: errorResponse.message
-            )
-        } catch {
-            return originalError
-        }
     }
 
 }

@@ -18,11 +18,14 @@ extension RaiderIO {
         region: RegionSlug,
         locale: Locale
     ) async throws -> Affixes {
-        try await parse {
-            try await client.getApiV1MythicplusAffixes(query: .init(
-                region: try convert(from: region),
-                locale: try convert(from: locale)
-            )).ok.body.any
+        switch try await client.getApiV1MythicplusAffixes(query: .init(
+            region: try convert(from: region),
+            locale: try convert(from: locale)
+        )) {
+        case .ok(let ok):
+            return try Affixes(ok.body.json)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
     }
 

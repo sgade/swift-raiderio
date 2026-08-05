@@ -11,11 +11,11 @@ public struct GuildProfile {
 
     public struct RaidRanking {
 
-        public let normal: Ranks
-        public let heroic: Ranks
-        public let mythic: Ranks
+        public let normal: Ranks?
+        public let heroic: Ranks?
+        public let mythic: Ranks?
 
-        public init(normal: Ranks, heroic: Ranks, mythic: Ranks) {
+        public init(normal: Ranks?, heroic: Ranks?, mythic: Ranks?) {
             self.normal = normal
             self.heroic = heroic
             self.mythic = mythic
@@ -49,24 +49,3 @@ public struct GuildProfile {
     }
 
 }
-
-// MARK: - Codable
-
-extension GuildProfile: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case name
-        case faction
-        case region
-        case realm
-        case profileUrl         = "profile_url"
-
-        case raidRankings       = "raid_rankings"
-        case raidProgression    = "raid_progression"
-
-    }
-
-}
-
-extension GuildProfile.RaidRanking: Codable {}

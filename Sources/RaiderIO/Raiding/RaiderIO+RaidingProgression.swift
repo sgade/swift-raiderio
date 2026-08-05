@@ -9,12 +9,6 @@ import Foundation
 
 extension RaiderIO {
 
-    private struct RaidingProgressionResponse: Decodable {
-
-        public let progression: [RaidProgressionEntry]
-
-    }
-
     /// Retrieve details of raiding progression for a raid.
     ///
     /// - Parameters:
@@ -26,14 +20,16 @@ extension RaiderIO {
         difficulty: Difficulty,
         region: RegionSlug
     ) async throws -> [RaidProgressionEntry] {
-        let response: RaidingProgressionResponse =  try await parse {
-            try await client.getApiV1RaidingProgression(query: .init(
-                raid: try convert(from: raid),
-                difficulty: try convert(from: difficulty),
-                region: try convert(from: region)
-            )).ok.body.any
+        switch try await client.getApiV1RaidingProgression(query: .init(
+            raid: try convert(from: raid),
+            difficulty: try convert(from: difficulty),
+            region: try convert(from: region)
+        )) {
+        case .ok(let ok):
+            return try (ok.body.json.progression ?? []).map(RaidProgressionEntry.init)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
-        return response.progression
     }
 
 }

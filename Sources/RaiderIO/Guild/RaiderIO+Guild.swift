@@ -38,13 +38,16 @@ extension RaiderIO {
             nil
         }
 
-        return try await parse {
-            try await client.getApiV1GuildsProfile(query: .init(
-                region: try convert(from: region),
-                realm: realm,
-                name: name,
-                fields: fieldsValue
-            )).ok.body.any
+        switch try await client.getApiV1GuildsProfile(query: .init(
+            region: try convert(from: region),
+            realm: realm,
+            name: name,
+            fields: fieldsValue
+        )) {
+        case .ok(let ok):
+            return try GuildProfile(ok.body.json)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
     }
 

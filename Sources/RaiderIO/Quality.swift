@@ -26,3 +26,14 @@ public enum Quality: Int {
 // MARK: - Codable
 
 extension Quality: Codable {}
+
+extension Quality {
+
+    init(_ rawValue: Int) throws {
+        guard let value = Quality(rawValue: rawValue) else {
+            throw RaiderIOError.typeConversionFailure
+        }
+        self = value
+    }
+
+}

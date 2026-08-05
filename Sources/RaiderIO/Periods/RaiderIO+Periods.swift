@@ -7,21 +7,16 @@
 
 import Foundation
 
-private struct PeriodsResponse: Decodable {
-
-    public let periods: [RegionalPeriods]
-
-}
-
 extension RaiderIO {
 
     /// Retrieve the current, previous, and next period ids and date ranges.
     public func getPeriods() async throws -> [RegionalPeriods] {
-        let response: PeriodsResponse = try await parse {
-            try await client.getApiV1Periods()
-                .default.body.any
+        switch try await client.getApiV1Periods() {
+        case .ok(let ok):
+            return try ok.body.json.periods.map(RegionalPeriods.init)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
-        return response.periods
     }
 
 }

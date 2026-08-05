@@ -18,19 +18,13 @@ struct ProfileTests {
     func testFetchProfile() async {
         let fields: [ProfileField] = [
             .gear,
-            .guild,
-            .covenant,
             .raidProgression,
             .mythicPlusScores(by: ["current", "previous"]),
             .mythicPlusRanks,
             .mythicPlusRecentRuns,
             .mythicPlusBestRuns,
             .mythicPlusAlternateRuns,
-            .mythicPlusHighestLevelRuns,
-            .mythicPlusWeeklyHighestLevelRuns,
-            .previousMythicPlusRanks,
-            .raidAchievementMeta(tiers: ["tier28", "tier27"]),
-            .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
+            .previousMythicPlusRanks
         ]
 
         await #expect(throws: Never.self) {
@@ -42,19 +36,13 @@ struct ProfileTests {
     func fetchSpecialCharacterProfile() async {
         let fields: [ProfileField] = [
             .gear,
-            .guild,
-            .covenant,
             .raidProgression,
             .mythicPlusScores(by: ["current", "previous"]),
             .mythicPlusRanks,
             .mythicPlusRecentRuns,
             .mythicPlusBestRuns,
             .mythicPlusAlternateRuns,
-            .mythicPlusHighestLevelRuns,
-            .mythicPlusWeeklyHighestLevelRuns,
-            .previousMythicPlusRanks,
-            .raidAchievementMeta(tiers: ["tier28", "tier27"]),
-            .raidAchievementCurve(raids: [.castleNathria, .sanctumOfDomination])
+            .previousMythicPlusRanks
         ]
 
         await #expect(throws: Never.self) {

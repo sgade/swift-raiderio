@@ -28,3 +28,14 @@ public enum ClassSlug: String {
 // MARK: - Codable
 
 extension ClassSlug: Codable {}
+
+extension ClassSlug {
+
+    init(_ rawValue: String) throws {
+        guard let value = ClassSlug(rawValue: rawValue) else {
+            throw RaiderIOError.typeConversionFailure
+        }
+        self = value
+    }
+
+}

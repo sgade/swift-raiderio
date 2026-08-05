@@ -15,18 +15,3 @@ public struct Affixes {
     public let affixDetails: [Affix]
 
 }
-
-// MARK: - Codable
-
-extension Affixes: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case region
-        case title
-        case leaderboardUrl = "leaderboard_url"
-        case affixDetails   = "affix_details"
-
-    }
-
-}

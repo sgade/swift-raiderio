@@ -9,12 +9,6 @@ import Foundation
 
 extension RaiderIO {
 
-    private struct HallOfFameResponse: Decodable {
-
-        public let hallOfFame: HallOfFame
-
-    }
-
     /// Retrieve the hall of fame for a given raid.
     ///
     /// - Parameters:
@@ -26,14 +20,19 @@ extension RaiderIO {
         difficulty: Difficulty,
         region: RegionSlug
     ) async throws -> HallOfFame {
-        let response: HallOfFameResponse = try await parse {
-            try await client.getApiV1RaidingHalloffame(query: .init(
-                raid: try convert(from: raid),
-                difficulty: try convert(from: difficulty),
-                region: try convert(from: region)
-            )).default.body.any
+        switch try await client.getApiV1RaidingHalloffame(query: .init(
+            raid: try convert(from: raid),
+            difficulty: try convert(from: difficulty),
+            region: try convert(from: region)
+        )) {
+        case .ok(let ok):
+            guard let hallOfFame = try ok.body.json.hallOfFame else {
+                throw RaiderIOError.typeConversionFailure
+            }
+            return try HallOfFame(hallOfFame)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
-        return response.hallOfFame
     }
 
 }

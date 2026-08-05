@@ -20,7 +20,3 @@ public struct RaidProgressionEntry {
     }
 
 }
-
-// MARK: - Codable
-
-extension RaidProgressionEntry: Codable {}

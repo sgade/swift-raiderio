@@ -65,26 +65,3 @@ public struct SeasonScores {
     }
 
 }
-
-// MARK: - Codable
-
-extension SeasonScores: Codable {}
-
-extension SeasonScores.ScoreOverview: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case all
-        case dps
-        case healer
-        case tank
-        case spec0      = "spec_0"
-        case spec1      = "spec_1"
-        case spec2      = "spec_2"
-        case spec3      = "spec_3"
-
-    }
-
-}
-
-extension SeasonScores.SegmentScore: Codable {}

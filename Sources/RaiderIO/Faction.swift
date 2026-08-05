@@ -14,6 +14,19 @@ public enum Faction: String, Codable {
 
 }
 
+extension Faction {
+
+    /// Parses a faction from a raw string value, as used by fields the OpenAPI spec models as a
+    /// plain `string` rather than the dedicated `Faction` enum.
+    init(string rawValue: String) throws {
+        guard let value = Faction(rawValue: rawValue) else {
+            throw RaiderIOError.typeConversionFailure
+        }
+        self = value
+    }
+
+}
+
 // MARK: - GroupFaction
 
 public enum GroupFaction: String, Codable {

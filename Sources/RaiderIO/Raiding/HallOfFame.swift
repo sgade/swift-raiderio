@@ -31,16 +31,14 @@ public struct HallOfFame {
 
         }
 
-        public struct BossKillVideo {
+        public struct Video {
 
             public let type: String
             public let id: String
-            public let time: String?
 
-            public init(type: String, id: String, time: String? = nil) {
+            public init(type: String, id: String) {
                 self.type = type
                 self.id = id
-                self.time = time
             }
 
         }
@@ -71,13 +69,13 @@ public struct HallOfFame {
 
         public let boss: String
         public let bossSummary: BossSummary
-        public let bossKillVideo: BossKillVideo?
+        public let bossKillVideo: [Video]?
         public let defeatedBy: DefeatedBy
         public let attemptedBy: AttemptedBy
 
         public init(boss: String,
                     bossSummary: BossSummary,
-                    bossKillVideo: BossKillVideo?,
+                    bossKillVideo: [Video]?,
                     defeatedAt: DefeatedBy,
                     attemptedBy: AttemptedBy) {
             self.boss = boss
@@ -94,13 +92,13 @@ public struct HallOfFame {
         public let rank: Int
         public let guild: Guild
         public let encountersDefeated: [DefeatedEncounter]
-        public let streamers: Streamers
+        public let streamers: Streamers?
         public let recruitmentProfiles: [RecruitmentProfile]
 
         public init(rank: Int,
                     guild: Guild,
                     encountersDefated: [DefeatedEncounter],
-                    streamers: Streamers,
+                    streamers: Streamers?,
                     recruitmentProfiles: [RecruitmentProfile]) {
             self.rank = rank
             self.guild = guild
@@ -121,39 +119,25 @@ public struct HallOfFame {
 
 }
 
+/// A guild's entry in a boss kill's "defeated by"/"attempted by" list, or in a raid progression
+/// race's guild list. These three response positions are backed by three different (and
+/// non-uniform) schemas - see `HallOfFame+RaiderIOAPI.swift`/`RaidProgressionEntry+RaiderIOAPI.swift` -
+/// so every field beyond `guild` is optional depending on which of those contexts it was built from.
 public struct KillGuild {
 
     public let guild: Guild
+    public let rank: Int?
+    public let encountersDefeated: [DefeatedEncounter]?
     public let defeatedAt: ISO8601Date?
-    public let streamers: Streamers
-    public let recruitmentProfiles: [RecruitmentProfile]
 
     public init(guild: Guild,
-                defeatedAt: ISO8601Date? = nil,
-                streamers: Streamers,
-                recruitmentProfiles: [RecruitmentProfile]) {
+                rank: Int? = nil,
+                encountersDefeated: [DefeatedEncounter]? = nil,
+                defeatedAt: ISO8601Date? = nil) {
         self.guild = guild
+        self.rank = rank
+        self.encountersDefeated = encountersDefeated
         self.defeatedAt = defeatedAt
-        self.streamers = streamers
-        self.recruitmentProfiles = recruitmentProfiles
     }
 
 }
-
-// MARK: - Codable
-
-extension HallOfFame: Codable {}
-
-extension HallOfFame.BossKill: Codable {}
-
-extension HallOfFame.BossKill.BossSummary: Codable {}
-
-extension HallOfFame.BossKill.BossKillVideo: Codable {}
-
-extension HallOfFame.BossKill.DefeatedBy: Codable {}
-
-extension HallOfFame.BossKill.AttemptedBy: Codable {}
-
-extension HallOfFame.WinningGuild: Codable {}
-
-extension KillGuild: Codable {}

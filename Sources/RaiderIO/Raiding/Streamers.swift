@@ -62,27 +62,3 @@ public struct Stream {
     }
 
 }
-
-// MARK: - Codable
-
-extension Streamers: Codable {}
-
-extension Stream: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case id
-        case name
-        case userId         = "user_id"
-        case gameId         = "game_id"
-        case type
-        case title
-        case communityIds   = "community_ids"
-        case viewerCount    = "viewer_count"
-        case startedAt      = "started_at"
-        case language
-        case thumbnailUrl   = "thumbnail_url"
-
-    }
-
-}

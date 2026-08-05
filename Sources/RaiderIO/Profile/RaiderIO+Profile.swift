@@ -28,13 +28,16 @@ extension RaiderIO {
             nil
         }
 
-        return try await parse {
-            try await client.getApiV1CharactersProfile(query: .init(
-                region: try convert(from: region),
-                realm: realm,
-                name: name,
-                fields: fieldsValue
-            )).ok.body.any
+        switch try await client.getApiV1CharactersProfile(query: .init(
+            region: try convert(from: region),
+            realm: realm,
+            name: name,
+            fields: fieldsValue
+        )) {
+        case .ok(let ok):
+            return try Profile(ok.body.json)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
     }
 
@@ -66,12 +69,6 @@ extension ProfileField {
 
     /// Retrieve high level item information for player.
     public static let gear: ProfileField = "gear"
-
-    /// Retrieve basic information about guild the player is in.
-    public static let guild: ProfileField = "guild"
-
-    /// Retrieve the covenant and renown level of the player.
-    public static let covenant: ProfileField = "covenant"
 
     // MARK: Raiding fields
 
@@ -116,37 +113,7 @@ extension ProfileField {
         ProfileField(value: "mythic_plus_alternate_runs\( all ? ":all" : "" )")
     }
 
-    /// Retrieve the player's ten highest Mythic+ runs by Mythic+ level (current season only).
-    public static let mythicPlusHighestLevelRuns: ProfileField                 = "mythic_plus_highest_level_runs"
-
-    /// Retrieve the player's ten highest Mythic+ runs by Mythic+ level for the
-    /// current raid week (current season only).
-    public static let mythicPlusWeeklyHighestLevelRuns: ProfileField           = "mythic_plus_weekly_highest_level_runs"
-
-    // swiftlint:disable line_length
-    /// Retrieve the player's ten highest Mythic+ runs by Mythic+ level for the
-    /// previous raid week (current season only).
-    public static let mythicPlusPreviousWeeklyHighestLevelRuns: ProfileField   = "mythic_plus_previous_weekly_highest_level_runs"
-    // swiftlint:enable line_length
-
     /// Retrieve mythic plus rankings for player.
     public static let previousMythicPlusRanks: ProfileField                    = "previous_mythic_plus_ranks"
-
-    // MARK: Other fields
-
-    /// Retrieve raid achievement meta status for a player.
-    ///
-    /// - Parameter tiers: This request requires that you specify parameters for the specific tiers you're
-    ///                    looking for, e.g. `tier21`.
-    public static func raidAchievementMeta(tiers: [String]) -> ProfileField {
-        ProfileField(value: "raid_achievement_meta\( tiers.map({ ":\($0)" }).joined() )")
-    }
-
-    /// Retrieve AOTC/Cutting Edge achievement status for a given raid slug (or multiple).
-    ///
-    /// - Parameter raids: The raids to retrieve achivement status for.
-    public static func raidAchievementCurve(raids: [RaidSlug]) -> ProfileField {
-        ProfileField(value: "raid_achievement_curve\( raids.map({ ":\($0.rawValue)" }).joined() )")
-    }
 
 }

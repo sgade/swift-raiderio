@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OpenAPIRuntime
 
 public struct ISO8601Date: Sendable {
 
@@ -64,6 +65,33 @@ extension ISO8601Date {
 extension ISO8601Date {
 
     public static let now = ISO8601Date(.now)
+
+}
+
+// MARK: - RaiderIODateTranscoder
+
+extension DateTranscoder where Self == RaiderIODateTranscoder {
+
+    /// Transcodes dates the same way `ISO8601Date` does, reusing its lenient parsing of
+    /// Raider.io's JS-style timestamps (which may or may not include fractional seconds).
+    static var raiderIO: Self { RaiderIODateTranscoder() }
+
+}
+
+/// A ``DateTranscoder`` for use with `RaiderIOAPI.Client`'s ``Configuration``, so the one
+/// schema field typed as a real `date-time` (`KeystoneRun.completedAt`) decodes using the
+/// same lenient logic as ``ISO8601Date``, instead of `OpenAPIRuntime`'s default `.iso8601`
+/// transcoder (which fails outright on fractional seconds) or `.iso8601WithFractionalSeconds`
+/// (which conversely fails on timestamps *without* fractional seconds).
+struct RaiderIODateTranscoder: DateTranscoder {
+
+    func encode(_ date: Date) throws -> String {
+        try ISO8601DateTranscoder.iso8601WithFractionalSeconds.encode(date)
+    }
+
+    func decode(_ dateString: String) throws -> Date {
+        try ISO8601Date(string: dateString).value
+    }
 
 }
 

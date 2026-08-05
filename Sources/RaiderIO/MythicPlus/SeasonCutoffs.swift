@@ -58,25 +58,3 @@ public struct SeasonCutoff {
     public let allianceColor: String
 
 }
-
-// MARK: - Codable
-
-extension SeasonCutoffs: Codable {}
-
-extension SeasonCutoffs.RegionInfo: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-
-        case name
-        case slug
-        case shortName  = "short_name"
-
-    }
-
-}
-
-extension SeasonCutoffs.UIInfo: Codable {}
-
-extension SeasonCutoff: Codable {}
-
-extension SeasonCutoff.FactionCutoff: Codable {}

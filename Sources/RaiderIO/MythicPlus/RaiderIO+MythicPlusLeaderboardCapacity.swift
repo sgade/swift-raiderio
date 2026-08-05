@@ -16,12 +16,6 @@ extension RaiderIO {
 
     }
 
-    private struct LeaderboardCapacityResponse: Decodable {
-
-        public let realmListing: LeaderboardCapacity
-
-    }
-
     /// Retrieve the leaderboard capacity for a region including lowest level and time to qualify.
     ///
     /// - Parameters:
@@ -33,14 +27,19 @@ extension RaiderIO {
         region: RegionSlug,
         realm: String? = nil
     ) async throws -> LeaderboardCapacity {
-        let response: LeaderboardCapacityResponse = try await parse {
-            try await client.getApiV1MythicplusLeaderboardcapacity(query: .init(
-                scope: try convert(from: week),
-                region: try convert(from: region),
-                realm: realm
-            )).default.body.any
+        switch try await client.getApiV1MythicplusLeaderboardcapacity(query: .init(
+            scope: try convert(from: week),
+            region: try convert(from: region),
+            realm: realm
+        )) {
+        case .ok(let ok):
+            guard let realmListing = try ok.body.json.realmListing else {
+                throw RaiderIOError.typeConversionFailure
+            }
+            return try LeaderboardCapacity(realmListing)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
-        return response.realmListing
     }
 
 }

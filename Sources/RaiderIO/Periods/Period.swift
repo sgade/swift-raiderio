@@ -20,7 +20,3 @@ public struct Period {
     }
 
 }
-
-// MARK: - Codable
-
-extension Period: Codable {}

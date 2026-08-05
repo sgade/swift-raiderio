@@ -23,11 +23,11 @@ struct RaidingTests {
 
     @Test
     func fetchInvalidStaticRaidingData() async {
-        let expectedError = RaiderIOError.server(
-            statusCode: 400,
-            error: "Bad Request",
-            message: "Requested unsupported expansion_id"
-        )
+        // RaiderIOAPI's generated client only exposes documented (200) responses as typed
+        // values; other statuses land in `.undocumented`, from which only the status code is
+        // cheaply available (see RaiderIO.swift) - so this no longer surfaces the response
+        // body's `{error, message}` text as `.server(...)`, just the bare status.
+        let expectedError = RaiderIOError.http(statusCode: 400)
 
         await #expect(throws: expectedError) {
             try await client.getStaticRaidingData(for: .init(rawValue: 5))

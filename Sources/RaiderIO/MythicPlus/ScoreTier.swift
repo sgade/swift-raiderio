@@ -16,7 +16,3 @@ public struct ScoreTier {
     public let rgbInteger: [Int]
 
 }
-
-// MARK: - Codable
-
-extension ScoreTier: Codable {}

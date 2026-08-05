@@ -104,7 +104,8 @@
         "description": "Period information for each region",
         "items": {
           "$ref": "#/components/schemas/RegionPeriod"
-        }
+        },
+        "properties": null
       },
       "ViewPeriodsResponse": {
         "type": "object",
@@ -123,7 +124,8 @@
         "enum": [
           "horde",
           "alliance"
-        ]
+        ],
+        "properties": null
       },
       "Region": {
         "type": "string",
@@ -138,7 +140,8 @@
         "x-convert": {
           "case": "lower",
           "trim": true
-        }
+        },
+        "properties": null
       },
       "CharacterGear": {
         "type": "object",
@@ -200,7 +203,6 @@
         },
         "required": [
           "summary",
-          "expansion_id",
           "total_bosses",
           "normal_bosses_killed",
           "heroic_bosses_killed",
@@ -529,7 +531,8 @@
         "description": "List of affixes applied to this run",
         "items": {
           "$ref": "#/components/schemas/Affix"
-        }
+        },
+        "properties": null
       },
       "spec": {
         "type": "object",
@@ -571,7 +574,8 @@
           "healer",
           "dps"
         ],
-        "nullable": true
+        "nullable": true,
+        "properties": null
       },
       "KeystoneRun": {
         "type": "object",
@@ -700,7 +704,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/KeystoneRun"
-        }
+        },
+        "properties": null
       },
       "MythicPlusDungeonRunCounts": {
         "type": "object",
@@ -746,7 +751,8 @@
         "description": "The character's per-dungeon season run counts (total + timed), zero-filled across the season's dungeon pool",
         "items": {
           "$ref": "#/components/schemas/MythicPlusDungeonRunCounts"
-        }
+        },
+        "properties": null
       },
       "ViewCharacterProfileResponse": {
         "type": "object",
@@ -881,7 +887,8 @@
           "realm",
           "region",
           "world"
-        ]
+        ],
+        "properties": null
       },
       "CharacterRivalEntry": {
         "type": "object",
@@ -920,7 +927,8 @@
         "description": "Leaderboard entries around the character (self +/- 2)",
         "items": {
           "$ref": "#/components/schemas/CharacterRivalEntry"
-        }
+        },
+        "properties": null
       },
       "rivals": {
         "type": "object",
@@ -1055,13 +1063,15 @@
         "type": "string",
         "enum": [
           "world"
-        ]
+        ],
+        "properties": null
       },
       "slug": {
         "type": "string",
         "enum": [
           "world"
-        ]
+        ],
+        "properties": null
       },
       "scope1": {
         "type": "object",
@@ -1110,7 +1120,8 @@
         "type": "string",
         "enum": [
           "region"
-        ]
+        ],
+        "properties": null
       },
       "scope2": {
         "type": "object",
@@ -1138,7 +1149,8 @@
         "type": "string",
         "enum": [
           "subregion"
-        ]
+        ],
+        "properties": null
       },
       "scope3": {
         "type": "object",
@@ -1189,7 +1201,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Model1"
-        }
+        },
+        "properties": null
       },
       "scopes": {
         "type": "object",
@@ -1273,7 +1286,8 @@
         "description": "The character's historical runs for this dungeon, most recent first, up to 12",
         "items": {
           "$ref": "#/components/schemas/RunReviewPastRun"
-        }
+        },
+        "properties": null
       },
       "RunReviewRivalEntry": {
         "type": "object",
@@ -1312,7 +1326,8 @@
         "description": "Leaderboard entries around the character (self +/- 2)",
         "items": {
           "$ref": "#/components/schemas/RunReviewRivalEntry"
-        }
+        },
+        "properties": null
       },
       "rivals1": {
         "type": "object",
@@ -1542,8 +1557,9 @@
       "spells": {
         "type": "array",
         "items": {
-          "type": "string"
-        }
+          "$ref": "#/components/schemas/Spell"
+        },
+        "properties": null
       },
       "corruption": {
         "type": "object",
@@ -1568,7 +1584,57 @@
       },
       "items": {
         "type": "object",
-        "description": "Map of slot name to equipped item"
+        "description": "Map of slot name to equipped item",
+        "properties": {
+          "head": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "neck": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "shoulder": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "back": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "chest": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "waist": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "wrist": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "hands": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "legs": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "feet": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "finger1": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "finger2": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "trinket1": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "trinket2": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "mainhand": {
+            "$ref": "#/components/schemas/EquippedItem"
+          },
+          "offhand": {
+            "$ref": "#/components/schemas/EquippedItem"
+          }
+        }
       },
       "ItemsContainer": {
         "type": "object",
@@ -1592,14 +1658,14 @@
             "type": "string"
           },
           "item_level_equipped": {
-            "type": "integer",
+            "type": "number",
             "description": "Equipped item level"
           },
           "item_level_total": {
-            "type": "integer"
+            "type": "number"
           },
           "artifact_traits": {
-            "type": "integer"
+            "type": "number"
           },
           "corruption": {
             "$ref": "#/components/schemas/corruption"
@@ -1660,7 +1726,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/TalentEntry"
-        }
+        },
+        "properties": null
       },
       "TalentNode": {
         "type": "object",
@@ -1719,7 +1786,8 @@
         "description": "Talent node selections",
         "items": {
           "$ref": "#/components/schemas/TalentLoadoutNode"
-        }
+        },
+        "properties": null
       },
       "TalentLoadout": {
         "type": "object",
@@ -1773,7 +1841,8 @@
         "description": "Notable active auras",
         "items": {
           "$ref": "#/components/schemas/Spell"
-        }
+        },
+        "properties": null
       },
       "RecruitmentProfile": {
         "type": "object",
@@ -1796,7 +1865,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RecruitmentProfile"
-        }
+        },
+        "properties": null
       },
       "character": {
         "type": "object",
@@ -1843,7 +1913,7 @@
             "description": "Equipped item level"
           },
           "artifactTraits": {
-            "type": "integer"
+            "type": "number"
           },
           "items": {
             "$ref": "#/components/schemas/ItemsContainer"
@@ -1876,7 +1946,8 @@
         "description": "Roster of characters in the kill",
         "items": {
           "$ref": "#/components/schemas/BossKillRosterMember"
-        }
+        },
+        "properties": null
       },
       "ViewGuildBossKillResponse": {
         "type": "object",
@@ -2089,7 +2160,8 @@
         "description": "List of details for each active affix",
         "items": {
           "$ref": "#/components/schemas/AffixDetail"
-        }
+        },
+        "properties": null
       },
       "ViewRegionAffixesResponse": {
         "type": "object",
@@ -2219,7 +2291,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/LeaderboardAffix"
-        }
+        },
+        "properties": null
       },
       "ConnectedRealm": {
         "type": "object",
@@ -2264,13 +2337,15 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/ConnectedRealm"
-        }
+        },
+        "properties": null
       },
       "group_finder_activity_ids": {
         "type": "array",
         "items": {
           "type": "integer"
-        }
+        },
+        "properties": null
       },
       "LeaderboardDungeon": {
         "type": "object",
@@ -2346,7 +2421,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RealmDungeonCapacity"
-        }
+        },
+        "properties": null
       },
       "RealmCapacityEntry": {
         "type": "object",
@@ -2366,7 +2442,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RealmCapacityEntry"
-        }
+        },
+        "properties": null
       },
       "RealmListing": {
         "type": "object",
@@ -2458,12 +2535,14 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RunModifier"
-        }
+        },
+        "properties": null
       },
       "logged_details": {
         "type": "object",
         "description": "Logged combat details including per-boss breakdowns, if available",
-        "nullable": true
+        "nullable": true,
+        "properties": null
       },
       "LoggedSource": {
         "type": "object",
@@ -2484,7 +2563,8 @@
         "description": "Sources of logged data",
         "items": {
           "$ref": "#/components/schemas/LoggedSource"
-        }
+        },
+        "properties": null
       },
       "Video": {
         "type": "object",
@@ -2504,7 +2584,8 @@
         "description": "Associated video recordings",
         "items": {
           "$ref": "#/components/schemas/Video"
-        }
+        },
+        "properties": null
       },
       "spec2": {
         "type": "object",
@@ -2539,7 +2620,8 @@
         "type": "array",
         "items": {
           "type": "string"
-        }
+        },
+        "properties": null
       },
       "Stream": {
         "type": "object",
@@ -2619,7 +2701,8 @@
       "flags": {
         "type": "object",
         "description": "Character flags",
-        "nullable": true
+        "nullable": true,
+        "properties": null
       },
       "character1": {
         "type": "object",
@@ -2733,14 +2816,14 @@
             "type": "string"
           },
           "item_level_equipped": {
-            "type": "integer",
+            "type": "number",
             "description": "Equipped item level"
           },
           "item_level_total": {
-            "type": "integer"
+            "type": "number"
           },
           "artifact_traits": {
-            "type": "integer"
+            "type": "number"
           },
           "corruption": {
             "$ref": "#/components/schemas/corruption"
@@ -2776,7 +2859,8 @@
       "oldCharacter": {
         "type": "object",
         "description": "Previous character info if transferred",
-        "nullable": true
+        "nullable": true,
+        "properties": null
       },
       "RunRosterMember": {
         "type": "object",
@@ -2813,7 +2897,8 @@
         "description": "Run roster",
         "items": {
           "$ref": "#/components/schemas/RunRosterMember"
-        }
+        },
+        "properties": null
       },
       "ViewMythicPlusRunDetailsResponse": {
         "type": "object",
@@ -2992,12 +3077,14 @@
         "description": "Active affixes",
         "items": {
           "$ref": "#/components/schemas/RunAffix"
-        }
+        },
+        "properties": null
       },
       "platoon": {
         "type": "object",
         "description": "Platoon info if applicable",
-        "nullable": true
+        "nullable": true,
+        "properties": null
       },
       "spec3": {
         "type": "object",
@@ -3088,7 +3175,8 @@
         "description": "Run roster",
         "items": {
           "$ref": "#/components/schemas/RunsRosterMember"
-        }
+        },
+        "properties": null
       },
       "RankedRunDetail": {
         "type": "object",
@@ -3196,7 +3284,8 @@
         "description": "List of ranked runs",
         "items": {
           "$ref": "#/components/schemas/RankedRun"
-        }
+        },
+        "properties": null
       },
       "params": {
         "type": "object",
@@ -3250,7 +3339,8 @@
         },
         "items": {
           "type": "number"
-        }
+        },
+        "properties": null
       },
       "rgbInteger": {
         "type": "array",
@@ -3265,7 +3355,8 @@
         },
         "items": {
           "type": "integer"
-        }
+        },
+        "properties": null
       },
       "ScoreTier": {
         "type": "object",
@@ -3305,7 +3396,8 @@
         "description": "Score tiers sorted from highest to lowest score",
         "items": {
           "$ref": "#/components/schemas/ScoreTier"
-        }
+        },
+        "properties": null
       },
       "CutoffFactionQuantile": {
         "type": "object",
@@ -3723,7 +3815,8 @@
         "description": "Dungeon key level brackets",
         "items": {
           "type": "integer"
-        }
+        },
+        "properties": null
       },
       "Model2": {
         "type": "object",
@@ -3747,7 +3840,8 @@
         "description": "Data points",
         "items": {
           "$ref": "#/components/schemas/Model2"
-        }
+        },
+        "properties": null
       },
       "GraphDataSeries": {
         "type": "object",
@@ -3960,11 +4054,13 @@
       },
       "starts": {
         "type": "object",
-        "description": "Region-specific start dates"
+        "description": "Region-specific start dates",
+        "properties": null
       },
       "ends": {
         "type": "object",
-        "description": "Region-specific end dates"
+        "description": "Region-specific end dates",
+        "properties": null
       },
       "DungeonStaticData": {
         "type": "object",
@@ -4023,7 +4119,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/DungeonStaticData"
-        }
+        },
+        "properties": null
       },
       "SeasonStaticData": {
         "type": "object",
@@ -4080,13 +4177,15 @@
         "description": "Seasons for the requested expansion",
         "items": {
           "$ref": "#/components/schemas/SeasonStaticData"
-        }
+        },
+        "properties": null
       },
       "dungeons2": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/DungeonStaticData"
-        }
+        },
+        "properties": null
       },
       "ViewMythicPlusStaticDataResponse": {
         "type": "object",
@@ -4170,7 +4269,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/EncounterDefeated"
-        }
+        },
+        "properties": null
       },
       "Stream1": {
         "type": "object",
@@ -4303,7 +4403,8 @@
         "description": "Ranked guilds for this boss",
         "items": {
           "$ref": "#/components/schemas/BossRankingEntry"
-        }
+        },
+        "properties": null
       },
       "ViewBossRankingsResponse": {
         "type": "object",
@@ -4338,7 +4439,8 @@
         "description": "Top guilds in the hall of fame",
         "items": {
           "$ref": "#/components/schemas/HallOfFameGuildEntry"
-        }
+        },
+        "properties": null
       },
       "BossSummary": {
         "type": "object",
@@ -4382,7 +4484,8 @@
         "description": "Sample of guilds that defeated this boss",
         "items": {
           "$ref": "#/components/schemas/DefeatedByGuild"
-        }
+        },
+        "properties": null
       },
       "DefeatedBy": {
         "type": "object",
@@ -4415,7 +4518,8 @@
         "description": "Sample of guilds that attempted this boss",
         "items": {
           "$ref": "#/components/schemas/AttemptGuild"
-        }
+        },
+        "properties": null
       },
       "AttemptedBy": {
         "type": "object",
@@ -4464,7 +4568,8 @@
         "description": "Boss kill entries",
         "items": {
           "$ref": "#/components/schemas/HallOfFameBossKill"
-        }
+        },
+        "properties": null
       },
       "HallOfFame": {
         "type": "object",
@@ -4642,7 +4747,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/GuildDefeatEntry"
-        }
+        },
+        "properties": null
       },
       "RaidRaceProgressionEntry": {
         "type": "object",
@@ -4673,7 +4779,8 @@
         "description": "Progression entries, one per boss kill count threshold",
         "items": {
           "$ref": "#/components/schemas/RaidRaceProgressionEntry"
-        }
+        },
+        "properties": null
       },
       "ViewRaidProgressionResponse": {
         "type": "object",
@@ -4714,7 +4821,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RaidRankingEncounter"
-        }
+        },
+        "properties": null
       },
       "GuildPrivacy": {
         "type": "object",
@@ -4807,7 +4915,8 @@
         "description": "List of encounters in this raid",
         "items": {
           "$ref": "#/components/schemas/RaidEncounter"
-        }
+        },
+        "properties": null
       },
       "RaidStaticData": {
         "type": "object",
@@ -4862,7 +4971,8 @@
         "description": "List of raids for the requested expansion",
         "items": {
           "$ref": "#/components/schemas/RaidStaticData"
-        }
+        },
+        "properties": null
       },
       "ViewRaidingStaticDataResponse": {
         "type": "object",
@@ -4877,7 +4987,8 @@
       },
       "items1": {
         "type": "object",
-        "description": "Equipped items by slot"
+        "description": "Equipped items by slot",
+        "properties": null
       },
       "gear": {
         "type": "object",
@@ -5059,7 +5170,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/BossAttempt"
-        }
+        },
+        "properties": null
       },
       "ViewBossAttemptsResponse": {
         "type": "object",
@@ -5086,7 +5198,8 @@
           "normal",
           "heroic",
           "mythic"
-        ]
+        ],
+        "properties": null
       },
       "overallProgress": {
         "type": "object",
@@ -5285,14 +5398,16 @@
         }
       },
       "Model3": {
-        "type": "object"
+        "type": "object",
+        "properties": null
       },
       "npcs": {
         "type": "array",
         "description": "Per-NPC health breakdown",
         "items": {
           "$ref": "#/components/schemas/Model3"
-        }
+        },
+        "properties": null
       },
       "EncounterHealth": {
         "type": "object",
@@ -5412,7 +5527,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/BossPullEntry"
-        }
+        },
+        "properties": null
       },
       "error1": {
         "type": "object",
@@ -5640,14 +5756,14 @@
             "type": "string"
           },
           "item_level_equipped": {
-            "type": "integer",
+            "type": "number",
             "description": "Equipped item level"
           },
           "item_level_total": {
-            "type": "integer"
+            "type": "number"
           },
           "artifact_traits": {
-            "type": "integer"
+            "type": "number"
           },
           "corruption": {
             "$ref": "#/components/schemas/corruption"
@@ -5715,7 +5831,8 @@
         "description": "Roster members with gear data",
         "items": {
           "$ref": "#/components/schemas/GearSummaryRosterMember"
-        }
+        },
+        "properties": null
       },
       "ViewGearSummaryResponse": {
         "type": "object",
@@ -5750,18 +5867,21 @@
       },
       "item": {
         "type": "object",
-        "description": "Item data including name, icon, and quality"
+        "description": "Item data including name, icon, and quality",
+        "properties": null
       },
       "itemLink": {
         "type": "object",
-        "description": "Parsed WoW item link details (bonuses, gems, enchants)"
+        "description": "Parsed WoW item link details (bonuses, gems, enchants)",
+        "properties": null
       },
       "items2": {
         "type": "array",
         "description": "Item IDs that can be created from this token",
         "items": {
           "type": "integer"
-        }
+        },
+        "properties": null
       },
       "Model4": {
         "type": "object",
@@ -5782,7 +5902,8 @@
         "description": "Classes that can use this token",
         "items": {
           "$ref": "#/components/schemas/Model4"
-        }
+        },
+        "properties": null
       },
       "tierToken": {
         "type": "object",
@@ -5844,7 +5965,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/GuildLootItem"
-        }
+        },
+        "properties": null
       },
       "ViewGuildLootResponse": {
         "type": "object",
@@ -6219,7 +6341,8 @@
         "description": "Roster of characters in the pull",
         "items": {
           "$ref": "#/components/schemas/RaidCompRosterMember"
-        }
+        },
+        "properties": null
       },
       "RaidCompDetails": {
         "type": "object",
@@ -6311,7 +6434,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RaidProgressBoss"
-        }
+        },
+        "properties": null
       },
       "ViewRaidProgressResponse": {
         "type": "object",
@@ -6334,7 +6458,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RaidPullDetail"
-        }
+        },
+        "properties": null
       },
       "RaidPullEntry": {
         "type": "object",
@@ -6355,7 +6480,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RaidPullEntry"
-        }
+        },
+        "properties": null
       },
       "ViewRaidPullsResponse": {
         "type": "object",
@@ -6413,11 +6539,13 @@
         "description": "Floor geometry data used to render heatmap overlays. Each floor defines the coordinate bounds for mapping game positions to the dungeon map.",
         "items": {
           "$ref": "#/components/schemas/HeatmapFloor"
-        }
+        },
+        "properties": null
       },
       "ViewHeatmapGridResponse": {
         "type": "object",
-        "description": "Heatmap grid results from Elasticsearch. Contains per-floor density data bucketed into a spatial grid."
+        "description": "Heatmap grid results from Elasticsearch. Contains per-floor density data bucketed into a spatial grid.",
+        "properties": null
       },
       "dungeon": {
         "type": "object",
@@ -6571,7 +6699,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RwfEvent"
-        }
+        },
+        "properties": null
       },
       "ViewRwfEventFeedResponse": {
         "type": "object",
@@ -6623,7 +6752,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/MythicPlusActivity"
-        }
+        },
+        "properties": null
       },
       "ViewMythicPlusActivitiesResponse": {
         "type": "object",
@@ -6661,7 +6791,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/RaidingActivity"
-        }
+        },
+        "properties": null
       },
       "ViewRaidingActivitiesResponse": {
         "type": "object",
@@ -6706,7 +6837,8 @@
         "description": "Active affixes",
         "items": {
           "$ref": "#/components/schemas/Affix"
-        }
+        },
+        "properties": null
       },
       "spec6": {
         "type": "object",
@@ -6846,14 +6978,14 @@
             "type": "string"
           },
           "item_level_equipped": {
-            "type": "integer",
+            "type": "number",
             "description": "Equipped item level"
           },
           "item_level_total": {
-            "type": "integer"
+            "type": "number"
           },
           "artifact_traits": {
-            "type": "integer"
+            "type": "number"
           },
           "corruption": {
             "$ref": "#/components/schemas/corruption"
@@ -6898,7 +7030,8 @@
         "description": "Run roster",
         "items": {
           "$ref": "#/components/schemas/ActivityRosterMember"
-        }
+        },
+        "properties": null
       },
       "ActivityLoggedSource": {
         "type": "object",
@@ -6919,12 +7052,14 @@
         "description": "Sources of logged data",
         "items": {
           "$ref": "#/components/schemas/ActivityLoggedSource"
-        }
+        },
+        "properties": null
       },
       "logged_details1": {
         "type": "object",
         "description": "Per-encounter breakdowns, deaths, and enemy force data from the combat log",
-        "nullable": true
+        "nullable": true,
+        "properties": null
       },
       "ViewMythicPlusActivityDetailResponse": {
         "type": "object",
@@ -6996,7 +7131,8 @@
         "description": "Sources of logged data",
         "items": {
           "$ref": "#/components/schemas/RaidActivityLogSource"
-        }
+        },
+        "properties": null
       },
       "deaths": {
         "type": "object",
@@ -7297,14 +7433,14 @@
             "type": "string"
           },
           "item_level_equipped": {
-            "type": "integer",
+            "type": "number",
             "description": "Equipped item level"
           },
           "item_level_total": {
-            "type": "integer"
+            "type": "number"
           },
           "artifact_traits": {
-            "type": "integer"
+            "type": "number"
           },
           "corruption": {
             "$ref": "#/components/schemas/corruption"
@@ -7382,7 +7518,8 @@
         "description": "Roster of characters in the encounter",
         "items": {
           "$ref": "#/components/schemas/RaidActivityRosterMember"
-        }
+        },
+        "properties": null
       },
       "Model5": {
         "type": "object",
@@ -7402,7 +7539,8 @@
         "description": "Individual death events",
         "items": {
           "$ref": "#/components/schemas/Model5"
-        }
+        },
+        "properties": null
       },
       "Model6": {
         "type": "object",
@@ -7430,7 +7568,8 @@
         "description": "Enemy NPC data",
         "items": {
           "$ref": "#/components/schemas/Model6"
-        }
+        },
+        "properties": null
       },
       "ViewRaidingActivityDetailResponse": {
         "type": "object",
@@ -7444,7 +7583,8 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Video"
-        }
+        },
+        "properties": null
       },
       "RegionScope": {
         "type": "object",
@@ -7550,7 +7690,8 @@
         "description": "Ranked guilds",
         "items": {
           "$ref": "#/components/schemas/RaidRankingEntry"
-        }
+        },
+        "properties": null
       },
       "RaidEncounterLoggedDetails": {
         "type": "object",
@@ -7619,6 +7760,56 @@
         "description": "Character's Mythic+ scores by season",
         "items": {
           "$ref": "#/components/schemas/MythicPlusScoresBySeason"
+        },
+        "properties": null
+      },
+      "EquippedItem": {
+        "type": "object",
+        "required": [
+          "item_id",
+          "item_level",
+          "icon",
+          "name",
+          "item_quality",
+          "is_legendary",
+          "gems",
+          "bonuses"
+        ],
+        "properties": {
+          "item_id": {
+            "type": "integer"
+          },
+          "item_level": {
+            "type": "integer"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "item_quality": {
+            "type": "integer"
+          },
+          "is_legendary": {
+            "type": "boolean"
+          },
+          "tier": {
+            "type": "string",
+            "nullable": true
+          },
+          "gems": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "bonuses": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
         }
       }
     }

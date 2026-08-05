@@ -23,14 +23,7 @@ extension Role: Codable {
         let container = try decoder.singleValueContainer()
 
         let rawValue = try container.decode(String.self)
-        switch rawValue.lowercased() {
-        case "tank": self = .tank
-        case "healer": self = .healer
-        case "healing": self = .healer
-        case "dps": self = .dps
-        default: throw DecodingError.dataCorruptedError(in: container,
-                                                        debugDescription: "Unknown role value: \(rawValue)")
-        }
+        try self.init(string: rawValue)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -44,6 +37,24 @@ extension Role: Codable {
         }
 
         try container.encode(rawValue)
+    }
+
+}
+
+// MARK: - Parsing
+
+extension Role {
+
+    /// Parses a role from a raw string value. The live API is known to send `"healing"` as an
+    /// alias for `"healer"` in some places, in addition to the documented `"tank"`/`"healer"`/`"dps"`.
+    init(string rawValue: String) throws {
+        switch rawValue.lowercased() {
+        case "tank": self = .tank
+        case "healer": self = .healer
+        case "healing": self = .healer
+        case "dps": self = .dps
+        default: throw RaiderIOError.typeConversionFailure
+        }
     }
 
 }

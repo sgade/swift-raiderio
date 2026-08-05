@@ -10,20 +10,20 @@ import Foundation
 public struct BossRanking {
 
     public let rank: Int
-    public let regionRank: Int
+    public let regionRank: Int?
     public let guild: Guild
     public let encountersDefeated: [DefeatedEncounter]
-    public let streamers: Streamers
-    public let recruitmentProfiles: [RecruitmentProfile]
-    public let itemLevelAvg: Float
+    public let streamers: Streamers?
+    public let recruitmentProfiles: [RecruitmentProfile]?
+    public let itemLevelAvg: Float?
 
     public init(rank: Int,
-                regionRank: Int,
+                regionRank: Int?,
                 guild: Guild,
                 encountersDefeated: [DefeatedEncounter],
-                streamers: Streamers,
-                recruitmentProfiles: [RecruitmentProfile],
-                itemLevelAvg: Float) {
+                streamers: Streamers?,
+                recruitmentProfiles: [RecruitmentProfile]?,
+                itemLevelAvg: Float?) {
         self.rank = rank
         self.regionRank = regionRank
         self.guild = guild
@@ -34,7 +34,3 @@ public struct BossRanking {
     }
 
 }
-
-// MARK: - Codable
-
-extension BossRanking: Codable {}

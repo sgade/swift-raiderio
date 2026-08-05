@@ -76,15 +76,3 @@ public struct LeaderboardCapacity {
     }
 
 }
-
-// MARK: - Codable
-
-extension LeaderboardCapacity: Codable {}
-
-extension LeaderboardCapacity.Affix: Codable {}
-
-extension LeaderboardCapacity.RealmInfo: Codable {}
-
-extension LeaderboardCapacity.RealmInfo.DungeonInfo: Codable {}
-
-extension LeaderboardCapacity.RealmInfo.DungeonInfo.LowestDungeonRun: Codable {}

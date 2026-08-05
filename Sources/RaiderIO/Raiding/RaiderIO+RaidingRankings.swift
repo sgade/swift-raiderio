@@ -9,12 +9,6 @@ import Foundation
 
 extension RaiderIO {
 
-    private struct RaidRankingsResponse: Decodable {
-
-        public let raidRankings: [RaidRanking]
-
-    }
-
     /// Retrieve the raid rankings for a given raid and region.
     ///
     /// - Parameters:
@@ -42,17 +36,18 @@ extension RaiderIO {
             nil
         }
 
-        let response: RaidRankingsResponse = try await parse {
-            try await client.getApiV1RaidingRaidrankings(query: .init(
-                raid: try convert(from: raid),
-                difficulty: try convert(from: difficulty),
-                region: region.rawValue,
-                realm: realm,
-                guilds: guildsValue
-            )).default.body.any
+        switch try await client.getApiV1RaidingRaidrankings(query: .init(
+            raid: try convert(from: raid),
+            difficulty: try convert(from: difficulty),
+            region: region.rawValue,
+            realm: realm,
+            guilds: guildsValue
+        )) {
+        case .ok(let ok):
+            return try (ok.body.json.raidRankings ?? []).map(RaidRanking.init)
+        case .undocumented(let statusCode, _):
+            throw RaiderIOError.http(statusCode: statusCode)
         }
-        
-        return response.raidRankings
     }
 
 }

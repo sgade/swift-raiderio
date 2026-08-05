@@ -22,7 +22,3 @@ public struct RegionalPeriods {
     }
 
 }
-
-// MARK: - Codable
-
-extension RegionalPeriods: Codable {}
