@@ -140,8 +140,8 @@ extension Character.Items.Equipment.Item {
             itemQuality: try Quality(apiModel.itemQuality),
             isLegendary: apiModel.isLegendary,
             tier: apiModel.tier,
-            gems: apiModel.gems ?? [],
-            bonuses: apiModel.bonuses ?? []
+            gems: apiModel.gems,
+            bonuses: apiModel.bonuses
         )
     }
 

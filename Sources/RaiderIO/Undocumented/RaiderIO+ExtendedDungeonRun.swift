@@ -9,7 +9,7 @@ import Foundation
 
 extension RaiderIO {
 
-    private static let mythicPlusRunPath = "/mythic-plus/runs/"
+    private static let mythicPlusRunPath = "/api/mythic-plus/runs/"
 
     public func getExtendedRun(with id: Int, season seasonSlug: String) async throws -> ExtendedDungeonRun {
         let url = baseUrl
