@@ -10,7 +10,7 @@ import RaiderIOAPI
 extension Realm {
 
     // `FullRealm` and `ConnectedRealm` are structurally-identical schemas the generator emits
-    // as distinct Swift types (one per endpoint context) - see upgrade-openapi-definition.sh's
+    // as distinct Swift types (one per endpoint context) - see update-openapi-definition.sh's
     // notes on schema duplication. Both mark every property optional even though the live API
     // always sends the identity fields; treat a missing one as a genuine decode failure.
 

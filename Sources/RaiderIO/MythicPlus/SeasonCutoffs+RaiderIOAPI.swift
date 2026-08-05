@@ -93,7 +93,7 @@ extension SeasonCutoff {
 
     /// Shared by every `init(_:)` overload above - each `CutoffQuantile*` schema variant has the
     /// identical `horde`/`hordeColor`/`alliance`/`allianceColor` shape (a generator dedup
-    /// artifact - see `upgrade-openapi-definition.sh`), just as distinct nominal Swift types.
+    /// artifact - see `update-openapi-definition.sh`), just as distinct nominal Swift types.
     private init(horde: Components.Schemas.CutoffFactionQuantile?,
                  hordeColor: Swift.String?,
                  alliance: Components.Schemas.CutoffFactionQuantile1?,

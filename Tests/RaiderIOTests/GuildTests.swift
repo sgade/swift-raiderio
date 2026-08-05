@@ -30,7 +30,7 @@ struct GuildTests {
             let bossKill = try await client.getGuildBossKill(region: .kr,
                                                              realm: "Azshara",
                                                              guildName: "AFK R",
-                                                             raid: .tombOfSageras,
+                                                             raid: .tombOfSargeras,
                                                              boss: "kiljaeden",
                                                              difficulty: .mythic)
 
@@ -44,7 +44,7 @@ struct GuildTests {
             let bossKill = try await client.getGuildBossKill(region: .eu,
                                                              realm: "Tarren Mill",
                                                              guildName: "Method",
-                                                             raid: .NyalothaTheWakingCity,
+                                                             raid: .nyalothaTheWakingCity,
                                                              boss: "nzoth-the-corruptor",
                                                              difficulty: .mythic)
 

@@ -24,7 +24,10 @@ jobs:
           cmd: jq .info.version "$OPENAPI_FILE"
 
       - name: Fetch OpenAPI definition
-        run: ./upgrade-openapi-definition.sh
+        run: ./scripts/update-openapi-definition.sh
+
+      - name: Extract slugs
+        run: ./scripts/extract-slugs.sh
 
       - name: New definition version
         uses: sergeysova/jq-action@v2

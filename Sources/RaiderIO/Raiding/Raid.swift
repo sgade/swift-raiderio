@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RaiderIOAPI
 
 public struct Raid {
 

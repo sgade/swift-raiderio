@@ -14,7 +14,7 @@
   this change moves away from. `RaiderIOError.server` is still used by the one endpoint
   (`search`) that isn't covered by the generated client.
 * Fixed several inaccuracies in RaiderIO's vendored OpenAPI spec that surfaced during this
-  migration (see `upgrade-openapi-definition.sh`): a handful of numeric fields typed
+  migration (see `update-openapi-definition.sh`): a handful of numeric fields typed
   `integer` that the live API actually returns as fractional numbers (`artifactTraits`,
   `itemLevelEquipped`/`itemLevelTotal`), `corruption.spells` typed as strings when it's
   actually full spell objects, and `RaidProgression.expansion_id` marked required when at
