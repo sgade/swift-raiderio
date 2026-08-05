@@ -1,9 +1,12 @@
-name: Upgrade OpenAPI definition
+name: Update OpenAPI definition
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 13 * * *'
+
+env:
+  OPENAPI_FILE: Sources/RaiderIOAPI/openapi.json
 
 jobs:
   upgrade:
@@ -18,7 +21,7 @@ jobs:
       - name: Current definition version
         uses: sergeysova/jq-action@v2
         with:
-          cmd: jq .info.version Sources/RaiderIO/openapi.json
+          cmd: jq .info.version "$OPENAPI_FILE"
 
       - name: Fetch OpenAPI definition
         run: ./upgrade-openapi-definition.sh
@@ -26,17 +29,17 @@ jobs:
       - name: New definition version
         uses: sergeysova/jq-action@v2
         with:
-          cmd: jq .info.version Sources/RaiderIO/openapi.json
+          cmd: jq .info.version "$OPENAPI_FILE"
 
       - name: Verify schema was updated
         id: verify-changes
         uses: tj-actions/verify-changed-files@v16
         with:
           files: |
-            Sources/RaiderIO/openapi.json
+            "$OPENAPI_FILE"
 
-      - name: Commit version change
+      - name: Commit version change # TODO: commit on separate branch and create PR on GitHub for this
         if: steps.verify-changes.outputs.files_changed == 'true'
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Update RaiderIO OpenAPI definition"
+          commit_message: "chore(api): update Raider.IO OpenAPI definition"
