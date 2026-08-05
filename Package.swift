@@ -2,7 +2,6 @@
 
 import PackageDescription
 
-
 let package = Package(
     name: "swift-raiderio",
     platforms: [
@@ -27,8 +26,18 @@ let package = Package(
         .target(
             name: "RaiderIO",
             dependencies: [
-                .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+                .target(name: "RaiderIOAPI"),
                 .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession")
+            ]
+        ),
+        .testTarget(
+            name: "RaiderIOTests",
+            dependencies: ["RaiderIO"]
+        ),
+        .target(
+            name: "RaiderIOAPI",
+            dependencies: [
+                .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime")
             ],
             plugins: [
                 .plugin(
@@ -36,10 +45,6 @@ let package = Package(
                     package: "swift-openapi-generator"
                 )
             ]
-        ),
-        .testTarget(
-            name: "RaiderIOTests",
-            dependencies: ["RaiderIO"]
-        ),
+        )
     ]
 )

@@ -15,7 +15,7 @@ extension RaiderIO {
 
     }
 
-    private static let searchPath = "/search"
+    private static let searchPath = "/api/search"
 
     public func search(for term: String) async throws -> [SearchResult] {
         let searchUrl = baseUrl.appendingPathComponent(Self.searchPath)

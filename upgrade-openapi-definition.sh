@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-OUTPUT="Sources/RaiderIO/openapi.json"
+OUTPUT="Sources/RaiderIOAPI/openapi.json"
 # RaiderIO provides an OpenAPI v3 specification, separately from https://raider.io/api
 SOURCE='https://raider.io/openapi.json'
 

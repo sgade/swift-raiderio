@@ -6,15 +6,15 @@
 //
 
 import Foundation
-import OpenAPIRuntime
+import RaiderIOAPI
 import OpenAPIURLSession
 
-/// Object that allows access to the [Raider.io API](https://raider.io/api).
+/// Network client that accesses the [Raider.io API](https://raider.io/api).
 public final class RaiderIO: Sendable {
 
     public let baseUrl: URL
 
-    let client: Client
+    let client: RaiderIOAPI.Client
 
     private let urlSession: URLSession
 
@@ -25,7 +25,7 @@ public final class RaiderIO: Sendable {
             transport: URLSessionTransport(configuration: .init(session: urlSession))
         )
 
-        self.baseUrl = baseUrl.appending(path: "/api")
+        self.baseUrl = baseUrl
         self.urlSession = urlSession
     }
 
