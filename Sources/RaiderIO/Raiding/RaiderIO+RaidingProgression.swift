@@ -21,11 +21,13 @@ extension RaiderIO {
         difficulty: Difficulty,
         region: RegionSlug
     ) async throws -> [RaidProgressionEntry] {
-        switch try await client.getApiV1RaidingProgression(query: .init(
-            raid: try convert(from: raid),
-            difficulty: try convert(from: difficulty),
-            region: try convert(from: region)
-        )) {
+        switch try await client.getApiV1RaidingProgression(
+            query: .init(
+                raid: try convert(from: raid),
+                difficulty: try convert(from: difficulty),
+                region: try convert(from: region)
+            ))
+        {
         case .ok(let ok):
             return try (ok.body.json.progression ?? []).map(RaidProgressionEntry.init)
         case .undocumented(let statusCode, _):

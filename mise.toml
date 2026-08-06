@@ -1,0 +1,2 @@
+[tasks.format]
+run = "swift format format --configuration swift-format.json --in-place --parallel --recursive Sources"

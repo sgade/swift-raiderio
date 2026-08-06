@@ -1,6 +1,6 @@
 //
 //  Milliseconds.swift
-//  
+//
 //
 //  Created by Sören Gade on 10.03.22.
 //

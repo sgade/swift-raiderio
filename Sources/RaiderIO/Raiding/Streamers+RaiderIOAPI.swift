@@ -23,15 +23,15 @@ extension Stream {
 
     init(_ apiModel: Components.Schemas.Stream1) throws {
         guard let id = apiModel.id,
-              let name = apiModel.name,
-              let userId = apiModel.userId,
-              let gameId = apiModel.gameId,
-              let type = apiModel._type,
-              let title = apiModel.title,
-              let viewerCount = apiModel.viewerCount,
-              let startedAt = apiModel.startedAt,
-              let language = apiModel.language,
-              let thumbnailUrl = apiModel.thumbnailUrl
+            let name = apiModel.name,
+            let userId = apiModel.userId,
+            let gameId = apiModel.gameId,
+            let type = apiModel._type,
+            let title = apiModel.title,
+            let viewerCount = apiModel.viewerCount,
+            let startedAt = apiModel.startedAt,
+            let language = apiModel.language,
+            let thumbnailUrl = apiModel.thumbnailUrl
         else {
             throw RaiderIOError.typeConversionFailure
         }

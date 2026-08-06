@@ -57,19 +57,21 @@ public struct MythicPlusRanking {
         // public let roster: Any // FIXME: Implement type
         // public let platoon: Any // FIXME: Implement type
 
-        public init(season: String,
-                    keystoneRunId: Int,
-                    keystoneTeamId: Int,
-                    keystonePlatoonId: Int? = nil,
-                    mythicLevel: Int,
-                    clearTime: Milliseconds,
-                    keystoneTime: Milliseconds,
-                    completedAt: ISO8601Date,
-                    numberOfChests: Int,
-                    timeRemaining: Milliseconds,
-                    faction: Faction,
-                    weeklyModifiers: [Affix],
-                    numberOfActiveModifiers: Int) {
+        public init(
+            season: String,
+            keystoneRunId: Int,
+            keystoneTeamId: Int,
+            keystonePlatoonId: Int? = nil,
+            mythicLevel: Int,
+            clearTime: Milliseconds,
+            keystoneTime: Milliseconds,
+            completedAt: ISO8601Date,
+            numberOfChests: Int,
+            timeRemaining: Milliseconds,
+            faction: Faction,
+            weeklyModifiers: [Affix],
+            numberOfActiveModifiers: Int
+        ) {
             self.season = season
             self.keystoneRunId = keystoneRunId
             self.keystoneTeamId = keystoneTeamId

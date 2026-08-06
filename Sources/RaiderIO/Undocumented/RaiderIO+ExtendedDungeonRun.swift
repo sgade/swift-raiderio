@@ -12,7 +12,8 @@ extension RaiderIO {
     private static let mythicPlusRunPath = "/api/mythic-plus/runs/"
 
     public func getExtendedRun(with id: Int, season seasonSlug: String) async throws -> ExtendedDungeonRun {
-        let url = baseUrl
+        let url =
+            baseUrl
             .appendingPathComponent(Self.mythicPlusRunPath)
             .appendingPathComponent(seasonSlug)
             .appendingPathComponent("\(id)")

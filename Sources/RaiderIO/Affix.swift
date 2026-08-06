@@ -41,7 +41,7 @@ extension Affix: Codable {
         case name
         case description
         case icon
-        case wowheadUrl     = "wowhead_url"
+        case wowheadUrl = "wowhead_url"
 
     }
 

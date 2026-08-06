@@ -18,14 +18,16 @@ public struct Dungeon {
     public let keystoneTimer: Milliseconds
     public let numberOfBosses: Int?
 
-    public init(id: Int,
-                name: String,
-                shortName: String,
-                slug: String,
-                expansion: Expansion,
-                patch: String,
-                keystoneTimer: Milliseconds,
-                numberOfBosses: Int? = nil) {
+    public init(
+        id: Int,
+        name: String,
+        shortName: String,
+        slug: String,
+        expansion: Expansion,
+        patch: String,
+        keystoneTimer: Milliseconds,
+        numberOfBosses: Int? = nil
+    ) {
         self.id = id
         self.name = name
         self.shortName = shortName
@@ -46,12 +48,12 @@ extension Dungeon: Codable {
 
         case id
         case name
-        case shortName          = "short_name"
+        case shortName = "short_name"
         case slug
-        case expansion          = "expansion_id"
+        case expansion = "expansion_id"
         case patch
-        case keystoneTimer      = "keystone_timer_ms"
-        case numberOfBosses     = "num_bosses"
+        case keystoneTimer = "keystone_timer_ms"
+        case numberOfBosses = "num_bosses"
 
     }
 

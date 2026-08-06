@@ -18,14 +18,16 @@ public struct Realm {
     public let locale: String
     public let isConnected: Bool
 
-    public init(id: Int,
-                connectedRealmId: Int,
-                name: String,
-                altName: String? = nil,
-                slug: String,
-                altSlug: String,
-                locale: String,
-                isConnected: Bool) {
+    public init(
+        id: Int,
+        connectedRealmId: Int,
+        name: String,
+        altName: String? = nil,
+        slug: String,
+        altSlug: String,
+        locale: String,
+        isConnected: Bool
+    ) {
         self.id = id
         self.connectedRealmId = connectedRealmId
         self.name = name

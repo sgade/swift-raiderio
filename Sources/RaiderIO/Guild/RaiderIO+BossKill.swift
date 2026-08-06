@@ -28,14 +28,16 @@ extension RaiderIO {
         boss bossSlug: String,
         difficulty: Difficulty
     ) async throws -> BossKill? {
-        switch try await client.getApiV1GuildsBosskill(query: .init(
-            region: try convert(from: region),
-            realm: realm,
-            guild: guildName,
-            raid: try convert(from: raid),
-            boss: bossSlug,
-            difficulty: try convert(from: difficulty)
-        )) {
+        switch try await client.getApiV1GuildsBosskill(
+            query: .init(
+                region: try convert(from: region),
+                realm: realm,
+                guild: guildName,
+                raid: try convert(from: raid),
+                boss: bossSlug,
+                difficulty: try convert(from: difficulty)
+            ))
+        {
         case .ok(let ok):
             let json = try ok.body.json
             // The API returns an empty object when there's no kill recorded for this boss.

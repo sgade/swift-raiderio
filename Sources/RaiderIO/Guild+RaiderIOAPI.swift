@@ -11,11 +11,11 @@ extension Guild {
 
     init(_ apiModel: Components.Schemas.RaidingGuild) throws {
         guard let id = apiModel.id,
-              let name = apiModel.name,
-              let faction = apiModel.faction,
-              let realm = apiModel.realm,
-              let region = apiModel.region,
-              let path = apiModel.path
+            let name = apiModel.name,
+            let faction = apiModel.faction,
+            let realm = apiModel.realm,
+            let region = apiModel.region,
+            let path = apiModel.path
         else {
             throw RaiderIOError.typeConversionFailure
         }

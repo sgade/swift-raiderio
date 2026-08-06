@@ -11,11 +11,11 @@ extension Character {
 
     init(_ apiModel: Components.Schemas.Character) throws {
         guard let name = apiModel.name,
-              let race = apiModel.race,
-              let apiClass = apiModel._class,
-              let spec = apiModel.spec,
-              let realm = apiModel.realm,
-              let region = apiModel.region
+            let race = apiModel.race,
+            let apiClass = apiModel._class,
+            let spec = apiModel.spec,
+            let realm = apiModel.realm,
+            let region = apiModel.region
         else {
             throw RaiderIOError.typeConversionFailure
         }

@@ -21,11 +21,13 @@ extension RaiderIO {
         difficulty: Difficulty,
         region: RegionSlug
     ) async throws -> HallOfFame {
-        switch try await client.getApiV1RaidingHalloffame(query: .init(
-            raid: try convert(from: raid),
-            difficulty: try convert(from: difficulty),
-            region: try convert(from: region)
-        )) {
+        switch try await client.getApiV1RaidingHalloffame(
+            query: .init(
+                raid: try convert(from: raid),
+                difficulty: try convert(from: difficulty),
+                region: try convert(from: region)
+            ))
+        {
         case .ok(let ok):
             guard let hallOfFame = try ok.body.json.hallOfFame else {
                 throw RaiderIOError.typeConversionFailure

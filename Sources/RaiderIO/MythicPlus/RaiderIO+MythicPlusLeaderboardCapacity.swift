@@ -27,11 +27,13 @@ extension RaiderIO {
         region: RegionSlug,
         realm: String? = nil
     ) async throws -> LeaderboardCapacity {
-        switch try await client.getApiV1MythicplusLeaderboardcapacity(query: .init(
-            scope: try convert(from: week),
-            region: try convert(from: region),
-            realm: realm
-        )) {
+        switch try await client.getApiV1MythicplusLeaderboardcapacity(
+            query: .init(
+                scope: try convert(from: week),
+                region: try convert(from: region),
+                realm: realm
+            ))
+        {
         case .ok(let ok):
             guard let realmListing = try ok.body.json.realmListing else {
                 throw RaiderIOError.typeConversionFailure

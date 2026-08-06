@@ -22,18 +22,21 @@ extension RaiderIO {
         name: String,
         fields: [ProfileField] = []
     ) async throws -> Profile {
-        let fieldsValue: String? = if fields.count > 0 {
-            fields.map({ $0.value }).joined(separator: ",")
-        } else {
-            nil
-        }
+        let fieldsValue: String? =
+            if fields.count > 0 {
+                fields.map({ $0.value }).joined(separator: ",")
+            } else {
+                nil
+            }
 
-        switch try await client.getApiV1CharactersProfile(query: .init(
-            region: try convert(from: region),
-            realm: realm,
-            name: name,
-            fields: fieldsValue
-        )) {
+        switch try await client.getApiV1CharactersProfile(
+            query: .init(
+                region: try convert(from: region),
+                realm: realm,
+                name: name,
+                fields: fieldsValue
+            ))
+        {
         case .ok(let ok):
             return try Profile(ok.body.json)
         case .undocumented(let statusCode, _):
@@ -89,10 +92,10 @@ extension ProfileField {
     }
 
     /// Retrieve current season mythic plus rankings for player.
-    public static let mythicPlusRanks: ProfileField                            = "mythic_plus_ranks"
+    public static let mythicPlusRanks: ProfileField = "mythic_plus_ranks"
 
     /// Retrieve ten most recent mythic plus runs for player (current season only).
-    public static let mythicPlusRecentRuns: ProfileField                       = "mythic_plus_recent_runs"
+    public static let mythicPlusRecentRuns: ProfileField = "mythic_plus_recent_runs"
 
     /// Retrieve ten most high scoring mythic plus runs for player (current season only).
     public static let mythicPlusBestRuns = mythicPlusBestRuns(all: false)
@@ -114,6 +117,6 @@ extension ProfileField {
     }
 
     /// Retrieve mythic plus rankings for player.
-    public static let previousMythicPlusRanks: ProfileField                    = "previous_mythic_plus_ranks"
+    public static let previousMythicPlusRanks: ProfileField = "previous_mythic_plus_ranks"
 
 }

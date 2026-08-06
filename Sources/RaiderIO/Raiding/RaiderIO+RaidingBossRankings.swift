@@ -31,13 +31,15 @@ extension RaiderIO {
         region: SubRegionSlug,
         realm: String? = nil
     ) async throws -> [BossRanking] {
-        switch try await client.getApiV1RaidingBossrankings(query: .init(
-            raid: try convert(from: raid),
-            boss: bossSlug,
-            difficulty: try convert(from: difficulty),
-            region: region.rawValue,
-            realm: realm
-        )) {
+        switch try await client.getApiV1RaidingBossrankings(
+            query: .init(
+                raid: try convert(from: raid),
+                boss: bossSlug,
+                difficulty: try convert(from: difficulty),
+                region: region.rawValue,
+                realm: realm
+            ))
+        {
         case .ok(let ok):
             return try (ok.body.json.bossRankings ?? []).map(BossRanking.init)
         case .undocumented(let statusCode, _):

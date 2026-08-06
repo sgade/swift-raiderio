@@ -11,7 +11,7 @@ public enum Quality: Int {
 
     // Source: https://wowpedia.fandom.com/wiki/Quality
 
-    case poor       = 0
+    case poor = 0
     case common
     case uncommon
     case rare

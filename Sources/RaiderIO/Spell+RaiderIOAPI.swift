@@ -11,9 +11,9 @@ extension Spell {
 
     init(_ apiModel: Components.Schemas.Spell) throws {
         guard let id = apiModel.id,
-              let name = apiModel.name,
-              let icon = apiModel.icon,
-              let school = apiModel.school
+            let name = apiModel.name,
+            let icon = apiModel.icon,
+            let school = apiModel.school
         else {
             throw RaiderIOError.typeConversionFailure
         }

@@ -22,9 +22,9 @@ extension HallOfFame.BossKill {
 
     init(_ apiModel: Components.Schemas.HallOfFameBossKill) throws {
         guard let boss = apiModel.boss,
-              let bossSummary = apiModel.bossSummary,
-              let defeatedBy = apiModel.defeatedBy,
-              let attemptedBy = apiModel.attemptedBy
+            let bossSummary = apiModel.bossSummary,
+            let defeatedBy = apiModel.defeatedBy,
+            let attemptedBy = apiModel.attemptedBy
         else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -44,11 +44,11 @@ extension HallOfFame.BossKill.BossSummary {
 
     init(_ apiModel: Components.Schemas.BossSummary) throws {
         guard let encounterId = apiModel.encounterId,
-              let name = apiModel.name,
-              let slug = apiModel.slug,
-              let ordinal = apiModel.ordinal,
-              let wingId = apiModel.wingId,
-              let iconUrl = apiModel.iconUrl
+            let name = apiModel.name,
+            let slug = apiModel.slug,
+            let ordinal = apiModel.ordinal,
+            let wingId = apiModel.wingId,
+            let iconUrl = apiModel.iconUrl
         else {
             throw RaiderIOError.typeConversionFailure
         }

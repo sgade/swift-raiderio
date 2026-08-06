@@ -32,28 +32,30 @@ public struct ExtendedDungeonRun {
     public let roster: [Participant]
     public let loggedSources: [LoggingSource]
 
-    public init(season: String,
-                status: String,
-                dungeon: Dungeon,
-                keystoneRunId: Int,
-                mythicLevel: Int,
-                clearTime: Milliseconds,
-                keystoneTime: Milliseconds,
-                completedAt: ISO8601Date,
-                numberOfChests: Int,
-                timeRemaining: Milliseconds,
-                loggedRunId: Int?,
-                weeklyModifiers: [Affix],
-                numberOfActiveModifiers: Int,
-                faction: GroupFaction,
-                deletedAt: ISO8601Date?,
-                score: MythicPlusScore,
-                loggedDetails: Details?,
-                keystoneTeamId: Int,
-                keystonePlatoonId: Int?,
-                isTournamentProfile: Bool,
-                roster: [Participant],
-                loggedSources: [LoggingSource]) {
+    public init(
+        season: String,
+        status: String,
+        dungeon: Dungeon,
+        keystoneRunId: Int,
+        mythicLevel: Int,
+        clearTime: Milliseconds,
+        keystoneTime: Milliseconds,
+        completedAt: ISO8601Date,
+        numberOfChests: Int,
+        timeRemaining: Milliseconds,
+        loggedRunId: Int?,
+        weeklyModifiers: [Affix],
+        numberOfActiveModifiers: Int,
+        faction: GroupFaction,
+        deletedAt: ISO8601Date?,
+        score: MythicPlusScore,
+        loggedDetails: Details?,
+        keystoneTeamId: Int,
+        keystonePlatoonId: Int?,
+        isTournamentProfile: Bool,
+        roster: [Participant],
+        loggedSources: [LoggingSource]
+    ) {
         self.season = season
         self.status = status
         self.dungeon = dungeon
@@ -135,16 +137,18 @@ extension ExtendedDungeonRun.Details {
         public let boss: Boss
         public let roster: [Character]
 
-        public init(id: Int,
-                    status: String,
-                    pullStartedAt: ISO8601Date,
-                    pullEndedAt: ISO8601Date,
-                    duration: Milliseconds,
-                    isSuccess: Bool,
-                    approximateRelativeStartedAt: Int,
-                    approximateRelativeEndedAt: Int,
-                    boss: Boss,
-                    roster: [Character]) {
+        public init(
+            id: Int,
+            status: String,
+            pullStartedAt: ISO8601Date,
+            pullEndedAt: ISO8601Date,
+            duration: Milliseconds,
+            isSuccess: Bool,
+            approximateRelativeStartedAt: Int,
+            approximateRelativeEndedAt: Int,
+            boss: Boss,
+            roster: [Character]
+        ) {
             self.id = id
             self.status = status
             self.pullStartedAt = pullStartedAt
@@ -197,13 +201,15 @@ extension ExtendedDungeonRun.Details {
         public let startedAt: ISO8601Date
         public let approximateRelativeEndedAt: Int
 
-        public init(name: String,
-                    enemyForcesValue: Int,
-                    finishedAt: ISO8601Date,
-                    npcId: Int,
-                    count: Int,
-                    startedAt: ISO8601Date,
-                    approximateRelativeEndedAt: Int) {
+        public init(
+            name: String,
+            enemyForcesValue: Int,
+            finishedAt: ISO8601Date,
+            npcId: Int,
+            count: Int,
+            startedAt: ISO8601Date,
+            approximateRelativeEndedAt: Int
+        ) {
             self.name = name
             self.enemyForcesValue = enemyForcesValue
             self.finishedAt = finishedAt
@@ -273,22 +279,22 @@ extension ExtendedDungeonRun: Codable {
         case season
         case status
         case dungeon
-        case keystoneRunId              = "keystone_run_id"
-        case mythicLevel                = "mythic_level"
-        case clearTime                  = "clear_time_ms"
-        case keystoneTime               = "keystone_time_ms"
-        case completedAt                = "completed_at"
-        case numberOfChests             = "num_chests"
-        case timeRemaining              = "time_remaining_ms"
-        case loggedRunId                = "logged_run_id"
-        case weeklyModifiers            = "weekly_modifiers"
-        case numberOfActiveModifiers    = "num_modifiers_active"
+        case keystoneRunId = "keystone_run_id"
+        case mythicLevel = "mythic_level"
+        case clearTime = "clear_time_ms"
+        case keystoneTime = "keystone_time_ms"
+        case completedAt = "completed_at"
+        case numberOfChests = "num_chests"
+        case timeRemaining = "time_remaining_ms"
+        case loggedRunId = "logged_run_id"
+        case weeklyModifiers = "weekly_modifiers"
+        case numberOfActiveModifiers = "num_modifiers_active"
         case faction
-        case deletedAt                  = "deleted_at"
+        case deletedAt = "deleted_at"
         case score
-        case loggedDetails              = "logged_details"
-        case keystoneTeamId             = "keystone_team_id"
-        case keystonePlatoonId          = "keystone_platoon_id"
+        case loggedDetails = "logged_details"
+        case keystoneTeamId = "keystone_team_id"
+        case keystonePlatoonId = "keystone_platoon_id"
         case isTournamentProfile
         case roster
         case loggedSources
@@ -301,7 +307,7 @@ extension ExtendedDungeonRun.Details: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
-        case totalEnemyForces   = "total_enemy_forces"
+        case totalEnemyForces = "total_enemy_forces"
         case deaths
         case encounters
         case enemies
@@ -314,9 +320,9 @@ extension ExtendedDungeonRun.Details.Death: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
-        case loggedEncounterId  = "logged_encounter_id"
-        case characterId        = "character_id"
-        case approximateDiedAt  = "approximate_died_at"
+        case loggedEncounterId = "logged_encounter_id"
+        case characterId = "character_id"
+        case approximateDiedAt = "approximate_died_at"
 
     }
 
@@ -328,12 +334,12 @@ extension ExtendedDungeonRun.Details.Encounter: Codable {
 
         case id
         case status
-        case pullStartedAt                  = "pull_started_at"
-        case pullEndedAt                    = "pull_ended_at"
-        case duration                       = "duration_ms"
-        case isSuccess                      = "is_success"
-        case approximateRelativeStartedAt   = "approximate_relative_started_at"
-        case approximateRelativeEndedAt     = "approximate_relative_ended_at"
+        case pullStartedAt = "pull_started_at"
+        case pullEndedAt = "pull_ended_at"
+        case duration = "duration_ms"
+        case isSuccess = "is_success"
+        case approximateRelativeStartedAt = "approximate_relative_started_at"
+        case approximateRelativeEndedAt = "approximate_relative_ended_at"
         case boss
         case roster
 
@@ -348,11 +354,11 @@ extension ExtendedDungeonRun.Details.Enemy: Codable {
     private enum CodingKeys: String, CodingKey {
 
         case name
-        case enemyForcesValue           = "enemy_forces_value"
-        case finishedAt                 = "finished_at"
-        case npcId                      = "npc_id"
+        case enemyForcesValue = "enemy_forces_value"
+        case finishedAt = "finished_at"
+        case npcId = "npc_id"
         case count
-        case startedAt                  = "started_at"
+        case startedAt = "started_at"
         case approximateRelativeEndedAt = "approximate_relative_ended_at"
 
     }

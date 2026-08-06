@@ -16,12 +16,12 @@ extension Realm {
 
     init(_ apiModel: Components.Schemas.FullRealm) throws {
         guard let id = apiModel.id,
-              let connectedRealmId = apiModel.connectedRealmId,
-              let name = apiModel.name,
-              let slug = apiModel.slug,
-              let altSlug = apiModel.altSlug,
-              let locale = apiModel.locale,
-              let isConnected = apiModel.isConnected
+            let connectedRealmId = apiModel.connectedRealmId,
+            let name = apiModel.name,
+            let slug = apiModel.slug,
+            let altSlug = apiModel.altSlug,
+            let locale = apiModel.locale,
+            let isConnected = apiModel.isConnected
         else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -57,12 +57,12 @@ extension Realm {
 
     init(_ apiModel: Components.Schemas.ConnectedRealm) throws {
         guard let id = apiModel.id,
-              let connectedRealmId = apiModel.connectedRealmId,
-              let name = apiModel.name,
-              let slug = apiModel.slug,
-              let altSlug = apiModel.altSlug,
-              let locale = apiModel.locale,
-              let isConnected = apiModel.isConnected
+            let connectedRealmId = apiModel.connectedRealmId,
+            let name = apiModel.name,
+            let slug = apiModel.slug,
+            let altSlug = apiModel.altSlug,
+            let locale = apiModel.locale,
+            let isConnected = apiModel.isConnected
         else {
             throw RaiderIOError.typeConversionFailure
         }

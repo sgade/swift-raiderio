@@ -27,9 +27,9 @@ extension RecruitmentProfile: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
-        case activityType           = "activity_type"
-        case entityType             = "entity_type"
-        case recruitmentProfileId   = "recruitment_profile_id"
+        case activityType = "activity_type"
+        case entityType = "entity_type"
+        case recruitmentProfileId = "recruitment_profile_id"
 
     }
 

@@ -41,12 +41,12 @@ struct GuildTests {
     @Test
     func fetchGuildBossKillFromBattleForAzeroth() async {
         await #expect(throws: Never.self) {
-            let bossKill = try await client.getGuildBossKill(region: .eu,
-                                                             realm: "Tarren Mill",
-                                                             guildName: "Method",
-                                                             raid: .nyalothaTheWakingCity,
-                                                             boss: "nzoth-the-corruptor",
-                                                             difficulty: .mythic)
+                let bossKill = try await client.getGuildBossKill(region: .eu,
+                                                                 realm: "Tarren Mill",
+                                                                 guildName: "Method",
+                                                                 raid: .nyalothaTheWakingCity,
+                                                                 boss: "nzoth-the-corruptor",
+                                                                 difficulty: .mythic)
 
             #expect(bossKill != nil)
         }

@@ -15,11 +15,13 @@ public struct RaidProgression {
     public let heroicBossesKilled: Int
     public let mythicBossesKilled: Int
 
-    public init(summary: String,
-                totalBosses: Int,
-                normalBossesKilled: Int,
-                heroicBossesKilled: Int,
-                mythicBossesKilled: Int) {
+    public init(
+        summary: String,
+        totalBosses: Int,
+        normalBossesKilled: Int,
+        heroicBossesKilled: Int,
+        mythicBossesKilled: Int
+    ) {
         self.summary = summary
         self.totalBosses = totalBosses
         self.normalBossesKilled = normalBossesKilled

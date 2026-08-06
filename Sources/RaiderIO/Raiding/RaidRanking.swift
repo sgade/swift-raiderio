@@ -14,10 +14,12 @@ public struct RaidRanking {
     public let guild: Guild
     public let encountersDefeated: [DefeatedEncounter]
 
-    public init(rank: Int,
-                regionRank: Int?,
-                guild: Guild,
-                encountersDefeated: [DefeatedEncounter]) {
+    public init(
+        rank: Int,
+        regionRank: Int?,
+        guild: Guild,
+        encountersDefeated: [DefeatedEncounter]
+    ) {
         self.rank = rank
         self.regionRank = regionRank
         self.guild = guild

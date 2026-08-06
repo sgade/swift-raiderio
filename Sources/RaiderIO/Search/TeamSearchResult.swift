@@ -19,15 +19,17 @@ public struct TeamSearchResult {
     public let subRegion: Region?
     public let path: String
 
-    public init(keystonePlatoonId: Int? = nil,
-                charterId: Int,
-                platoonId: Int? = nil,
-                name: String,
-                slug: String,
-                faction: Faction,
-                region: Region,
-                subRegion: Region? = nil,
-                path: String) {
+    public init(
+        keystonePlatoonId: Int? = nil,
+        charterId: Int,
+        platoonId: Int? = nil,
+        name: String,
+        slug: String,
+        faction: Faction,
+        region: Region,
+        subRegion: Region? = nil,
+        path: String
+    ) {
         self.keystonePlatoonId = keystonePlatoonId
         self.charterId = charterId
         self.platoonId = platoonId
@@ -47,9 +49,9 @@ extension TeamSearchResult: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
-        case keystonePlatoonId  = "keystone_platoon_id"
-        case charterId          = "charter_id"
-        case platoonId          = "platoon_id"
+        case keystonePlatoonId = "keystone_platoon_id"
+        case charterId = "charter_id"
+        case platoonId = "platoon_id"
         case name
         case slug
         case faction

@@ -30,13 +30,15 @@ extension RaiderIO {
         affixes: String = "all",
         page: Int = 0
     ) async throws -> MythicPlusRuns {
-        switch try await client.getApiV1MythicplusRuns(query: .init(
-            season: season,
-            region: convert(from: region),
-            dungeon: dungeon,
-            affixes: affixes,
-            page: page
-        )) {
+        switch try await client.getApiV1MythicplusRuns(
+            query: .init(
+                season: season,
+                region: convert(from: region),
+                dungeon: dungeon,
+                affixes: affixes,
+                page: page
+            ))
+        {
         case .ok(let ok):
             return try MythicPlusRuns(ok.body.json)
         case .undocumented(let statusCode, _):

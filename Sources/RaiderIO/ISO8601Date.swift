@@ -39,8 +39,8 @@ extension ISO8601Date {
             date = try Date(dateString, strategy: .iso8601)
         } catch let error as NSError {
             guard error.domain == CocoaError.errorDomain,
-                  error.code == 2048,
-                  dateString.isEmpty
+                error.code == 2048,
+                dateString.isEmpty
             else {
                 throw error
             }

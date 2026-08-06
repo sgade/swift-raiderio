@@ -29,7 +29,7 @@ extension Region: Codable {
 
         case name
         case slug
-        case shortName  = "short_name"
+        case shortName = "short_name"
 
     }
 

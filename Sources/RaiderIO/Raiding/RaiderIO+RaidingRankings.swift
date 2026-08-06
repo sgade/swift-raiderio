@@ -31,19 +31,22 @@ extension RaiderIO {
         realm: String? = nil,
         guilds guildIds: [Int] = []
     ) async throws -> [RaidRanking] {
-        let guildsValue: String? = if !guildIds.isEmpty {
-            guildIds.map({ "\($0)" }).joined(separator: ",")
-        } else {
-            nil
-        }
+        let guildsValue: String? =
+            if !guildIds.isEmpty {
+                guildIds.map({ "\($0)" }).joined(separator: ",")
+            } else {
+                nil
+            }
 
-        switch try await client.getApiV1RaidingRaidrankings(query: .init(
-            raid: try convert(from: raid),
-            difficulty: try convert(from: difficulty),
-            region: region.rawValue,
-            realm: realm,
-            guilds: guildsValue
-        )) {
+        switch try await client.getApiV1RaidingRaidrankings(
+            query: .init(
+                raid: try convert(from: raid),
+                difficulty: try convert(from: difficulty),
+                region: region.rawValue,
+                realm: realm,
+                guilds: guildsValue
+            ))
+        {
         case .ok(let ok):
             return try (ok.body.json.raidRankings ?? []).map(RaidRanking.init)
         case .undocumented(let statusCode, _):

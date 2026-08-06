@@ -22,14 +22,16 @@ public struct SeasonScores {
         public let spec2: ScoreValue
         public let spec3: ScoreValue
 
-        public init(all: ScoreValue,
-                    dps: ScoreValue,
-                    healer: ScoreValue,
-                    tank: ScoreValue,
-                    spec0: ScoreValue,
-                    spec1: ScoreValue,
-                    spec2: ScoreValue,
-                    spec3: ScoreValue) {
+        public init(
+            all: ScoreValue,
+            dps: ScoreValue,
+            healer: ScoreValue,
+            tank: ScoreValue,
+            spec0: ScoreValue,
+            spec1: ScoreValue,
+            spec2: ScoreValue,
+            spec3: ScoreValue
+        ) {
             self.all = all
             self.dps = dps
             self.healer = healer

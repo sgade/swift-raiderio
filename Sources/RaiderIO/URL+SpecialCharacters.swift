@@ -19,7 +19,7 @@ struct SpecialCharactersURL {
 
     init(string: String) throws {
         guard let components = URLComponents(string: string),
-              let url = components.url
+            let url = components.url
         else {
             throw SpecialCharactersURLParsingError.invalidURLFormat
         }

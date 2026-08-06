@@ -42,10 +42,10 @@ public enum GroupFaction: String, Codable {
 
 extension Faction {
 
-    public static func ==(lhs: Faction, rhs: GroupFaction) -> Bool {
+    public static func == (lhs: Faction, rhs: GroupFaction) -> Bool {
         switch (lhs, rhs) {
         case (.alliance, .alliance),
-             (.horde, .horde):
+            (.horde, .horde):
             return true
 
         default:
@@ -57,10 +57,10 @@ extension Faction {
 
 extension GroupFaction {
 
-    public static func ==(lhs: GroupFaction, rhs: Faction) -> Bool {
+    public static func == (lhs: GroupFaction, rhs: Faction) -> Bool {
         switch (lhs, rhs) {
         case (.alliance, .alliance),
-             (.horde, .horde):
+            (.horde, .horde):
             return true
 
         default:

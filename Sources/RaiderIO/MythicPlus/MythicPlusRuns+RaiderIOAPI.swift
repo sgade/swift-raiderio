@@ -12,7 +12,7 @@ extension MythicPlusRuns {
 
     init(_ apiModel: Components.Schemas.ViewMythicPlusRunsResponse) throws {
         guard let leaderboardUrl = apiModel.leaderboardUrl.flatMap(URL.init(string:)),
-              let params = apiModel.params
+            let params = apiModel.params
         else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -30,9 +30,9 @@ extension MythicPlusRuns.Parameters {
 
     init(_ apiModel: Components.Schemas.Params) throws {
         guard let season = apiModel.season,
-              let region = apiModel.region,
-              let dungeon = apiModel.dungeon,
-              let page = apiModel.page
+            let region = apiModel.region,
+            let dungeon = apiModel.dungeon,
+            let page = apiModel.page
         else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -58,16 +58,16 @@ extension MythicPlusRanking.Run {
 
     init(_ apiModel: Components.Schemas.RankedRunDetail) throws {
         guard let season = apiModel.season,
-              let keystoneRunId = apiModel.keystoneRunId,
-              let keystoneTeamId = apiModel.keystoneTeamId,
-              let mythicLevel = apiModel.mythicLevel,
-              let clearTimeMs = apiModel.clearTimeMs,
-              let keystoneTimeMs = apiModel.keystoneTimeMs,
-              let completedAt = apiModel.completedAt,
-              let numChests = apiModel.numChests,
-              let timeRemainingMs = apiModel.timeRemainingMs,
-              let faction = apiModel.faction,
-              let numModifiersActive = apiModel.numModifiersActive
+            let keystoneRunId = apiModel.keystoneRunId,
+            let keystoneTeamId = apiModel.keystoneTeamId,
+            let mythicLevel = apiModel.mythicLevel,
+            let clearTimeMs = apiModel.clearTimeMs,
+            let keystoneTimeMs = apiModel.keystoneTimeMs,
+            let completedAt = apiModel.completedAt,
+            let numChests = apiModel.numChests,
+            let timeRemainingMs = apiModel.timeRemainingMs,
+            let faction = apiModel.faction,
+            let numModifiersActive = apiModel.numModifiersActive
         else {
             throw RaiderIOError.typeConversionFailure
         }

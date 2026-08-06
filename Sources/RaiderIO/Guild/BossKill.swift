@@ -19,13 +19,15 @@ public struct BossKill {
         public let itemLevelEquippedMax: Float?
         public let itemLevelEquippedMin: Float?
 
-        public init(pulledAt: ISO8601Date?,
-                    defeatedAt: ISO8601Date?,
-                    duration: Milliseconds?,
-                    isSuccess: Bool,
-                    itemLevelEquippedAverage: Float?,
-                    itemLevelEquippedMax: Float?,
-                    itemLevelEquippedMin: Float?) {
+        public init(
+            pulledAt: ISO8601Date?,
+            defeatedAt: ISO8601Date?,
+            duration: Milliseconds?,
+            isSuccess: Bool,
+            itemLevelEquippedAverage: Float?,
+            itemLevelEquippedMax: Float?,
+            itemLevelEquippedMin: Float?
+        ) {
             self.pulledAt = pulledAt
             self.defeatedAt = defeatedAt
             self.duration = duration

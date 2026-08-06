@@ -50,16 +50,32 @@ extension GuildProfile.RaidRanking {
         if let v = apiModel.liberationOfUndermine { result["liberation-of-undermine"] = GuildProfile.RaidRanking(v) }
         if let v = apiModel.nerubarPalace { result["nerubar-palace"] = GuildProfile.RaidRanking(v) }
         if let v = apiModel.blackrockDepths { result["blackrock-depths"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.awakenedAmirdrassilTheDreamsHope { result["awakened-amirdrassil-the-dreams-hope"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.awakenedAberrusTheShadowedCrucible { result["awakened-aberrus-the-shadowed-crucible"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.awakenedVaultOfTheIncarnates { result["awakened-vault-of-the-incarnates"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.amirdrassilTheDreamsHope { result["amirdrassil-the-dreams-hope"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.aberrusTheShadowedCrucible { result["aberrus-the-shadowed-crucible"] = GuildProfile.RaidRanking(v) }
+        if let v = apiModel.awakenedAmirdrassilTheDreamsHope {
+            result["awakened-amirdrassil-the-dreams-hope"] = GuildProfile.RaidRanking(v)
+        }
+        if let v = apiModel.awakenedAberrusTheShadowedCrucible {
+            result["awakened-aberrus-the-shadowed-crucible"] = GuildProfile.RaidRanking(v)
+        }
+        if let v = apiModel.awakenedVaultOfTheIncarnates {
+            result["awakened-vault-of-the-incarnates"] = GuildProfile.RaidRanking(v)
+        }
+        if let v = apiModel.amirdrassilTheDreamsHope {
+            result["amirdrassil-the-dreams-hope"] = GuildProfile.RaidRanking(v)
+        }
+        if let v = apiModel.aberrusTheShadowedCrucible {
+            result["aberrus-the-shadowed-crucible"] = GuildProfile.RaidRanking(v)
+        }
         if let v = apiModel.vaultOfTheIncarnates { result["vault-of-the-incarnates"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.fatedSepulcherOfTheFirstOnes { result["fated-sepulcher-of-the-first-ones"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.fatedSanctumOfDomination { result["fated-sanctum-of-domination"] = GuildProfile.RaidRanking(v) }
+        if let v = apiModel.fatedSepulcherOfTheFirstOnes {
+            result["fated-sepulcher-of-the-first-ones"] = GuildProfile.RaidRanking(v)
+        }
+        if let v = apiModel.fatedSanctumOfDomination {
+            result["fated-sanctum-of-domination"] = GuildProfile.RaidRanking(v)
+        }
         if let v = apiModel.fatedCastleNathria { result["fated-castle-nathria"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.sepulcherOfTheFirstOnes { result["sepulcher-of-the-first-ones"] = GuildProfile.RaidRanking(v) }
+        if let v = apiModel.sepulcherOfTheFirstOnes {
+            result["sepulcher-of-the-first-ones"] = GuildProfile.RaidRanking(v)
+        }
         if let v = apiModel.sanctumOfDomination { result["sanctum-of-domination"] = GuildProfile.RaidRanking(v) }
         if let v = apiModel.castleNathria { result["castle-nathria"] = GuildProfile.RaidRanking(v) }
         if let v = apiModel.nyalothaTheWakingCity { result["nyalotha-the-waking-city"] = GuildProfile.RaidRanking(v) }
@@ -67,7 +83,9 @@ extension GuildProfile.RaidRanking {
         if let v = apiModel.crucibleOfStorms { result["crucible-of-storms"] = GuildProfile.RaidRanking(v) }
         if let v = apiModel.battleOfDazaralor { result["battle-of-dazaralor"] = GuildProfile.RaidRanking(v) }
         if let v = apiModel.uldir { result["uldir"] = GuildProfile.RaidRanking(v) }
-        if let v = apiModel.antorusTheBurningThrone { result["antorus-the-burning-throne"] = GuildProfile.RaidRanking(v) }
+        if let v = apiModel.antorusTheBurningThrone {
+            result["antorus-the-burning-throne"] = GuildProfile.RaidRanking(v)
+        }
         if let v = apiModel.tombOfSargeras { result["tomb-of-sargeras"] = GuildProfile.RaidRanking(v) }
         if let v = apiModel.theNighthold { result["the-nighthold"] = GuildProfile.RaidRanking(v) }
         if let v = apiModel.trialOfValor { result["trial-of-valor"] = GuildProfile.RaidRanking(v) }

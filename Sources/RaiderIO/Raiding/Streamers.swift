@@ -37,17 +37,19 @@ public struct Stream {
     /// The URL contains placeholders for `{width}` and `{height}`.
     public let thumbnailUrl: String
 
-    public init(id: String,
-                name: String,
-                userId: String,
-                gameId: String,
-                type: String,
-                title: String,
-                communityIds: [Int],
-                viewerCount: Int,
-                startedAt: ISO8601Date,
-                language: String,
-                thumbnailUrl: String) {
+    public init(
+        id: String,
+        name: String,
+        userId: String,
+        gameId: String,
+        type: String,
+        title: String,
+        communityIds: [Int],
+        viewerCount: Int,
+        startedAt: ISO8601Date,
+        language: String,
+        thumbnailUrl: String
+    ) {
         self.id = id
         self.name = name
         self.userId = userId

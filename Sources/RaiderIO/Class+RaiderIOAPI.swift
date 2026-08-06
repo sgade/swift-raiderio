@@ -11,8 +11,8 @@ extension Class {
 
     init(_ apiModel: Components.Schemas.Class) throws {
         guard let id = apiModel.id,
-              let name = apiModel.name,
-              let slug = apiModel.slug
+            let name = apiModel.name,
+            let slug = apiModel.slug
         else {
             throw RaiderIOError.typeConversionFailure
         }

@@ -10,10 +10,10 @@ import Foundation
 public enum GuildProfileField: String, CaseIterable {
 
     /// Retrieve raid progression data for guild.
-    case raidProgression    = "raid_progression"
+    case raidProgression = "raid_progression"
 
     /// Retrieve raid rankings data for guild.
-    case raidRankings       = "raid_rankings"
+    case raidRankings = "raid_rankings"
 
 }
 
@@ -32,18 +32,21 @@ extension RaiderIO {
         name: String,
         fields: [GuildProfileField] = []
     ) async throws -> GuildProfile {
-        let fieldsValue: String? = if fields.count > 0 {
-            fields.map({ $0.rawValue }).joined(separator: ",")
-        } else {
-            nil
-        }
+        let fieldsValue: String? =
+            if fields.count > 0 {
+                fields.map({ $0.rawValue }).joined(separator: ",")
+            } else {
+                nil
+            }
 
-        switch try await client.getApiV1GuildsProfile(query: .init(
-            region: try convert(from: region),
-            realm: realm,
-            name: name,
-            fields: fieldsValue
-        )) {
+        switch try await client.getApiV1GuildsProfile(
+            query: .init(
+                region: try convert(from: region),
+                realm: realm,
+                name: name,
+                fields: fieldsValue
+            ))
+        {
         case .ok(let ok):
             return try GuildProfile(ok.body.json)
         case .undocumented(let statusCode, _):

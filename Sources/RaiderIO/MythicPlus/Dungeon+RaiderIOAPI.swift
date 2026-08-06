@@ -11,12 +11,12 @@ extension Dungeon {
 
     init(_ apiModel: Components.Schemas.LeaderboardDungeon) throws {
         guard let id = apiModel.id,
-              let name = apiModel.name,
-              let shortName = apiModel.shortName,
-              let slug = apiModel.slug,
-              let expansionId = apiModel.expansionId,
-              let patch = apiModel.patch,
-              let keystoneTimerMs = apiModel.keystoneTimerMs
+            let name = apiModel.name,
+            let shortName = apiModel.shortName,
+            let slug = apiModel.slug,
+            let expansionId = apiModel.expansionId,
+            let patch = apiModel.patch,
+            let keystoneTimerMs = apiModel.keystoneTimerMs
         else {
             throw RaiderIOError.typeConversionFailure
         }

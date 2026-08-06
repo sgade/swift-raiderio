@@ -73,11 +73,13 @@ public struct HallOfFame {
         public let defeatedBy: DefeatedBy
         public let attemptedBy: AttemptedBy
 
-        public init(boss: String,
-                    bossSummary: BossSummary,
-                    bossKillVideo: [Video]?,
-                    defeatedAt: DefeatedBy,
-                    attemptedBy: AttemptedBy) {
+        public init(
+            boss: String,
+            bossSummary: BossSummary,
+            bossKillVideo: [Video]?,
+            defeatedAt: DefeatedBy,
+            attemptedBy: AttemptedBy
+        ) {
             self.boss = boss
             self.bossSummary = bossSummary
             self.bossKillVideo = bossKillVideo
@@ -95,11 +97,13 @@ public struct HallOfFame {
         public let streamers: Streamers?
         public let recruitmentProfiles: [RecruitmentProfile]
 
-        public init(rank: Int,
-                    guild: Guild,
-                    encountersDefated: [DefeatedEncounter],
-                    streamers: Streamers?,
-                    recruitmentProfiles: [RecruitmentProfile]) {
+        public init(
+            rank: Int,
+            guild: Guild,
+            encountersDefated: [DefeatedEncounter],
+            streamers: Streamers?,
+            recruitmentProfiles: [RecruitmentProfile]
+        ) {
             self.rank = rank
             self.guild = guild
             self.encountersDefeated = encountersDefated
@@ -130,10 +134,12 @@ public struct KillGuild {
     public let encountersDefeated: [DefeatedEncounter]?
     public let defeatedAt: ISO8601Date?
 
-    public init(guild: Guild,
-                rank: Int? = nil,
-                encountersDefeated: [DefeatedEncounter]? = nil,
-                defeatedAt: ISO8601Date? = nil) {
+    public init(
+        guild: Guild,
+        rank: Int? = nil,
+        encountersDefeated: [DefeatedEncounter]? = nil,
+        defeatedAt: ISO8601Date? = nil
+    ) {
         self.guild = guild
         self.rank = rank
         self.encountersDefeated = encountersDefeated

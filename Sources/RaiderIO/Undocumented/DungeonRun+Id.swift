@@ -1,6 +1,6 @@
 //
 //  DungeonRun+Id.swift
-//  
+//
 //
 //  Created by Sören Gade on 17.01.23.
 //
@@ -11,7 +11,7 @@ extension DungeonRun {
 
     public var id: Int? {
         guard let lastPath = url.pathComponents.last,
-              let idString = lastPath.split(separator: "-").first
+            let idString = lastPath.split(separator: "-").first
         else {
             return nil
         }

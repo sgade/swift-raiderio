@@ -13,9 +13,9 @@ public struct Profile {
 
         private enum CodingKeys: String, CodingKey {
 
-            case itemLevelEquipped  = "item_level_equipped"
-            case itemLevelTotal     = "item_level_total"
-            case artifactTraits     = "artifact_traits"
+            case itemLevelEquipped = "item_level_equipped"
+            case itemLevelTotal = "item_level_total"
+            case artifactTraits = "artifact_traits"
 
         }
 
@@ -23,9 +23,11 @@ public struct Profile {
         public let itemLevelTotal: Float?
         public let artifactTraits: Float
 
-        public init(itemLevelEquipped: Float,
-                    itemLevelTotal: Float?,
-                    artifactTraits: Float) {
+        public init(
+            itemLevelEquipped: Float,
+            itemLevelTotal: Float?,
+            artifactTraits: Float
+        ) {
             self.itemLevelEquipped = itemLevelEquipped
             self.itemLevelTotal = itemLevelTotal
             self.artifactTraits = artifactTraits
@@ -59,28 +61,30 @@ public struct Profile {
     public let mythicPlusAlternateRuns: [DungeonRun]?
     public let previousMythicPlusRanks: [String: Ranks]?
 
-    public init(name: String,
-                race: String,
-                `class`: String,
-                activeSpecName: String,
-                activeSpecRole: Role,
-                gender: Gender,
-                faction: Faction,
-                region: RegionSlug,
-                realm: String,
-                profileUrl: URL,
-                profileBanner: String,
-                achievementPoints: Int,
-                thumbnailUrl: URL,
-                lastCrawledAt: ISO8601Date,
-                gear: Gear? = nil,
-                raidProgression: [String: RaidProgression]? = nil,
-                mythicPlusScoresBySeason: [SeasonScores]? = nil,
-                mythicPlusRanks: [String: Ranks]? = nil,
-                mythicPlusRecentRuns: [DungeonRun]? = nil,
-                mythicPlusBestRuns: [DungeonRun]? = nil,
-                mythicPlusAlternateRuns: [DungeonRun]? = nil,
-                previousMythicPlusRanks: [String: Ranks]? = nil) {
+    public init(
+        name: String,
+        race: String,
+        `class`: String,
+        activeSpecName: String,
+        activeSpecRole: Role,
+        gender: Gender,
+        faction: Faction,
+        region: RegionSlug,
+        realm: String,
+        profileUrl: URL,
+        profileBanner: String,
+        achievementPoints: Int,
+        thumbnailUrl: URL,
+        lastCrawledAt: ISO8601Date,
+        gear: Gear? = nil,
+        raidProgression: [String: RaidProgression]? = nil,
+        mythicPlusScoresBySeason: [SeasonScores]? = nil,
+        mythicPlusRanks: [String: Ranks]? = nil,
+        mythicPlusRecentRuns: [DungeonRun]? = nil,
+        mythicPlusBestRuns: [DungeonRun]? = nil,
+        mythicPlusAlternateRuns: [DungeonRun]? = nil,
+        previousMythicPlusRanks: [String: Ranks]? = nil
+    ) {
         self.name = name
         self.race = race
         self.class = `class`
@@ -112,7 +116,8 @@ public struct Profile {
 extension Profile {
 
     // swiftlint:disable line_length
-    private static let profileBannerBaseUrl = URL(string: "https://cdnassets.raider.io/images/profile/masthead_backdrops/v2")!
+    private static let profileBannerBaseUrl = URL(
+        string: "https://cdnassets.raider.io/images/profile/masthead_backdrops/v2")!
     // swiftlint:enable line_length
 
     public var profileBannerUrl: URL {

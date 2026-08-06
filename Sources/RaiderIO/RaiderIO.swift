@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import RaiderIOAPI
 import OpenAPIRuntime
 import OpenAPIURLSession
+import RaiderIOAPI
 
 /// Network client that accesses the [Raider.io API](https://raider.io/api).
 public final class RaiderIO: Sendable {
@@ -42,7 +42,8 @@ public final class RaiderIO: Sendable {
 
 extension RaiderIO {
 
-    func convert<Value: RawRepresentable, T: RawRepresentable>(from value: Value) throws -> T where Value.RawValue == T.RawValue {
+    func convert<Value: RawRepresentable, T: RawRepresentable>(from value: Value) throws -> T
+    where Value.RawValue == T.RawValue {
         guard let newValue = T.init(rawValue: value.rawValue) else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -70,9 +71,10 @@ extension RaiderIO {
             switch httpResponse.statusCode {
             case 400:
                 let errorResponse = try decoder.decode(ErrorResponse.self, from: data)
-                throw RaiderIOError.server(statusCode: errorResponse.statusCode,
-                                           error: errorResponse.error,
-                                           message: errorResponse.message)
+                throw RaiderIOError.server(
+                    statusCode: errorResponse.statusCode,
+                    error: errorResponse.error,
+                    message: errorResponse.message)
             default:
                 throw RaiderIOError.http(statusCode: httpResponse.statusCode)
             }

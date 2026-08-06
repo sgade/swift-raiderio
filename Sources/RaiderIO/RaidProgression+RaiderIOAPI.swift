@@ -32,13 +32,21 @@ extension RaidProgression {
         if let v = apiModel.liberationOfUndermine { result["liberation-of-undermine"] = RaidProgression(v) }
         if let v = apiModel.nerubarPalace { result["nerubar-palace"] = RaidProgression(v) }
         if let v = apiModel.blackrockDepths { result["blackrock-depths"] = RaidProgression(v) }
-        if let v = apiModel.awakenedAmirdrassilTheDreamsHope { result["awakened-amirdrassil-the-dreams-hope"] = RaidProgression(v) }
-        if let v = apiModel.awakenedAberrusTheShadowedCrucible { result["awakened-aberrus-the-shadowed-crucible"] = RaidProgression(v) }
-        if let v = apiModel.awakenedVaultOfTheIncarnates { result["awakened-vault-of-the-incarnates"] = RaidProgression(v) }
+        if let v = apiModel.awakenedAmirdrassilTheDreamsHope {
+            result["awakened-amirdrassil-the-dreams-hope"] = RaidProgression(v)
+        }
+        if let v = apiModel.awakenedAberrusTheShadowedCrucible {
+            result["awakened-aberrus-the-shadowed-crucible"] = RaidProgression(v)
+        }
+        if let v = apiModel.awakenedVaultOfTheIncarnates {
+            result["awakened-vault-of-the-incarnates"] = RaidProgression(v)
+        }
         if let v = apiModel.amirdrassilTheDreamsHope { result["amirdrassil-the-dreams-hope"] = RaidProgression(v) }
         if let v = apiModel.aberrusTheShadowedCrucible { result["aberrus-the-shadowed-crucible"] = RaidProgression(v) }
         if let v = apiModel.vaultOfTheIncarnates { result["vault-of-the-incarnates"] = RaidProgression(v) }
-        if let v = apiModel.fatedSepulcherOfTheFirstOnes { result["fated-sepulcher-of-the-first-ones"] = RaidProgression(v) }
+        if let v = apiModel.fatedSepulcherOfTheFirstOnes {
+            result["fated-sepulcher-of-the-first-ones"] = RaidProgression(v)
+        }
         if let v = apiModel.fatedSanctumOfDomination { result["fated-sanctum-of-domination"] = RaidProgression(v) }
         if let v = apiModel.fatedCastleNathria { result["fated-castle-nathria"] = RaidProgression(v) }
         if let v = apiModel.sepulcherOfTheFirstOnes { result["sepulcher-of-the-first-ones"] = RaidProgression(v) }

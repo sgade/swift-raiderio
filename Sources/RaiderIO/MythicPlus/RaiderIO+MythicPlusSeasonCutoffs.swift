@@ -15,10 +15,12 @@ extension RaiderIO {
     ///     - season: Season to retrieve cutoffs for.
     ///     - region: Region to receive cutoffs for.
     public func getMythicPlusSeasonCutoffs(for season: String, in region: RegionSlug) async throws -> SeasonCutoffs {
-        switch try await client.getApiV1MythicplusSeasoncutoffs(query: .init(
-            season: season,
-            region: try convert(from: region)
-        )) {
+        switch try await client.getApiV1MythicplusSeasoncutoffs(
+            query: .init(
+                season: season,
+                region: try convert(from: region)
+            ))
+        {
         case .ok(let ok):
             let json = try ok.body.json
             guard let cutoffs = json.cutoffs, let ui = json.ui else {

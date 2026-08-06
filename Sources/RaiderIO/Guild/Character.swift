@@ -92,15 +92,17 @@ public struct Character {
                 public let gems: [Int]
                 public let bonuses: [Int]
 
-                public init(id: Int,
-                            itemLevel: Int,
-                            icon: String,
-                            name: String,
-                            itemQuality: Quality,
-                            isLegendary: Bool,
-                            tier: String?,
-                            gems: [Int],
-                            bonuses: [Int]) {
+                public init(
+                    id: Int,
+                    itemLevel: Int,
+                    icon: String,
+                    name: String,
+                    itemQuality: Quality,
+                    isLegendary: Bool,
+                    tier: String?,
+                    gems: [Int],
+                    bonuses: [Int]
+                ) {
                     self.id = id
                     self.itemLevel = itemLevel
                     self.icon = icon
@@ -131,22 +133,24 @@ public struct Character {
             public let mainhand: Item?
             public let offhand: Item?
 
-            public init(head: Item? = nil,
-                        neck: Item? = nil,
-                        shoulder: Item? = nil,
-                        back: Item? = nil,
-                        chest: Item? = nil,
-                        waist: Item? = nil,
-                        wrist: Item? = nil,
-                        hands: Item? = nil,
-                        legs: Item? = nil,
-                        feet: Item? = nil,
-                        finger1: Item? = nil,
-                        finger2: Item? = nil,
-                        trinket1: Item? = nil,
-                        trinket2: Item? = nil,
-                        mainhand: Item? = nil,
-                        offhand: Item? = nil) {
+            public init(
+                head: Item? = nil,
+                neck: Item? = nil,
+                shoulder: Item? = nil,
+                back: Item? = nil,
+                chest: Item? = nil,
+                waist: Item? = nil,
+                wrist: Item? = nil,
+                hands: Item? = nil,
+                legs: Item? = nil,
+                feet: Item? = nil,
+                finger1: Item? = nil,
+                finger2: Item? = nil,
+                trinket1: Item? = nil,
+                trinket2: Item? = nil,
+                mainhand: Item? = nil,
+                offhand: Item? = nil
+            ) {
                 self.head = head
                 self.neck = neck
                 self.shoulder = shoulder
@@ -194,20 +198,22 @@ public struct Character {
     public let items: Items?
     public let recruitmentProfiles: [RecruitmentProfile]
 
-    public init(id: Int?,
-                name: String,
-                race: Race,
-                class: Class,
-                spec: Specialization,
-                talentLoadout: TalentLoadout?,
-                gender: Gender?,
-                thumbnail: String?,
-                itemLevelEquipped: Float?,
-                artifactTraits: Float?,
-                realm: Realm,
-                region: Region,
-                items: Items?,
-                recruitmentProfiles: [RecruitmentProfile]) {
+    public init(
+        id: Int?,
+        name: String,
+        race: Race,
+        class: Class,
+        spec: Specialization,
+        talentLoadout: TalentLoadout?,
+        gender: Gender?,
+        thumbnail: String?,
+        itemLevelEquipped: Float?,
+        artifactTraits: Float?,
+        realm: Realm,
+        region: Region,
+        items: Items?,
+        recruitmentProfiles: [RecruitmentProfile]
+    ) {
         self.id = id
         self.name = name
         self.race = race
@@ -310,9 +316,9 @@ extension Character.Specialization: Codable {
         case id
         case name
         case slug
-        case classId    = "class_id"
+        case classId = "class_id"
         case role
-        case isMelee    = "is_melee"
+        case isMelee = "is_melee"
 
     }
 
@@ -343,8 +349,8 @@ extension Character.Items: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
-        case itemLevelEquipped  = "item_level_equipped"
-        case artifactTraits     = "artifact_traits"
+        case itemLevelEquipped = "item_level_equipped"
+        case artifactTraits = "artifact_traits"
         case items
 
     }
@@ -357,12 +363,12 @@ extension Character.Items.Equipment.Item: Codable {
 
     private enum CodingKeys: String, CodingKey {
 
-        case id                 = "item_id"
-        case itemLevel          = "item_level"
+        case id = "item_id"
+        case itemLevel = "item_level"
         case icon
         case name
-        case itemQuality        = "item_quality"
-        case isLegendary        = "is_legendary"
+        case itemQuality = "item_quality"
+        case isLegendary = "is_legendary"
         case tier
         case gems
         case bonuses

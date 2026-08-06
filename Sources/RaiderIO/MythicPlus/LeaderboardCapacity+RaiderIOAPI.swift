@@ -27,7 +27,7 @@ extension LeaderboardCapacity.Affix {
 
     init(_ apiModel: Components.Schemas.LeaderboardAffix) throws {
         guard let id = apiModel.id, let name = apiModel.name, let description = apiModel.description,
-              let icon = apiModel.icon
+            let icon = apiModel.icon
         else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -35,20 +35,24 @@ extension LeaderboardCapacity.Affix {
         self.init(
             id: id,
             icon: icon,
-            name: Self.localized(en: name.en, ru: name.ru, ko: name.ko, cn: name.cn, pt: name.pt,
-                                  it: name.it, fr: name.fr, es: name.es, de: name.de, tw: name.tw),
-            description: Self.localized(en: description.en, ru: description.ru, ko: description.ko,
-                                         cn: description.cn, pt: description.pt, it: description.it,
-                                         fr: description.fr, es: description.es, de: description.de,
-                                         tw: description.tw)
+            name: Self.localized(
+                en: name.en, ru: name.ru, ko: name.ko, cn: name.cn, pt: name.pt,
+                it: name.it, fr: name.fr, es: name.es, de: name.de, tw: name.tw),
+            description: Self.localized(
+                en: description.en, ru: description.ru, ko: description.ko,
+                cn: description.cn, pt: description.pt, it: description.it,
+                fr: description.fr, es: description.es, de: description.de,
+                tw: description.tw)
         )
     }
 
     /// Builds a `[locale: value]` dictionary from a fixed-property schema struct
     /// (`LocalizedString`/`LocalizedString1` don't model this as an `additionalProperties` map -
     /// they have one named, optional property per locale instead), omitting locales that are nil.
-    private static func localized(en: String?, ru: String?, ko: String?, cn: String?, pt: String?,
-                                   it: String?, fr: String?, es: String?, de: String?, tw: String?) -> [String: String] {
+    private static func localized(
+        en: String?, ru: String?, ko: String?, cn: String?, pt: String?,
+        it: String?, fr: String?, es: String?, de: String?, tw: String?
+    ) -> [String: String] {
         var result: [String: String] = [:]
         if let en { result["en"] = en }
         if let ru { result["ru"] = ru }
@@ -98,7 +102,7 @@ extension LeaderboardCapacity.RealmInfo.DungeonInfo.LowestDungeonRun {
 
     init(_ apiModel: Components.Schemas.LeaderboardLowest) throws {
         guard let rank = apiModel.rank, let mythicLevel = apiModel.mythicLevel,
-              let timeInMilliseconds = apiModel.timeInMilliseconds
+            let timeInMilliseconds = apiModel.timeInMilliseconds
         else {
             throw RaiderIOError.typeConversionFailure
         }

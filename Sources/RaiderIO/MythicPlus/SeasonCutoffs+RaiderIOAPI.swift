@@ -13,13 +13,13 @@ extension SeasonCutoffs {
     /// `cutoffs`, despite what the pre-migration raw-JSON decode assumed).
     init(cutoffs apiModel: Components.Schemas.SeasonCutoffs, ui: Components.Schemas.SeasonCutoffsUI) throws {
         guard let updatedAt = apiModel.updatedAt,
-              let region = apiModel.region,
-              let p990 = apiModel.p990,
-              let p900 = apiModel.p900,
-              let p750 = apiModel.p750,
-              let p600 = apiModel.p600,
-              let keystoneMaster = apiModel.keystoneMaster,
-              let keystoneConqueror = apiModel.keystoneConqueror
+            let region = apiModel.region,
+            let p990 = apiModel.p990,
+            let p900 = apiModel.p900,
+            let p750 = apiModel.p750,
+            let p600 = apiModel.p600,
+            let keystoneMaster = apiModel.keystoneMaster,
+            let keystoneConqueror = apiModel.keystoneConqueror
         else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -62,42 +62,50 @@ extension SeasonCutoffs.UIInfo {
 extension SeasonCutoff {
 
     init(_ apiModel: Components.Schemas.CutoffQuantile1) throws {
-        try self.init(horde: apiModel.horde, hordeColor: apiModel.hordeColor,
-                       alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
+        try self.init(
+            horde: apiModel.horde, hordeColor: apiModel.hordeColor,
+            alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
     }
 
     init(_ apiModel: Components.Schemas.CutoffQuantile2) throws {
-        try self.init(horde: apiModel.horde, hordeColor: apiModel.hordeColor,
-                       alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
+        try self.init(
+            horde: apiModel.horde, hordeColor: apiModel.hordeColor,
+            alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
     }
 
     init(_ apiModel: Components.Schemas.CutoffQuantile3) throws {
-        try self.init(horde: apiModel.horde, hordeColor: apiModel.hordeColor,
-                       alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
+        try self.init(
+            horde: apiModel.horde, hordeColor: apiModel.hordeColor,
+            alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
     }
 
     init(_ apiModel: Components.Schemas.CutoffQuantile4) throws {
-        try self.init(horde: apiModel.horde, hordeColor: apiModel.hordeColor,
-                       alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
+        try self.init(
+            horde: apiModel.horde, hordeColor: apiModel.hordeColor,
+            alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
     }
 
     init(_ apiModel: Components.Schemas.CutoffQuantile7) throws {
-        try self.init(horde: apiModel.horde, hordeColor: apiModel.hordeColor,
-                       alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
+        try self.init(
+            horde: apiModel.horde, hordeColor: apiModel.hordeColor,
+            alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
     }
 
     init(_ apiModel: Components.Schemas.CutoffQuantile8) throws {
-        try self.init(horde: apiModel.horde, hordeColor: apiModel.hordeColor,
-                       alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
+        try self.init(
+            horde: apiModel.horde, hordeColor: apiModel.hordeColor,
+            alliance: apiModel.alliance, allianceColor: apiModel.allianceColor)
     }
 
     /// Shared by every `init(_:)` overload above - each `CutoffQuantile*` schema variant has the
     /// identical `horde`/`hordeColor`/`alliance`/`allianceColor` shape (a generator dedup
     /// artifact - see `update-openapi-definition.sh`), just as distinct nominal Swift types.
-    private init(horde: Components.Schemas.CutoffFactionQuantile?,
-                 hordeColor: Swift.String?,
-                 alliance: Components.Schemas.CutoffFactionQuantile1?,
-                 allianceColor: Swift.String?) throws {
+    private init(
+        horde: Components.Schemas.CutoffFactionQuantile?,
+        hordeColor: Swift.String?,
+        alliance: Components.Schemas.CutoffFactionQuantile1?,
+        allianceColor: Swift.String?
+    ) throws {
         guard let horde, let hordeColor, let alliance, let allianceColor else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -116,10 +124,10 @@ extension SeasonCutoff.FactionCutoff {
 
     init(_ apiModel: Components.Schemas.CutoffFactionQuantile) throws {
         guard let quantile = apiModel.quantile,
-              let quantileMinValue = apiModel.quantileMinValue,
-              let quantilePopulationCount = apiModel.quantilePopulationCount,
-              let quantilePopulationFraction = apiModel.quantilePopulationFraction,
-              let totalPopulationCount = apiModel.totalPopulationCount
+            let quantileMinValue = apiModel.quantileMinValue,
+            let quantilePopulationCount = apiModel.quantilePopulationCount,
+            let quantilePopulationFraction = apiModel.quantilePopulationFraction,
+            let totalPopulationCount = apiModel.totalPopulationCount
         else {
             throw RaiderIOError.typeConversionFailure
         }
@@ -135,10 +143,10 @@ extension SeasonCutoff.FactionCutoff {
 
     init(_ apiModel: Components.Schemas.CutoffFactionQuantile1) throws {
         guard let quantile = apiModel.quantile,
-              let quantileMinValue = apiModel.quantileMinValue,
-              let quantilePopulationCount = apiModel.quantilePopulationCount,
-              let quantilePopulationFraction = apiModel.quantilePopulationFraction,
-              let totalPopulationCount = apiModel.totalPopulationCount
+            let quantileMinValue = apiModel.quantileMinValue,
+            let quantilePopulationCount = apiModel.quantilePopulationCount,
+            let quantilePopulationFraction = apiModel.quantilePopulationFraction,
+            let totalPopulationCount = apiModel.totalPopulationCount
         else {
             throw RaiderIOError.typeConversionFailure
         }

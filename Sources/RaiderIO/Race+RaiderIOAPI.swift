@@ -11,9 +11,9 @@ extension Race {
 
     init(_ apiModel: Components.Schemas.Race) throws {
         guard let id = apiModel.id,
-              let name = apiModel.name,
-              let slug = apiModel.slug,
-              let faction = apiModel.faction
+            let name = apiModel.name,
+            let slug = apiModel.slug,
+            let faction = apiModel.faction
         else {
             throw RaiderIOError.typeConversionFailure
         }
